@@ -149,6 +149,7 @@
       "blocks": {
         "menu_item_V7M7qG": {
           "type": "menu_item",
+          "disabled": true,
           "settings": {
             "label": "Home",
             "url": "/"
@@ -192,6 +193,7 @@
         },
         "menu_item_MKM3K6": {
           "type": "menu_item",
+          "disabled": true,
           "settings": {
             "label": "Bundle & Save",
             "url": "shopify://collections/bundle-save"
@@ -199,6 +201,7 @@
         },
         "menu_item_9iAMA9": {
           "type": "menu_item",
+          "disabled": true,
           "settings": {
             "label": "About Us",
             "url": "shopify://pages/over-ons"
