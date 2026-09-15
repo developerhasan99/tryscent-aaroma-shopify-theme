@@ -1,0 +1,243 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "offer_timebar_PNTbqg": {
+      "type": "offer-timebar",
+      "blocks": {
+        "payment_icon_qcMDiY": {
+          "type": "payment_icon",
+          "settings": {
+            "icon": "shopify://shop_images/090e7fd71af4b4e7589642874d6cae93a0a34f77.png",
+            "label": "Fast Delivery"
+          }
+        },
+        "payment_icon_VWgiqB": {
+          "type": "payment_icon",
+          "settings": {
+            "icon": "shopify://shop_images/65f2284e66ff1dcb1a272319f1ef543c429f73e2.png",
+            "label": "EU Made"
+          }
+        },
+        "payment_icon_i3Hr68": {
+          "type": "payment_icon",
+          "settings": {
+            "icon": "shopify://shop_images/IDEAL_Logo_2020.svg",
+            "label": "Pay with iDEAL"
+          }
+        },
+        "payment_icon_EJx9b8": {
+          "type": "payment_icon",
+          "settings": {
+            "icon": "shopify://shop_images/800c98d03dc73f77225bfa90300384e0370c7cff.png",
+            "label": "Secure"
+          }
+        }
+      },
+      "block_order": [
+        "payment_icon_qcMDiY",
+        "payment_icon_VWgiqB",
+        "payment_icon_i3Hr68",
+        "payment_icon_EJx9b8"
+      ],
+      "name": "Offer Timebar",
+      "settings": {
+        "primary_color": "#723631",
+        "secondary_color": "#f1ebea",
+        "top_banner_text": "LIMITED TIME ONLY",
+        "prepend_text": "WAREHOUSE CLEARANCE SALE",
+        "countdown_date": "2026/09/13 23:59:59",
+        "append_text": "BUY 2, GET 1 FREE",
+        "link": "shopify://collections/bestsellers"
+      }
+    },
+    "announcement_bar_6UYB9c": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_RnCB3b": {
+          "type": "announcement",
+          "disabled": true,
+          "settings": {
+            "text": "Free shipping from €55",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_RnCB3b"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "marquee_labels_CjAgNU": {
+      "type": "marquee-labels",
+      "blocks": {
+        "label_Qg6CjC": {
+          "type": "label",
+          "disabled": true,
+          "settings": {
+            "label": "FREE SHIPPING ON ORDERS ABOVE $50"
+          }
+        },
+        "label_h4EKbX": {
+          "type": "label",
+          "settings": {
+            "label": "SAVE UPTO 50% OFF WITH OUR BUNDLES & GIFT SETS"
+          }
+        },
+        "label_yJphg9": {
+          "type": "label",
+          "settings": {
+            "label": "100% AUTHENTIC"
+          }
+        },
+        "label_nYhF3R": {
+          "type": "label",
+          "settings": {
+            "label": "EXPERT-CURATED COLLECTIONS"
+          }
+        },
+        "label_RqnDUx": {
+          "type": "label",
+          "settings": {
+            "label": "RISK-FREE 60 DAYS MONEY BACK GUARANTEE"
+          }
+        }
+      },
+      "block_order": [
+        "label_Qg6CjC",
+        "label_h4EKbX",
+        "label_yJphg9",
+        "label_nYhF3R",
+        "label_RqnDUx"
+      ],
+      "disabled": true,
+      "name": "Marquee Labels",
+      "settings": {}
+    },
+    "offer_announcement_cN6pMF": {
+      "type": "offer-announcement",
+      "disabled": true,
+      "name": "Offer Announcement",
+      "settings": {
+        "background_color": "#114325",
+        "prepend_text": "Women's Day Sale",
+        "link_text": "Buy 2 Get 1 Free!",
+        "append_text": "Shop Now 👉",
+        "link": ""
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "menu_item_V7M7qG": {
+          "type": "menu_item",
+          "settings": {
+            "label": "Home",
+            "url": "/"
+          }
+        },
+        "mega_menu_item_ixbwJG": {
+          "type": "mega_menu_item",
+          "settings": {
+            "label": "Men",
+            "collection": "men"
+          }
+        },
+        "mega_menu_item_U4hHR6": {
+          "type": "mega_menu_item",
+          "settings": {
+            "label": "Women",
+            "collection": "women"
+          }
+        },
+        "mega_menu_item_BXaKbm": {
+          "type": "mega_menu_item",
+          "settings": {
+            "label": "Bestsellers",
+            "collection": "bestsellers"
+          }
+        },
+        "mega_menu_item_LdbktV": {
+          "type": "mega_menu_item",
+          "settings": {
+            "label": "Unisex",
+            "collection": "unisex"
+          }
+        },
+        "sub_menu_items_GHhPzq": {
+          "type": "sub_menu_items",
+          "disabled": true,
+          "settings": {
+            "label": "More Items",
+            "link_list": "main-menu"
+          }
+        },
+        "menu_item_MKM3K6": {
+          "type": "menu_item",
+          "settings": {
+            "label": "Bundle & Save",
+            "url": "shopify://collections/bundle-save"
+          }
+        },
+        "menu_item_9iAMA9": {
+          "type": "menu_item",
+          "settings": {
+            "label": "About Us",
+            "url": "shopify://pages/over-ons"
+          }
+        }
+      },
+      "block_order": [
+        "menu_item_V7M7qG",
+        "mega_menu_item_ixbwJG",
+        "mega_menu_item_U4hHR6",
+        "mega_menu_item_BXaKbm",
+        "mega_menu_item_LdbktV",
+        "sub_menu_items_GHhPzq",
+        "menu_item_MKM3K6",
+        "menu_item_9iAMA9"
+      ],
+      "settings": {
+        "logo_position": "top-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": false,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 8,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "offer_timebar_PNTbqg",
+    "announcement_bar_6UYB9c",
+    "marquee_labels_CjAgNU",
+    "offer_announcement_cN6pMF",
+    "header"
+  ]
+}

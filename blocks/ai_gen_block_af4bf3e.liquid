@@ -1,0 +1,368 @@
+{% doc %}
+  @prompt
+    Generate collection page banner. For responsive mobile as desktop sizes with image on total size 
+    Mobile: 1200 x 1600
+    Desktop: 2048 x 1024
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-collection-banner-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+  }
+
+  .ai-collection-banner__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-banner__image-wrapper-{{ ai_gen_id }} {
+      padding-bottom: 133.33%;
+    }
+  }
+
+  .ai-collection-banner__image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ block.settings.desktop_image_position }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-banner__image-{{ ai_gen_id }} {
+      object-position: {{ block.settings.mobile_image_position }};
+    }
+  }
+
+  .ai-collection-banner__placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-collection-banner__placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .ai-collection-banner__content-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: {{ block.settings.text_alignment }};
+    width: 90%;
+    max-width: 800px;
+    z-index: 2;
+  }
+
+  .ai-collection-banner__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .ai-collection-banner__title-{{ ai_gen_id }} {
+    margin: 0 0 16px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-banner__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.7 }}px;
+    }
+  }
+
+  .ai-collection-banner__description-{{ ai_gen_id }} {
+    margin: 0;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.description_size }}px;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-banner__description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.85 }}px;
+    }
+  }
+
+  .ai-collection-banner__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+    z-index: 3;
+  }
+{% endstyle %}
+
+<div class="ai-collection-banner-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-collection-banner__image-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.desktop_image or block.settings.mobile_image %}
+      <picture>
+        {% if block.settings.mobile_image %}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ block.settings.mobile_image | image_url: width: 1200 }} 1200w"
+            width="1200"
+            height="1600"
+          >
+        {% endif %}
+        {% if block.settings.desktop_image %}
+          <img
+            src="{{ block.settings.desktop_image | image_url: width: 2048 }}"
+            srcset="{{ block.settings.desktop_image | image_url: width: 2048 }} 2048w"
+            alt="{{ block.settings.desktop_image.alt | escape }}"
+            loading="lazy"
+            width="2048"
+            height="1024"
+            class="ai-collection-banner__image-{{ ai_gen_id }}"
+          >
+        {% else %}
+          <img
+            src="{{ block.settings.mobile_image | image_url: width: 1200 }}"
+            srcset="{{ block.settings.mobile_image | image_url: width: 1200 }} 1200w"
+            alt="{{ block.settings.mobile_image.alt | escape }}"
+            loading="lazy"
+            width="1200"
+            height="1600"
+            class="ai-collection-banner__image-{{ ai_gen_id }}"
+          >
+        {% endif %}
+      </picture>
+    {% else %}
+      <div class="ai-collection-banner__placeholder-{{ ai_gen_id }}">
+        {{ 'collection-apparel-1' | placeholder_svg_tag }}
+        <div class="ai-collection-banner__empty-state-{{ ai_gen_id }}">
+          Next, add banner images
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_overlay %}
+      <div class="ai-collection-banner__overlay-{{ ai_gen_id }}"></div>
+    {% endif %}
+
+    {% if block.settings.show_text %}
+      <div class="ai-collection-banner__content-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h1 class="ai-collection-banner__title-{{ ai_gen_id }}">
+            {{ block.settings.heading }}
+          </h1>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <div class="ai-collection-banner__description-{{ ai_gen_id }}">
+            {{ block.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_position",
+      "label": "Desktop image position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "top center",
+          "label": "Top"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom"
+        },
+        {
+          "value": "center left",
+          "label": "Left"
+        },
+        {
+          "value": "center right",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile image position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "top center",
+          "label": "Top"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom"
+        },
+        {
+          "value": "center left",
+          "label": "Left"
+        },
+        {
+          "value": "center right",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text",
+      "label": "Show text",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Collection name"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover our latest collection</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Description size",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection banner"
+    }
+  ]
+}
+{% endschema %}

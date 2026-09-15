@@ -1,0 +1,268 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "insta_story_6kD6Ki": {
+      "type": "insta-story",
+      "blocks": {
+        "story_gjiCaN": {
+          "type": "story",
+          "settings": {
+            "title": "LV",
+            "link": "shopify://collections/louis-vuitton®"
+          }
+        },
+        "story_yMVHwJ": {
+          "type": "story",
+          "settings": {
+            "title": "Dior",
+            "link": "shopify://collections/dior®"
+          }
+        },
+        "story_BpqQDR": {
+          "type": "story",
+          "settings": {
+            "title": "Tom Ford",
+            "link": "shopify://collections/tomford®"
+          }
+        },
+        "story_YdjabH": {
+          "type": "story",
+          "settings": {
+            "title": "Baccarat",
+            "link": "shopify://collections/baccarat-rouge®"
+          }
+        },
+        "story_fFraf6": {
+          "type": "story",
+          "settings": {
+            "title": "Creed",
+            "link": "shopify://collections/creed®"
+          }
+        },
+        "story_TBAmBK": {
+          "type": "story",
+          "disabled": true,
+          "settings": {
+            "title": "Xerjoff",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "story_gjiCaN",
+        "story_yMVHwJ",
+        "story_BpqQDR",
+        "story_YdjabH",
+        "story_fFraf6",
+        "story_TBAmBK"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_scheme": "scheme-2"
+      }
+    },
+    "177738410212698ad2": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_af4bf3e_9DGtDY": {
+          "type": "ai_gen_block_af4bf3e",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Projekt_bez_nazwy_1.png",
+            "desktop_image_position": "center center",
+            "mobile_image": "shopify://shop_images/Projekt_bez_nazwy.png",
+            "mobile_image_position": "center center",
+            "show_overlay": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 30,
+            "show_text": false,
+            "heading": "Collection name",
+            "description": "<p>Discover our latest collection</p>",
+            "text_alignment": "center",
+            "text_color": "#ffffff",
+            "heading_size": 48,
+            "description_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_af4bf3e_9DGtDY"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "collection_header_MVrd93": {
+      "type": "collection-header",
+      "blocks": {
+        "guarantee_HNVUyd": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shopify://shop_images/sandwatch_1.svg",
+            "text": "Lasts 12+ hours"
+          }
+        },
+        "guarantee_TtGaNe": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shopify://shop_images/icons_quality_3.webp",
+            "text": "A fragrance oil content of 19–21%"
+          }
+        },
+        "guarantee_GGkLFn": {
+          "type": "guarantee",
+          "settings": {
+            "icon": "shopify://shop_images/sheild-star_1.svg",
+            "text": "60-day money-back guarantee"
+          }
+        },
+        "step_iqJcDJ": {
+          "type": "step",
+          "settings": {
+            "step_title": "Get 30% off your entire cart",
+            "step_description": "Choose your favorite fragrances and add them to your cart"
+          }
+        },
+        "step_eCyHxX": {
+          "type": "step",
+          "settings": {
+            "step_title": "Save even more with bundles!",
+            "step_description": "Buy 3 – save 40%. Buy 6 – save 48%."
+          }
+        },
+        "step_yYVfT7": {
+          "type": "step",
+          "settings": {
+            "step_title": "Order for at least 65 Euro",
+            "step_description": "Enjoy FREE shipping and FREE gifts!"
+          }
+        }
+      },
+      "block_order": [
+        "guarantee_HNVUyd",
+        "guarantee_TtGaNe",
+        "guarantee_GGkLFn",
+        "step_iqJcDJ",
+        "step_eCyHxX",
+        "step_yYVfT7"
+      ],
+      "disabled": true,
+      "name": "Collection Header",
+      "settings": {
+        "background_color": "#242833",
+        "bg_image": "shopify://shop_images/payday_banner.png",
+        "bg_mobile_image": "shopify://shop_images/payday_mobile_Nobottles.jpg",
+        "social_proof_text": "Approved by more than 10,000 satisfied fragrance lovers",
+        "collection_title": "Payday Sale!",
+        "collection_description": "Buy your favorite fragrances at even better prices! And save even more with bundle offers!",
+        "btn_link": "",
+        "btn_text": "",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "blocky_image_embedded_cEwD7H": {
+      "type": "blocky-image-embedded",
+      "name": "Blocky Image Embed",
+      "settings": {
+        "image": "shopify://shop_images/PaydayDeal_Header_-_Magic_Perfume_-_NL.webp",
+        "section_height": "650px",
+        "mobile_height": "300px",
+        "image_fit": "cover",
+        "border_radius": 30,
+        "overlay_opacity": 0,
+        "text_align": "vertical-center horizontal-center",
+        "full_screen": false,
+        "page_width": 1200,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "popular_products_axKNqT": {
+      "type": "popular-products",
+      "name": "Popular Products",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "title": "More fragrances, pay less. Choose a bundle.",
+        "description": "",
+        "collection": "aaroma-day",
+        "button_text": "",
+        "button_link": "shopify://collections/all",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 36,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-2",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_fnCgkL": {
+      "type": "rich-text",
+      "blocks": {
+        "text_x4GrCN": {
+          "type": "text",
+          "settings": {
+            "text": "<p></p>{{ collection.description }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_x4GrCN"
+      ],
+      "custom_css": [
+        ".rich-text--full-width {background-color: #fcfbf9; border-top: #f3f3f3 2px solid;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "insta_story_6kD6Ki",
+    "banner",
+    "177738410212698ad2",
+    "collection_header_MVrd93",
+    "blocky_image_embedded_cEwD7H",
+    "popular_products_axKNqT",
+    "product-grid",
+    "rich_text_fnCgkL"
+  ]
+}

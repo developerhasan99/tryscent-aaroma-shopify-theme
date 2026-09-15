@@ -1,0 +1,1004 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "magic_hero_GLbzbL": {
+      "type": "magic-hero",
+      "disabled": true,
+      "name": "Magic Hero",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "background_image": "shopify://shop_images/newheader.webp",
+        "mobile_background_image": "shopify://shop_images/newheader_mobile.webp",
+        "title": "Smell more expensive. Pay less.",
+        "subtitle": "The same fragrance pyramid as the perfumes you admire — without the inflated price tag of a designer brand.",
+        "button_text": "Discover your scent",
+        "button_link": "shopify://collections/bestsellers",
+        "second_button_text": "",
+        "second_button_link": "shopify://collections/women",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "homepage_hero_XnJ8mD": {
+      "type": "homepage-hero",
+      "name": "Homepage Hero",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "background_image": "shopify://shop_images/Magic_Office_PC.webp",
+        "mobile_background_image": "shopify://shop_images/Magic_Office_PC.webp",
+        "review_text": "LOVED BY 10,000+ CUSTOMERS",
+        "title": "BACK TO OFFICE — BUY 3, GET 1 FREE",
+        "subtitle": "The scents you love, for less. Save up to 50% with our bundles.",
+        "button_text": "SHOP NOW",
+        "button_link": "shopify://collections/payday-4-2",
+        "secondary_button_text": "Not sure yet? Explore More →",
+        "secondary_button_link": "",
+        "padding_top": 120,
+        "padding_bottom": 100,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 400
+      }
+    },
+    "home_hero_banner_qmaB3G": {
+      "type": "home-hero-banner",
+      "disabled": true,
+      "name": "Home Hero Banner",
+      "settings": {
+        "image": "shopify://shop_images/herobanner.webp",
+        "mobile_image": "shopify://shop_images/heromobile.webp",
+        "link": "shopify://products/4-x-100ml-perfume-bottles"
+      }
+    },
+    "marquee_labels_RLdqpN": {
+      "type": "marquee-labels",
+      "blocks": {
+        "label_idFnra": {
+          "type": "label",
+          "disabled": true,
+          "settings": {
+            "label": "FREE SHIPPING ON ORDERS ABOVE $50"
+          }
+        },
+        "label_MXGigr": {
+          "type": "label",
+          "settings": {
+            "label": "SAVE UPTO 50% OFF WITH OUR BUNDLES & GIFT SETS"
+          }
+        },
+        "label_iFULPM": {
+          "type": "label",
+          "settings": {
+            "label": "100% Authentic TryScent formulation"
+          }
+        },
+        "label_8KQqAa": {
+          "type": "label",
+          "settings": {
+            "label": "EXPERT-CURATED COLLECTIONS"
+          }
+        },
+        "label_LMktzF": {
+          "type": "label",
+          "settings": {
+            "label": "RISK-FREE 60 DAYS MONEY BACK GUARANTEE"
+          }
+        },
+        "label_VYpx4b": {
+          "type": "label",
+          "settings": {
+            "label": "Free Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "label_idFnra",
+        "label_MXGigr",
+        "label_iFULPM",
+        "label_8KQqAa",
+        "label_LMktzF",
+        "label_VYpx4b"
+      ],
+      "disabled": true,
+      "name": "Marquee Labels",
+      "settings": {}
+    },
+    "feature_highlights_wfUacV": {
+      "type": "feature-highlights",
+      "blocks": {
+        "perks_CBpKqp": {
+          "type": "perks",
+          "settings": {
+            "perk_image": "shopify://shop_images/shipping.png",
+            "perk_title": "Free Shipping",
+            "perk_content": "On orders €55+. Shipped within 48 hours, with tracking."
+          }
+        },
+        "perks_Ynh4gw": {
+          "type": "perks",
+          "settings": {
+            "perk_image": "shopify://shop_images/icons_quality.png",
+            "perk_title": "60-Day Money-Back Guarantee",
+            "perk_content": "Not happy? Get your money back. No hassle."
+          }
+        },
+        "perks_Cj3EAR": {
+          "type": "perks",
+          "settings": {
+            "perk_image": "shopify://shop_images/icons_guarantee.png",
+            "perk_title": "Made in Europe",
+            "perk_content": "Produced in certified European facilities."
+          }
+        },
+        "perks_iX4iTY": {
+          "type": "perks",
+          "settings": {
+            "perk_image": "shopify://shop_images/icons_time.png",
+            "perk_title": "12+ Hours of Wear",
+            "perk_content": "Enjoy your scent all day long."
+          }
+        }
+      },
+      "block_order": [
+        "perks_CBpKqp",
+        "perks_Ynh4gw",
+        "perks_Cj3EAR",
+        "perks_iX4iTY"
+      ],
+      "name": "Feature Highlights",
+      "settings": {
+        "background_color": "#ffffff",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "featured_on_H7jhJ4": {
+      "type": "featured-on",
+      "blocks": {
+        "featured_on_jax6rH": {
+          "type": "featured_on",
+          "settings": {}
+        },
+        "featured_on_kcEXCA": {
+          "type": "featured_on",
+          "settings": {}
+        },
+        "featured_on_ViMby9": {
+          "type": "featured_on",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "featured_on_jax6rH",
+        "featured_on_kcEXCA",
+        "featured_on_ViMby9"
+      ],
+      "disabled": true,
+      "name": "Featured On",
+      "settings": {
+        "background_color": "#ffffff",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "popular_products_pNDeh4": {
+      "type": "popular-products",
+      "name": "Popular Products",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "title": "Most Popular",
+        "description": "<p>The scents our customers keep coming back for.</p>",
+        "collection": "top-sellers",
+        "button_text": "Shop All",
+        "button_link": "shopify://collections/all",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "popular_products_nC8A3n": {
+      "type": "popular-products",
+      "name": "Popular Products",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "title": "Men’s Fragrances",
+        "description": "",
+        "collection": "men",
+        "button_text": "View All",
+        "button_link": "shopify://collections/men",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "popular_products_nimyqA": {
+      "type": "popular-products",
+      "name": "Popular Products",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "title": "Women’s Fragrances",
+        "description": "",
+        "collection": "women",
+        "button_text": "View All",
+        "button_link": "shopify://collections/women",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "home_category_wNQCfP": {
+      "type": "home-category",
+      "blocks": {
+        "category_yXjfNN": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/website_bundle.webp",
+            "text": "Bundle & Save",
+            "link": "shopify://collections/bundle-save"
+          }
+        },
+        "category_JatE79": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/tryscent_male_02.png",
+            "text": "Men’s Fragrances",
+            "link": "shopify://collections/men"
+          }
+        },
+        "category_kcgbew": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/ugc12.png",
+            "text": "Women’s Fragrances",
+            "link": "shopify://collections/women"
+          }
+        },
+        "category_PLwfRa": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/website_unisex_1.webp",
+            "text": "Unisex Fragrances",
+            "link": "shopify://collections/unisex"
+          }
+        }
+      },
+      "block_order": [
+        "category_yXjfNN",
+        "category_JatE79",
+        "category_kcgbew",
+        "category_PLwfRa"
+      ],
+      "name": "Home Categories",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "review_grid_H3xfHP": {
+      "type": "review-grid",
+      "blocks": {
+        "review_MKcdVw": {
+          "type": "review",
+          "settings": {
+            "heading": "Highly recommended.",
+            "content": "<p>“I wore No. 079 out to dinner, and three people asked what perfume I was wearing. One of them thought it was Chanel.”</p>",
+            "author": "Sanne V., Rotterdam",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        },
+        "review_kCUEm4": {
+          "type": "review",
+          "settings": {
+            "heading": "Arrived in perfect condition.",
+            "content": "<p>“After a twelve-hour workday, I can still smell it. Even my €120 perfume doesn’t last that long. This one lasts. That one doesn’t.”</p>",
+            "author": "Daan M., Utrecht",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        },
+        "review_EbFNac": {
+          "type": "review",
+          "settings": {
+            "heading": "Great quality, great price.",
+            "content": "<p><br/>“I was really impressed with the quality. The scent lasts a long time and is comparable to much more expensive brands.”</p>",
+            "author": "Santosh K.",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_MKcdVw",
+        "review_kCUEm4",
+        "review_EbFNac"
+      ],
+      "name": "Review Grid",
+      "settings": {
+        "background_color": "#ffffff",
+        "heading": "What Our Customers Say",
+        "review_text": "Verified buyers. Real experiences.",
+        "button_text": "Read all reviews",
+        "button_link": "shopify://collections/all",
+        "padding_top": 72,
+        "padding_bottom": 36
+      }
+    },
+    "image_and_text": {
+      "type": "image-and-text",
+      "blocks": {
+        "heading_ax7WWJ": {
+          "type": "heading",
+          "settings": {
+            "content": "Why Choose Aaroma?",
+            "heading_type": "h2",
+            "font_size": 32,
+            "mobile_font_size": 24
+          }
+        },
+        "text_gzPVkb": {
+          "type": "text",
+          "settings": {
+            "content": "<p>Luxury scents. European quality. Without the designer price tag.</p>",
+            "mobile_content": "",
+            "font_size": 18
+          }
+        },
+        "point_yJrEAL": {
+          "type": "point",
+          "settings": {
+            "icon": "shopify://shop_images/Screenshot_2026-05-03_at_9.32.50_PM.png",
+            "heading": "Made in Europe",
+            "description": "<p>Our perfumes are made in certified European facilities, following strict European cosmetics standards.</p>",
+            "mobile_description": ""
+          }
+        },
+        "point_jDHtzX": {
+          "type": "point",
+          "settings": {
+            "icon": "shopify://shop_images/Screenshot_2026-05-03_at_9.37.47_PM.png",
+            "heading": "French Quality",
+            "description": "<p>Crafted with the same attention to detail and fragrance notes as designer perfumes.</p>",
+            "mobile_description": ""
+          }
+        },
+        "point_Yp49mb": {
+          "type": "point",
+          "settings": {
+            "icon": "shopify://shop_images/Screenshot_2026-05-03_at_9.39.01_PM.png",
+            "heading": "A Fraction of the Price",
+            "description": "<p>Save up to 90% compared to designer brands. Pay for the fragrance—not expensive advertising campaigns and luxury stores.</p>",
+            "mobile_description": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_ax7WWJ",
+        "text_gzPVkb",
+        "point_yJrEAL",
+        "point_jDHtzX",
+        "point_Yp49mb"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "image": "shopify://shop_images/466W_min_ca4ad654-6b6a-4dd5-82b5-f0c4fa32886e.webp",
+        "rounded_image": true,
+        "image_placement": "1",
+        "mobile_image_placement": "under_heading",
+        "button_text": "",
+        "button_url": "",
+        "columns_gap": 40,
+        "rows_gap": 20,
+        "content_alignment": "center",
+        "blocks_gap": 24,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "special_offer_bogo_NqVrAK": {
+      "type": "special-offer-bogo",
+      "blocks": {
+        "perk_HrfwXR": {
+          "type": "perk",
+          "settings": {
+            "text": "Lasts 12+ hours"
+          }
+        },
+        "perk_d4dqHJ": {
+          "type": "perk",
+          "settings": {
+            "text": "Loved by 10,000+"
+          }
+        },
+        "perk_9CajQF": {
+          "type": "perk",
+          "settings": {
+            "text": "60-day money-back guarantee"
+          }
+        }
+      },
+      "block_order": [
+        "perk_HrfwXR",
+        "perk_d4dqHJ",
+        "perk_9CajQF"
+      ],
+      "disabled": true,
+      "name": "Special Offer",
+      "settings": {
+        "offer_text": "Special Offer",
+        "offer_title": "Your Next Signature Scent, Trial-Sized.",
+        "offer_description": "Not ready to commit? Our travel-size perfumes let you explore luxe fragrances one spritz at a time.Perfect for pockets, purses, and perfume commitment issues.",
+        "offer_sub_description": "",
+        "offer_button_text": "BUY 4 for $44.00 Only",
+        "offer_button_link": "https://tryscent.co/products/4-x-100ml-perfume-bottles",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "massive_review_section": {
+      "type": "massive-review",
+      "blocks": {
+        "review_GJGq9n": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/pinkm.png",
+            "content": "<p>\"Happy with Aaroma. The scent closely resembles the original and lasts well. Neat packaging, nice bottle. Excellent choice for anyone looking for quality at a fair price.\"</p>",
+            "author": "Alina M",
+            "date": "5 months ago",
+            "rating": 5,
+            "show_verified_badge": false,
+            "product": "black-berry-vanilla-musk"
+          }
+        },
+        "review_jNFxYP": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.35.58_AM.jpg",
+            "content": "<p>\"One of my favorite scents. Delivered quickly. Lovely.\"</p>",
+            "author": "Alex W.",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        },
+        "review_eGyDpR": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/345.png",
+            "content": "<p>\"Great product. A smart alternative to brand-name perfumes. Lasts a long time and you get great value for money.\"</p>",
+            "author": "EM",
+            "date": "4 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "bergamote-le-labo-bergamote-22"
+          }
+        },
+        "review_gF6wKD": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "review_image": "shopify://shop_images/261_revie.png",
+            "content": "<p>\"This is my first purchase and I'm already sold. I'll never buy perfume anywhere else. I'd been looking for an alternative that smells truly authentic for a long time - this is it.\"</p>",
+            "author": "Killian P.",
+            "date": "1 day ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "bergamot-sage-cedar-50-ml"
+          }
+        },
+        "review_ByDgLX": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/2026-07-02_16h41_42.png",
+            "content": "<p>\"This is the best perfume I've smelled in ages. The fragrance accords get me every time. This stays in my permanent collection.\"</p>",
+            "author": "Jenniffer W.",
+            "date": "2 days ago",
+            "rating": 4,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        },
+        "review_dKt8hn": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "review_image": "shopify://shop_images/2026-07-02_16h55_49.png",
+            "content": "<p>\"All three scents I received are very good. They last a long time and smell the way they should. My only disappointment was how long it took to receive them. But honestly, I placed a second order, so just expect a wait. Lol!<br/>\"</p>",
+            "author": "Clara P.",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "apple-cinnamon-sandalwood"
+          }
+        },
+        "review_DzktgE": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/2026-07-02_16h57_29.png",
+            "content": "<p>\"Perfect and beautiful.\"</p>",
+            "author": "Lidis A.",
+            "date": "2 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "saffron-rose-amber-50-ml-1-7-fl-oz"
+          }
+        },
+        "review_VrkHXh": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Mounissa_Soilihi.jpg",
+            "content": "<p>\"I'd been looking for years for a scent that smells luxurious and lasts a long time. This is exactly what I was looking for.\"</p>",
+            "author": "Tiana N.",
+            "date": "2 days ago",
+            "rating": 4,
+            "show_verified_badge": true,
+            "product": "fresh-escape-premium"
+          }
+        },
+        "review_myTAe8": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.35.55_AM.jpg",
+            "content": "<p>\"It smells very nice, but doesn't last as long as it should\"</p>",
+            "author": "Terence M.",
+            "date": "2 months ago",
+            "rating": 5,
+            "show_verified_badge": false,
+            "product": ""
+          }
+        },
+        "review_wczQWw": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Camila_Sena_Oliveira_1.jpg",
+            "content": "<p>\"I didn't know what to expect, but I'm pleasantly surprised. Super fresh and very close to Aventus. Lasts well and the price is much better.\"</p>",
+            "author": "Michael T.",
+            "date": "2 days ago",
+            "rating": 4,
+            "show_verified_badge": true,
+            "product": "pineapple-smoke-vanilla-50-ml-1-7-fl-oz"
+          }
+        },
+        "review_9fWXGn": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Daria_Kononenko_2.jpg",
+            "content": "<p>\"I love these perfumes. Every perfume I've received smells great. Some I even prefer to the original.\"</p>",
+            "author": "Christine N.",
+            "date": "5 days ago",
+            "rating": 4,
+            "show_verified_badge": false,
+            "product": ""
+          }
+        },
+        "review_iPjTCz": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "review_image": "shopify://shop_images/Celia_Sahki_1.jpg",
+            "content": "<p>\"At first I was worried because shipping was slightly delayed, but once I received them, I was amazed by the scent. Once it settles, it's simply amazing.\"</p>",
+            "author": "Lionel M.",
+            "date": "7 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "4x-100ml-perfume-bottles"
+          }
+        },
+        "review_YpX9h9": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Carolina_Maresca_2.png",
+            "content": "<p>\"Lovely scent. I love it.\"</p>",
+            "author": "Castillo B.",
+            "date": "3 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "tryscent-collection"
+          }
+        },
+        "review_NBGz7p": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Aleksandra_Kosin.jpg",
+            "content": "<p>\"Wonderfully scented perfumes. The scents last a very long time. Excellent quality.\"</p>",
+            "author": "Kamila G.",
+            "date": "3 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "6x-30ml-perfume-bottles"
+          }
+        },
+        "review_MBb63N": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Claudia_Martins_4.png",
+            "content": "<p>\"Smells exactly like Luna Rossa Carbon, for a fraction of the price. I can't believe how close it is to the original.\"</p>",
+            "author": "Diana R.",
+            "date": "4 months ago",
+            "rating": 4,
+            "show_verified_badge": false,
+            "product": ""
+          }
+        },
+        "review_hAJXhk": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/2026-07-02_16h58_13.png",
+            "content": "<p>\"The scent that makes you feel put together. Not too heavy, just right.\"</p>",
+            "author": "Michael R.",
+            "date": "4 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "alpha-oil"
+          }
+        },
+        "review_rad8A6": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.35.50_AM.jpg",
+            "content": "<p>\"I've worn Creed Aventus for years. This is the best alternative I've ever found, for a fraction of the price. The combination of pineapple and vanilla is spot on.\"</p>",
+            "author": "Alvarez P.",
+            "date": "4 months ago",
+            "rating": 4,
+            "show_verified_badge": true,
+            "product": "pineapple-smoke-vanilla-50-ml-1-7-fl-oz"
+          }
+        },
+        "review_BLYVmX": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/2026-07-02_16h49_01.png",
+            "content": "<p>\"The product was neatly packaged. The perfume wasn't broken, didn't leak and was in good condition. The scent is perfect and didn't smell bad. I love it, high quality\"</p>",
+            "author": "Anne E.",
+            "date": "4 months ago",
+            "rating": 4,
+            "show_verified_badge": true,
+            "product": "azure-dreams-pure"
+          }
+        },
+        "review_eerxBx": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Anastasiia_Komisarova.jpg",
+            "content": "<p>\"Beautiful scent. Long-lasting. Sweet and warm. Delivered quickly. I'll definitely order again.\"</p>",
+            "author": "Lucy R",
+            "date": "4 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "6x-30ml-perfume-bottles"
+          }
+        },
+        "review_UWgaKy": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/2026-07-02_16h34_24.png",
+            "content": "<p>\"Good quality for a very affordable price.\"</p>",
+            "author": "Amanda G",
+            "date": "5 months ago",
+            "rating": 4,
+            "show_verified_badge": true,
+            "product": "amber-glow"
+          }
+        },
+        "review_pqPKKr": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.33.40_AM.jpg",
+            "content": "<p>\"Great scents, great products. Everything flawless.\"</p>",
+            "author": "Alex S.",
+            "date": "6 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "azure-dreams-pure"
+          }
+        },
+        "review_UfaJJE": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/tryscent143.png",
+            "content": "<p>\"Neatly packaged and received undamaged. The scent is lovely. High quality.\"</p>",
+            "author": "Roxanne S",
+            "date": "5 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "jasmine-cocoa-tonka"
+          }
+        },
+        "review_YGWg6W": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.35.36_AM_1.jpg",
+            "content": "<p>\"From customer service to the product - the experience was phenomenal. I'll definitely be back.\"</p>",
+            "author": "Benjamin M",
+            "date": "5 months ago",
+            "rating": 5,
+            "show_verified_badge": false,
+            "product": ""
+          }
+        },
+        "review_DbGYKc": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "content": "<p>\"Oommgg I love it! Wow! Just like the original and it lasts all day!❤️‍🔥❤️‍🔥\"</p>",
+            "author": "شيطانة YT",
+            "date": "4 months ago",
+            "rating": 4,
+            "show_verified_badge": true,
+            "product": "desert-storm"
+          }
+        },
+        "review_w7rGQg": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Carolina_Maresca_3.png",
+            "content": "<p>\"The scent is intense and full. The bottle and the design are beautiful. I'll definitely order again.\"</p>",
+            "author": "Eliannys Y",
+            "date": "7 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "aldehydes-rose-sandalwood-50-ml-1-7-fl-oz"
+          }
+        },
+        "review_Xg6QrF": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.35.58_AM_1.jpg",
+            "content": "<p>\"I like it! I love this scent. Good fragrance\"</p>",
+            "author": "Aleksandra M",
+            "date": "7 months ago",
+            "rating": 5,
+            "show_verified_badge": false,
+            "product": ""
+          }
+        },
+        "review_Bhzenw": {
+          "type": "review",
+          "settings": {
+            "content": "<p>\"Great product, smells fantastic. People regularly ask me what perfume I'm wearing.\"</p>",
+            "author": "Damario R",
+            "date": "7 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "azure-dreams-pure"
+          }
+        },
+        "review_RNkDTG": {
+          "type": "review",
+          "settings": {
+            "content": "<p>\"Great brand, great products.\"</p>",
+            "author": "Juliana B",
+            "date": "4 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "4x-50ml-perfume-bottles"
+          }
+        },
+        "review_j8wKcd": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "content": "<p>\"After a small delay, I finally received my TryScent perfumes and they're just right! I can hardly believe how accurate they are compared to the originals. For reference: I got \"Ylang Ylang Rose Jasmine\" and \"Aldehydes Rose Sandalwood\" — they are truly beautiful scents\"</p>",
+            "author": "Gabriella K",
+            "date": "7 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "amalfi-coast-mandarino-di-amalfi-fragrance"
+          }
+        },
+        "review_yEyWP7": {
+          "type": "review",
+          "settings": {
+            "content": "<p>\"Very good brand. Happy with the packaging and the scent.\"</p>",
+            "author": "Rosa B",
+            "date": "7 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "bergamote-le-labo-bergamote-22"
+          }
+        },
+        "review_KkRLfy": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "content": "<p>\"I'm a big fragrance lover, so I'm picky when it comes to clones, but TryScent completely won me over. I originally ordered the Sauvage clone on the homepage and recognized the scent immediately when I sprayed it. I now own 4 TryScent fragrances in total and I love them. There are 3 more on the way thanks to their bundle offers. If you want something that works on a limited budget and still delivers the performance of a designer brand, I can't recommend them enough.\"</p>",
+            "author": "Sean P",
+            "date": "4 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "fresh-escape-premium"
+          }
+        },
+        "review_GPPnxQ": {
+          "type": "review",
+          "settings": {
+            "content": "<p>\"Very happy with this brand. Beautiful scents, just like the original but for less money. I'll definitely buy again.\"</p>",
+            "author": "Angel",
+            "date": "8 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "6x-30ml-perfume-bottles"
+          }
+        },
+        "review_nJELg9": {
+          "type": "review",
+          "disabled": true,
+          "settings": {
+            "content": "<p>\"This summer I received a sample set of Creed Aventus as a gift and I really loved it, but I couldn't afford the original. So I looked for dupes. I found Tryscent and ordered \"Pineapple Smoke Vanilla\". It arrived in about a week and it smells really good, close to my original sample. Very happy with the product, especially for the price\"</p>",
+            "author": "Hwan H",
+            "date": "8 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "4x-50ml-perfume-bottles"
+          }
+        },
+        "review_kqR3XT": {
+          "type": "review",
+          "settings": {
+            "content": "<p>\"Started with the 7.5ml sample scents and was immediately convinced. Then ordered the larger bottles right away. Delivered on time, exactly what I wanted.\"</p>",
+            "author": "Lauri E",
+            "date": "8 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "black-berry-vanilla-musk"
+          }
+        }
+      },
+      "block_order": [
+        "review_GJGq9n",
+        "review_jNFxYP",
+        "review_eGyDpR",
+        "review_gF6wKD",
+        "review_ByDgLX",
+        "review_dKt8hn",
+        "review_DzktgE",
+        "review_VrkHXh",
+        "review_myTAe8",
+        "review_wczQWw",
+        "review_9fWXGn",
+        "review_iPjTCz",
+        "review_YpX9h9",
+        "review_NBGz7p",
+        "review_MBb63N",
+        "review_hAJXhk",
+        "review_rad8A6",
+        "review_BLYVmX",
+        "review_eerxBx",
+        "review_UWgaKy",
+        "review_pqPKKr",
+        "review_UfaJJE",
+        "review_YGWg6W",
+        "review_DbGYKc",
+        "review_w7rGQg",
+        "review_Xg6QrF",
+        "review_Bhzenw",
+        "review_RNkDTG",
+        "review_j8wKcd",
+        "review_yEyWP7",
+        "review_KkRLfy",
+        "review_GPPnxQ",
+        "review_nJELg9",
+        "review_kqR3XT"
+      ],
+      "settings": {
+        "background_color": "#fcfbf9",
+        "heading": "Trusted by 10,000+ Customers",
+        "review_text": "Rated 4.9/5 from over 10,000 reviews",
+        "button_text": "See more reviews",
+        "button_link": "#",
+        "padding_top": 60,
+        "padding_bottom": 72
+      }
+    },
+    "our_bestsellers_niPBnL": {
+      "type": "our-bestsellers",
+      "disabled": true,
+      "name": "Our Bestsellers",
+      "settings": {
+        "background_color": "#3f2120",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "175501299681a2aa62": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "17551175978bd893d1": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "marquee_labels_pxhCDL": {
+      "type": "marquee-labels",
+      "blocks": {
+        "label_q4pXPr": {
+          "type": "label",
+          "disabled": true,
+          "settings": {
+            "label": "FREE SHIPPING ON ORDERS ABOVE $50"
+          }
+        },
+        "label_3jXRHH": {
+          "type": "label",
+          "settings": {
+            "label": "SAVE UPTO 50% OFF WITH OUR BUNDLES & GIFT SETS"
+          }
+        },
+        "label_eBrDcC": {
+          "type": "label",
+          "settings": {
+            "label": "100% AUTHENTIC"
+          }
+        },
+        "label_pNxYCF": {
+          "type": "label",
+          "settings": {
+            "label": "EXPERT-CURATED COLLECTIONS"
+          }
+        },
+        "label_jRHLQB": {
+          "type": "label",
+          "settings": {
+            "label": "RISK-FREE 60 DAYS MONEY BACK GUARANTEE"
+          }
+        }
+      },
+      "block_order": [
+        "label_q4pXPr",
+        "label_3jXRHH",
+        "label_eBrDcC",
+        "label_pNxYCF",
+        "label_jRHLQB"
+      ],
+      "disabled": true,
+      "name": "Marquee Labels",
+      "settings": {}
+    },
+    "175501299598bc050d": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "magic_hero_GLbzbL",
+    "homepage_hero_XnJ8mD",
+    "home_hero_banner_qmaB3G",
+    "marquee_labels_RLdqpN",
+    "feature_highlights_wfUacV",
+    "featured_on_H7jhJ4",
+    "popular_products_pNDeh4",
+    "popular_products_nC8A3n",
+    "popular_products_nimyqA",
+    "home_category_wNQCfP",
+    "review_grid_H3xfHP",
+    "image_and_text",
+    "special_offer_bogo_NqVrAK",
+    "massive_review_section",
+    "our_bestsellers_niPBnL",
+    "175501299681a2aa62",
+    "17551175978bd893d1",
+    "marquee_labels_pxhCDL",
+    "175501299598bc050d"
+  ]
+}

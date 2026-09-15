@@ -1,0 +1,46 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "dutch"
+  },
+  "parent": "collection.json",
+  "sections": {
+    "blocky_image_embedded_JjUDd": {
+      "type": "blocky-image-embedded",
+      "disabled": false,
+      "settings": {
+        "image": "shopify://shop_images/ducth.png",
+        "header-8e376a603e752522162047a37c34012e": null,
+        "section_height": "650px",
+        "mobile_height": "300px",
+        "image_fit": "cover",
+        "border_radius": 30,
+        "overlay_opacity": 0,
+        "text_align": "vertical-center horizontal-center",
+        "full_screen": false,
+        "header-432d5be783233f8acf37574441df903f": null,
+        "page_width": 1200,
+        "padding_top": 50,
+        "padding_bottom": 50
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Blocky Image Embed"
+    }
+  },
+  "order": [
+    "insta_story_6kD6Ki",
+    "banner",
+    "product-grid",
+    "rich_text_fnCgkL",
+    "blocky_image_embedded_JjUDd"
+  ]
+}

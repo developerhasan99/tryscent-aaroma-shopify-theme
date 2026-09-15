@@ -1,0 +1,363 @@
+<div class="perfume-features padding-{{ section.id }}">
+  <div class="page-width">
+    <div class="container container-video-block">
+      <!-- Left features -->
+      <div class="features-grid left">
+        <div class="feature">
+          <h3>{{ section.settings.feature1_title }}</h3>
+          <span class="td-media-with-details__conector">
+
+            <svg
+              width="136"
+              height="29"
+              viewBox="0 0 136 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle
+                cx="5"
+                cy="5"
+                r="4.75"
+                transform="matrix(-1 0 0 1 10 19)"
+                fill="var(--highlight_color, #A0783F)"
+                stroke="black"
+                stroke-width="0.5"></circle>
+              <path
+                d="M133 2.5H68L9 22.5"
+                stroke="black"
+                stroke-width="0.1"></path>
+              <circle
+                cx="2"
+                cy="2"
+                r="2"
+                transform="matrix(-1 0 0 1 136 0.5)"
+                fill="var(--highlight_color, #A0783F)"></circle>
+            </svg>
+
+          </span>
+          <p>{{ section.settings.feature1_text }}</p>
+        </div>
+        <div class="feature">
+          <h3>{{ section.settings.feature2_title }}</h3>
+          <span class="td-media-with-details__conector">
+
+            <svg
+              width="136"
+              height="29"
+              viewBox="0 0 136 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle
+                cx="5"
+                cy="5"
+                r="4.75"
+                transform="matrix(-1 0 0 1 10 19)"
+                fill="var(--highlight_color, #A0783F)"
+                stroke="black"
+                stroke-width="0.5"></circle>
+              <path
+                d="M133 2.5H68L9 22.5"
+                stroke="black"
+                stroke-width="0.1"></path>
+              <circle
+                cx="2"
+                cy="2"
+                r="2"
+                transform="matrix(-1 0 0 1 136 0.5)"
+                fill="var(--highlight_color, #A0783F)"></circle>
+            </svg>
+
+          </span>
+          <p>{{ section.settings.feature2_text }}</p>
+        </div>
+      </div>
+      <!-- Video in the middle -->
+      <div class="video-box">
+        {% if section.settings.video_mp4 %}
+          <video
+            playsinline="true"
+            autoplay="autoplay"
+            loop="loop"
+            muted="muted"
+            class="js-autoplay"
+            onloadedmetadata="this.muted = true"
+            preload="metadata"
+            {% if section.settings.video_poster %}
+            poster="{{ section.settings.video_poster | image_url: width: 1100 }}"
+            {% endif %}>
+            <source src="{{ section.settings.video_mp4 }}" type="video/mp4">
+            {% if section.settings.video_poster %}
+              <img src="{{ section.settings.video_poster | image_url: width: 1100 }}" alt="Video poster">
+            {% endif %}
+          </video>
+        {% endif %}
+      </div>
+
+      <!-- Right features -->
+      <div class="features-grid right">
+        <div class="feature">
+          <h3>{{ section.settings.feature3_title }}</h3>
+          <span class="td-media-with-details__conector_right">
+
+            <svg
+              width="136"
+              height="29"
+              viewBox="0 0 136 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle
+                cx="5"
+                cy="5"
+                r="4.75"
+                transform="matrix(-1 0 0 1 10 19)"
+                fill="var(--highlight_color, #A0783F)"
+                stroke="black"
+                stroke-width="0.5"></circle>
+              <path
+                d="M133 2.5H68L9 22.5"
+                stroke="black"
+                stroke-width="0.1"></path>
+              <circle
+                cx="2"
+                cy="2"
+                r="2"
+                transform="matrix(-1 0 0 1 136 0.5)"
+                fill="var(--highlight_color, #A0783F)"></circle>
+            </svg>
+
+          </span>
+          <p>{{ section.settings.feature3_text }}</p>
+        </div>
+        <div class="feature">
+          <h3>{{ section.settings.feature4_title }}</h3>
+          <span class="td-media-with-details__conector_right">
+
+            <svg
+              width="136"
+              height="29"
+              viewBox="0 0 136 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle
+                cx="5"
+                cy="5"
+                r="4.75"
+                transform="matrix(-1 0 0 1 10 19)"
+                fill="var(--highlight_color, #A0783F)"
+                stroke="black"
+                stroke-width="0.5"></circle>
+              <path
+                d="M133 2.5H68L9 22.5"
+                stroke="black"
+                stroke-width="0.1"></path>
+              <circle
+                cx="2"
+                cy="2"
+                r="2"
+                transform="matrix(-1 0 0 1 136 0.5)"
+                fill="var(--highlight_color, #A0783F)"></circle>
+            </svg>
+
+          </span>
+          <p>{{ section.settings.feature4_text }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+  .padding-{{ section.id }} {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #faf9f6;
+  }
+
+  @media(min-width: 768px) {
+    .padding-{{ section.id }} {
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+  }
+
+  span.td-media-with-details__conector {
+    -webkit-transform: rotate(180deg) scaleY(-1);
+    transform: rotate(180deg) scaleY(-1);
+    position: absolute;
+  }
+  span.td-media-with-details__conector_right {
+    position: absolute;
+    right: 200px;
+    margin-top: 2px;
+  }
+
+  .perfume-features .features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+  }
+  .perfume-features .feature h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .perfume-features .feature p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444;
+    font-weight: 400;
+  }
+  .perfume-features .video-box video {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+  }
+  .perfume-features .video-box {
+    flex: 0 0 500px;
+    width: 100%;
+    display: flex;
+    height: 500px;
+  }
+  .container.container-video-block {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    position: relative;
+  }
+  .container.container-video-block h3 {
+    max-width: unset;
+    width: 100%;
+    margin: 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 500;
+  }
+
+  .perfume-features .left {
+    text-align: right;
+  }
+  .perfume-features .right {
+    text-align: left;
+  }
+  @media (max-width: 1024px) {
+    .container.container-video-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .perfume-features .video-box video {
+      order: 1;
+    }
+    .perfume-features .features-grid {
+      order: 2;
+    }
+    span.td-media-with-details__conector {
+      display: none;
+    }
+    .td-media-with-details__conector_right {
+      display: none;
+    }
+    .container.container-video-block h3 {
+      text-align: left;
+    }
+    .perfume-features .feature p {
+      text-align: left;
+    }
+    .perfume-features .video-box {
+      max-height: 350px;
+      max-width: 100%;
+      padding: 0;
+      margin-bottom: 40px;
+    }
+    .perfume-features .video-box video {
+      height: 350px
+    }
+    .perfume-features .features-grid {
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .feature h3:before {
+      display: block;
+      content: "";
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgb(160 120 63);
+      border-radius: 20px;
+      background-color: rgb(160 120 63);
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Perfume Features Video",
+    "settings": [
+      {
+        "type": "url",
+        "id": "video_mp4",
+        "label": "MP4 Video URL",
+        "info": "Upload your video under Settings > Files and paste the URL here."
+      },
+      {
+        "type": "image_picker",
+        "id": "video_poster",
+        "label": "Poster Image"
+      },
+      {
+        "type": "text",
+        "id": "feature1_title",
+        "label": "Feature 1 Title",
+        "default": "Parfum Extrait Formula"
+      },
+      {
+        "type": "textarea",
+        "id": "feature1_text",
+        "label": "Feature 1 Description",
+        "default": "Thanks to our 30% oil parfum extrait formula, Oakcha ensures long-lasting fragrances."
+      }, {
+        "type": "text",
+        "id": "feature2_title",
+        "label": "Feature 2 Title",
+        "default": "Vegan + Cruelty Free"
+      }, {
+        "type": "textarea",
+        "id": "feature2_text",
+        "label": "Feature 2 Description",
+        "default": "Ethical practices and cruelty-free products. Experience the pleasure of scent without any guilt."
+      }, {
+        "type": "text",
+        "id": "feature3_title",
+        "label": "Feature 3 Title",
+        "default": "Luxury Packaging"
+      }, {
+        "type": "textarea",
+        "id": "feature3_text",
+        "label": "Feature 3 Description",
+        "default": "Glass color-coated bottles and magnetic packaging that delivers."
+      }, {
+        "type": "text",
+        "id": "feature4_title",
+        "label": "Feature 4 Title",
+        "default": "Quality Atomizer"
+      }, {
+        "type": "textarea",
+        "id": "feature4_text",
+        "label": "Feature 4 Description",
+        "default": "Our stainless steel atomizers feature precision-designed nozzles for consistent even distribution."
+      }
+    ],
+    "presets": [
+      {
+        "name": "Perfume Features with MP4 Video"
+      }
+    ]
+  }
+{% endschema %}

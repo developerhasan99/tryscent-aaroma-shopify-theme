@@ -1,0 +1,57 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "germany"
+  },
+  "parent": "header-group.json",
+  "sections": {
+    "offer_timebar_PNTbqg": {
+      "settings": {
+        "top_banner_text": "ZURÜCK INS BÜRO",
+        "prepend_text": "LOHNTAG-AUSVERKAUF",
+        "append_text": "3 KAUFEN, 1 GRATIS"
+      },
+      "blocks": {
+        "payment_icon_qcMDiY": {
+          "settings": {
+            "label": "Schnell"
+          }
+        },
+        "payment_icon_EJx9b8": {
+          "settings": {
+            "label": "Sicher"
+          }
+        },
+        "payment_icon_i3Hr68": {
+          "settings": {
+            "icon": "shopify://shop_images/777929254296c2d290f0836dc4e68451f4cfdbc4.png",
+            "label": "Flexibel"
+          }
+        },
+        "payment_icon_LHXJ7": {
+          "type": "payment_icon",
+          "disabled": false,
+          "settings": {
+            "icon": "shopify://shop_images/images-555x360--08-28-2026_03_03_PM.png",
+            "label": "Direkt"
+          }
+        }
+      },
+      "block_order": [
+        "payment_icon_qcMDiY",
+        "payment_icon_VWgiqB",
+        "payment_icon_EJx9b8",
+        "payment_icon_i3Hr68",
+        "payment_icon_LHXJ7"
+      ]
+    }
+  }
+}

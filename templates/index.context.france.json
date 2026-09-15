@@ -1,0 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "france"
+  },
+  "parent": "index.json",
+  "sections": {
+    "magic_hero_GLbzbL": {
+      "settings": {
+        "title": "Smell more expensive. Pay less."
+      },
+      "blocks": {}
+    },
+    "homepage_hero_XnJ8mD": {
+      "settings": {
+        "review_text": "DÉJÀ ADOPTÉ PAR PLUS DE 10 000 CLIENTS",
+        "title": "RETOUR AU BUREAU – 3 ACHETÉS, 1 OFFERT",
+        "subtitle": "Achetez vos parfums préférés à des prix encore plus avantageux ! Et faites encore plus d'économies grâce aux offres groupées !",
+        "button_text": "Soldes d'été"
+      },
+      "blocks": {}
+    },
+    "review_grid_H3xfHP": {
+      "settings": {},
+      "blocks": {
+        "review_MKcdVw": {
+          "settings": {
+            "content": "<p><em>« J'ai porté le n° 079 lors d'un dîner et trois personnes m'ont demandé quel parfum je portais. L'une d'entre elles pensait que c'était du Chanel. »</em></p>"
+          }
+        },
+        "review_kCUEm4": {
+          "settings": {
+            "content": "<p><em>« </em>Après douze heures de travail, je le sens encore. Mon flacon à 120 € n'y arrive même pas. Celui-ci tient la route. Pas ce flacon-là<em>. »</em></p>"
+          }
+        },
+        "review_EbFNac": {
+          "settings": {
+            "content": "<p><em>« J'ai été vraiment impressionné par la qualité. Le parfum tient bien et n'a rien à envier à celui de marques bien plus chères. »</em></p>"
+          }
+        }
+      }
+    }
+  }
+}
