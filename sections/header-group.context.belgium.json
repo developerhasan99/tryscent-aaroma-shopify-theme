@@ -15,9 +15,9 @@
   "sections": {
     "offer_timebar_PNTbqg": {
       "settings": {
-        "prepend_text": "SOLDES DU JOUR DE PAIE",
-        "append_text": "30% DE RÉDUCTION",
-        "top_banner_text": "SEULEMENT POUR UNE COURTE DURÉE"
+        "top_banner_text": "LIMITED STOCK",
+        "prepend_text": "WAREHOUSE CLEARENCE",
+        "append_text": "BUY 3 PAY FOR 2"
       },
       "blocks": {
         "payment_icon_EJx9b8": {
