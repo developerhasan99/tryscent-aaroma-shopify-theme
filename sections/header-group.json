@@ -174,13 +174,21 @@
             "label": "Bestsellers",
             "url": "shopify://collections/top-sellers"
           }
+        },
+        "menu_item_z9h3fq": {
+          "type": "menu_item",
+          "settings": {
+            "label": "Vind jouw geur",
+            "url": "#quiz"
+          }
         }
       },
       "block_order": [
         "sub_menu_items_im8CWQ",
         "sub_menu_items_M8nfJY",
         "menu_item_H4UXV8",
-        "menu_item_keTJid"
+        "menu_item_keTJid",
+        "menu_item_z9h3fq"
       ],
       "settings": {
         "logo_position": "top-left",
