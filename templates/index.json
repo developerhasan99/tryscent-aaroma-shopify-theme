@@ -197,6 +197,20 @@
         "description": "<p>The scents our customers keep coming back for.</p>",
         "collection": "top-sellers",
         "button_text": "Shop All",
+        "button_link": "shopify://collections/heetste-zomergeuren-2026",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "popular_products_jYtPeh": {
+      "type": "popular-products",
+      "name": "Popular Products",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "title": "Most Popular",
+        "description": "<p>The scents our customers keep coming back for.</p>",
+        "collection": "top-sellers",
+        "button_text": "Shop All",
         "button_link": "shopify://collections/all",
         "padding_top": 72,
         "padding_bottom": 72
@@ -988,6 +1002,7 @@
     "feature_highlights_wfUacV",
     "featured_on_H7jhJ4",
     "popular_products_pNDeh4",
+    "popular_products_jYtPeh",
     "popular_products_nC8A3n",
     "popular_products_nimyqA",
     "home_category_wNQCfP",
