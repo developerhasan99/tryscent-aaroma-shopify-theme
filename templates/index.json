@@ -193,8 +193,8 @@
       "name": "Popular Products",
       "settings": {
         "background_color": "#fcfbf9",
-        "title": "Most Popular",
-        "description": "<p>The scents our customers keep coming back for.</p>",
+        "title": "Newest Drops",
+        "description": "<p>See what's fresh in our collection</p>",
         "collection": "top-sellers",
         "button_text": "Shop All",
         "button_link": "shopify://collections/heetste-zomergeuren-2026",
