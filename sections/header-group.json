@@ -147,75 +147,40 @@
     "header": {
       "type": "header",
       "blocks": {
-        "menu_item_V7M7qG": {
+        "sub_menu_items_im8CWQ": {
+          "type": "sub_menu_items",
+          "settings": {
+            "label": "For Her",
+            "link_list": "for-her"
+          }
+        },
+        "sub_menu_items_M8nfJY": {
+          "type": "sub_menu_items",
+          "settings": {
+            "label": "For Him",
+            "link_list": "for-him"
+          }
+        },
+        "menu_item_H4UXV8": {
           "type": "menu_item",
-          "settings": {
-            "label": "Home",
-            "url": "/"
-          }
-        },
-        "mega_menu_item_ixbwJG": {
-          "type": "mega_menu_item",
-          "settings": {
-            "label": "Men",
-            "collection": "men"
-          }
-        },
-        "mega_menu_item_U4hHR6": {
-          "type": "mega_menu_item",
-          "settings": {
-            "label": "Women",
-            "collection": "women"
-          }
-        },
-        "mega_menu_item_BXaKbm": {
-          "type": "mega_menu_item",
-          "settings": {
-            "label": "Bestsellers",
-            "collection": "bestsellers"
-          }
-        },
-        "mega_menu_item_LdbktV": {
-          "type": "mega_menu_item",
           "settings": {
             "label": "Unisex",
-            "collection": "unisex"
+            "url": "shopify://collections/unisex"
           }
         },
-        "sub_menu_items_GHhPzq": {
-          "type": "sub_menu_items",
-          "disabled": true,
-          "settings": {
-            "label": "More Items",
-            "link_list": "main-menu"
-          }
-        },
-        "menu_item_MKM3K6": {
+        "menu_item_keTJid": {
           "type": "menu_item",
-          "disabled": true,
           "settings": {
-            "label": "Bundle & Save",
-            "url": "shopify://collections/bundle-save"
-          }
-        },
-        "menu_item_9iAMA9": {
-          "type": "menu_item",
-          "disabled": true,
-          "settings": {
-            "label": "About Us",
-            "url": "shopify://pages/over-ons"
+            "label": "Bestsellers",
+            "url": "shopify://collections/top-sellers"
           }
         }
       },
       "block_order": [
-        "menu_item_V7M7qG",
-        "mega_menu_item_ixbwJG",
-        "mega_menu_item_U4hHR6",
-        "mega_menu_item_BXaKbm",
-        "mega_menu_item_LdbktV",
-        "sub_menu_items_GHhPzq",
-        "menu_item_MKM3K6",
-        "menu_item_9iAMA9"
+        "sub_menu_items_im8CWQ",
+        "sub_menu_items_M8nfJY",
+        "menu_item_H4UXV8",
+        "menu_item_keTJid"
       ],
       "settings": {
         "logo_position": "top-left",
