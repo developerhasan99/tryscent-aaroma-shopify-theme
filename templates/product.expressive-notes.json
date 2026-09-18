@@ -101,21 +101,21 @@
           "type": "expanded_notes",
           "settings": {}
         },
-        "collapsible_tab_XYmgtQ": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Description",
-            "icon": "clipboard",
-            "content": "{{ product.description }}",
-            "page": ""
-          }
-        },
         "collapsible_tab_pdYPYn": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Ingredients",
             "icon": "perfume",
             "content": "<p>Denatured alcohol, parfum (fragrance), water, limonene, linalool, citronellol, geraniol, citral, benzyl salicylate, coumarin, alpha-isomethylionone, hexyl cinnamal, benzyl benzoate.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_XYmgtQ": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Description",
+            "icon": "clipboard",
+            "content": "{{ product.description }}",
             "page": ""
           }
         },
@@ -190,8 +190,8 @@
         "people_purchased_cYxaYJ",
         "cta_review_g7n3R8",
         "expanded_notes_paBaYD",
-        "collapsible_tab_XYmgtQ",
         "collapsible_tab_pdYPYn",
+        "collapsible_tab_XYmgtQ",
         "collapsible_tab_PtUaDN",
         "collapsible_tab_nhKiAc",
         "collapsible_tab_pCrhqV",
