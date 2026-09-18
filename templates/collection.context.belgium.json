@@ -1,0 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "belgium"
+  },
+  "parent": "collection.json",
+  "sections": {},
+  "order": [
+    "custom_liquid_Wq7F7g",
+    "collection_hero_7bCbii",
+    "custom_liquid_QbcCiY",
+    "insta_story_6kD6Ki",
+    "banner",
+    "product-grid",
+    "rich_text_fnCgkL"
+  ]
+}

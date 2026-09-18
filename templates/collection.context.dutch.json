@@ -18,7 +18,7 @@
       "disabled": false,
       "settings": {
         "image": "shopify://shop_images/ducth.png",
-        "header-8e376a603e752522162047a37c34012e": null,
+        "header-0a839b40ab1b37bdef738e1be9e169c7": null,
         "section_height": "650px",
         "mobile_height": "300px",
         "image_fit": "cover",
@@ -26,7 +26,7 @@
         "overlay_opacity": 0,
         "text_align": "vertical-center horizontal-center",
         "full_screen": false,
-        "header-432d5be783233f8acf37574441df903f": null,
+        "header-982e0f78f8f2ff81a77a75c96398a517": null,
         "page_width": 1200,
         "padding_top": 50,
         "padding_bottom": 50
@@ -34,10 +34,22 @@
       "blocks": {},
       "block_order": [],
       "name": "Blocky Image Embed"
+    },
+    "collection_hero_4EQCBW": {
+      "type": "collection-hero",
+      "disabled": false,
+      "settings": {
+        "show_rating_badge": false,
+        "rating_text": "Verifiziert von über 10.000 Duftliebhabern"
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Collection Hero"
     }
   },
   "order": [
     "insta_story_6kD6Ki",
+    "collection_hero_4EQCBW",
     "banner",
     "product-grid",
     "rich_text_fnCgkL",
