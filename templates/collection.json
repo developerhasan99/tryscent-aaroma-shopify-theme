@@ -20,6 +20,14 @@
         "padding_bottom": 52
       }
     },
+    "collection_hero_7bCbii": {
+      "type": "collection-hero",
+      "name": "Collection Hero",
+      "settings": {
+        "show_rating_badge": false,
+        "rating_text": "Verifiziert von über 10.000 Duftliebhabern"
+      }
+    },
     "custom_liquid_QbcCiY": {
       "type": "custom-liquid",
       "name": "t:sections.custom-liquid.presets.name",
@@ -88,16 +96,9 @@
       "disabled": true,
       "settings": {}
     },
-    "collection_hero_7bCbii": {
-      "type": "collection-hero",
-      "name": "Collection Hero",
-      "settings": {
-        "show_rating_badge": false,
-        "rating_text": "Verifiziert von über 10.000 Duftliebhabern"
-      }
-    },
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_collection_description": false,
         "show_collection_image": false,
