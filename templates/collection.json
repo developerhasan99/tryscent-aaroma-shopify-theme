@@ -138,6 +138,7 @@
       "block_order": [
         "text_x4GrCN"
       ],
+      "disabled": true,
       "custom_css": [
         ".rich-text--full-width {background-color: #fcfbf9; border-top: #f3f3f3 2px solid;}"
       ],
