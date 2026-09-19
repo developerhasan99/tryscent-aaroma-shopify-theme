@@ -13,28 +13,6 @@
   },
   "parent": "collection.json",
   "sections": {
-    "blocky_image_embedded_JjUDd": {
-      "type": "blocky-image-embedded",
-      "disabled": false,
-      "settings": {
-        "image": "shopify://shop_images/ducth.png",
-        "header-0a839b40ab1b37bdef738e1be9e169c7": null,
-        "section_height": "650px",
-        "mobile_height": "300px",
-        "image_fit": "cover",
-        "border_radius": 30,
-        "overlay_opacity": 0,
-        "text_align": "vertical-center horizontal-center",
-        "full_screen": false,
-        "header-982e0f78f8f2ff81a77a75c96398a517": null,
-        "page_width": 1200,
-        "padding_top": 50,
-        "padding_bottom": 50
-      },
-      "blocks": {},
-      "block_order": [],
-      "name": "Blocky Image Embed"
-    },
     "collection_hero_4EQCBW": {
       "type": "collection-hero",
       "disabled": false,
@@ -53,6 +31,5 @@
     "banner",
     "product-grid",
     "rich_text_fnCgkL",
-    "blocky_image_embedded_JjUDd"
   ]
 }
