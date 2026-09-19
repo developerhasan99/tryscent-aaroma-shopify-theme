@@ -175,6 +175,13 @@
             "url": "shopify://collections/top-sellers"
           }
         },
+        "menu_item_4fzMDy": {
+          "type": "menu_item",
+          "settings": {
+            "label": "New Scents",
+            "url": "shopify://collections/heetste-zomergeuren-2026"
+          }
+        },
         "menu_item_z9h3fq": {
           "type": "menu_item",
           "settings": {
@@ -188,6 +195,7 @@
         "sub_menu_items_M8nfJY",
         "menu_item_H4UXV8",
         "menu_item_keTJid",
+        "menu_item_4fzMDy",
         "menu_item_z9h3fq"
       ],
       "settings": {
