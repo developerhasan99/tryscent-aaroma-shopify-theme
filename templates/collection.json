@@ -22,9 +22,7 @@
     },
     "collection_hero_7bCbii": {
       "type": "collection-hero",
-      "custom_css": [
-        ".collection-hero,.collection-hero__inner,section {background-image: url('https://cdn.shopify.com/s/files/1/0610/1073/9338/files/MAGYX_Site_Bundle_Save.webp?v=1790024606'); background-size: cover; background-position: center; background-repeat: no-repeat;}"
-      ],
+      "custom_css": [],
       "name": "Collection Hero",
       "settings": {
         "show_rating_badge": false,
