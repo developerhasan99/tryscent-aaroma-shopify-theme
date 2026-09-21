@@ -125,16 +125,16 @@
           "type": "perks",
           "settings": {
             "perk_image": "shopify://shop_images/icons_quality.png",
-            "perk_title": "60-Day Money-Back Guarantee",
-            "perk_content": "Not happy? Get your money back. No hassle."
+            "perk_title": "Made in Europe",
+            "perk_content": "Produced in certified European facilities."
           }
         },
         "perks_Cj3EAR": {
           "type": "perks",
           "settings": {
             "perk_image": "shopify://shop_images/icons_guarantee.png",
-            "perk_title": "Made in Europe",
-            "perk_content": "Produced in certified European facilities."
+            "perk_title": "60-Day Money-Back Guarantee",
+            "perk_content": "Not happy? Get your money back. No hassle."
           }
         },
         "perks_iX4iTY": {
