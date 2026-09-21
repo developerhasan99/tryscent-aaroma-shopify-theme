@@ -259,7 +259,7 @@
         "category_JatE79": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/tryscent_male_02.png",
+            "image": "shopify://shop_images/MAGYX_Site_For_Him.webp",
             "text": "Men’s Fragrances",
             "link": "shopify://collections/men"
           }
@@ -267,7 +267,7 @@
         "category_kcgbew": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/ugc12.png",
+            "image": "shopify://shop_images/MAGYX_Site_For_Her.webp",
             "text": "Women’s Fragrances",
             "link": "shopify://collections/women"
           }
@@ -275,7 +275,7 @@
         "category_PLwfRa": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/website_unisex_1.webp",
+            "image": "shopify://shop_images/MAGYX_Site_Unisex.webp",
             "text": "Unisex Fragrances",
             "link": "shopify://collections/unisex"
           }
@@ -407,7 +407,7 @@
       ],
       "settings": {
         "background_color": "#ffffff",
-        "image": "shopify://shop_images/466W_min_ca4ad654-6b6a-4dd5-82b5-f0c4fa32886e.webp",
+        "image": "shopify://shop_images/MAGYX_Site_Showcase.webp",
         "rounded_image": true,
         "image_placement": "1",
         "mobile_image_placement": "under_heading",
