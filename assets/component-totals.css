@@ -1,31 +1,45 @@
-.totals {
+.totals,
+.subtotal--totals,
+.discount--totals {
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
-.totals > * {
+.totals > *,
+.subtotal--totals > *,
+.discount--totals > * {
   font-size: 1.6rem;
   margin: 0;
 }
 
-.totals > h2 {
+.totals > h2,
+.subtotal--totals > h2,
+.discount--totals > h2 {
   font-size: calc(var(--font-heading-scale) * 1.6rem);
 }
 
-.totals * {
+.totals *,
+.subtotal--totals *,
+.discount--totals * {
   line-height: 1;
 }
 
-.totals > * + * {
+.totals > * + *,
+.subtotal--totals > * + *,
+.discount--totals > * + * {
   margin-left: 2rem;
 }
 
-.totals__total {
+.totals__total,
+.subtotal--totals__total,
+.discount--totals__total {
   margin-top: .5rem;
 }
 
-.totals__total-value {
+.totals__total-value,
+.subtotal--totals__total-value,
+.discount--totals__total-value {
   font-weight: 600;
   font-size: 14px;
 }
@@ -35,7 +49,9 @@
 }
 
 @media all and (min-width: 750px) {
-  .totals {
+  .totals,
+  .subtotal--totals,
+  .discount--totals {
     justify-content: flex-end;
   }
 }

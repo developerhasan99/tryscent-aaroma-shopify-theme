@@ -294,7 +294,9 @@ cart-drawer {
   margin-top: 1rem;
 }
 
-.cart-drawer .totals {
+.cart-drawer .totals,
+.cart-drawer .subtotal--totals,
+.cart-drawer .discount--totals {
   justify-content: space-between;
 }
 

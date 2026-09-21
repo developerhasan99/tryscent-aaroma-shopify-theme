@@ -460,16 +460,16 @@
           <div class="nvd-mini"></div>
 
           {% if cart.total_price != cart.original_total_price %}
-            <div class="totals flex-wrap gap-4 !mb-2" role="status">
-              <h2 class="totals__total">Subtotal:</h2>
-              <p class="totals__total-value">
+            <div class="subtotal--totals flex-wrap gap-4 !mb-2" role="status">
+              <h2 class="subtotal--totals__total">Subtotal:</h2>
+              <p class="subtotal--totals__total-value">
                 {{ cart.original_total_price | money_with_currency }}
               </p>
             </div>
 
-            <div class="totals flex-wrap gap-4 !mb-2" role="status">
-              <h2 class="totals__total">Discount:</h2>
-              <p class="totals__total-value">
+            <div class="discount--totals flex-wrap gap-4 !mb-2" role="status">
+              <h2 class="discount--totals__total">Discount:</h2>
+              <p class="discount--totals__total-value">
                 <span class="text-green-700">-{{ cart.original_total_price | minus: cart.total_price | money_with_currency }}</span>
               </p>
             </div>
