@@ -1,4 +1,5 @@
-{% assign bundle_collection = collections['top-sellers'] %}
+{% assign bundle_collection_handles = 'top-sellers,heetste-zomergeuren-2026' | split: ',' %}
+{% assign new_arrival_collection_handle = 'heetste-zomergeuren-2026' %}
 {% assign product_count = product.metafields.custom.choose_your_fragrances_options %}
 {% assign dropdown_ml = product.metafields.custom.select_bundle_dropdown_ml | default: "50" %}
 {% assign bundle_ml = dropdown_ml | append: "ml" %}
@@ -151,37 +152,63 @@
         {% endif %}
       ],
       availableProducts: [
-        {% for bundle_product in bundle_collection.products %}
-          {% liquid
-            assign collection_handles = ''
-            for collection in bundle_product.collections
-              assign collection_handles = collection_handles | append: collection.handle
-              if forloop.last == false
-                assign collection_handles = collection_handles | append: ','
-              endif
-            endfor
-          %}
-          {
-            id: {{ bundle_product.id }},
-            name: "{{ bundle_product.title }}",
-            image: "{{ bundle_product.featured_image | image_url: width: 120, height: 120 }}",
-            nuta: "{% if bundle_product.metafields.custom.inspiration.value %}{{ bundle_product.metafields.custom.inspiration.value.name }}{% endif %}",
-            inspiration_image: "{% if bundle_product.metafields.custom.inspiration.value %}{{ bundle_product.metafields.custom.inspiration.value.image | image_url: width: 90, height: 90 }}{% endif %}",
-            inspiration_name: "{% if bundle_product.metafields.custom.inspiration.value %}{{ bundle_product.metafields.custom.inspiration.value.name }}{% endif %}",
-            occasion: {{ bundle_product.metafields.custom.occasion.value | default: '' | strip_newlines | json }},
-            tags: {{ bundle_product.tags | json }},
-            collections: "{{ collection_handles }}",
-            variants: {
-              {% for variant in bundle_product.variants %}
-                "{{ variant.title | downcase |  replace: ' ml', 'ml' }}": {
-                  title: "{{ variant.title }}",
-                  id: "{{ variant.id }}"
-                },
-              {% endfor %}
-            }
-          },
+        {% for bundle_collection_handle in bundle_collection_handles %}
+          {% assign bundle_collection = collections[bundle_collection_handle] %}
+          {% paginate bundle_collection.products by 250 %}
+            {% for bundle_product in bundle_collection.products %}
+              {% liquid
+                assign collection_handles = ''
+                for collection in bundle_product.collections
+                  assign collection_handles = collection_handles | append: collection.handle
+                  if forloop.last == false
+                    assign collection_handles = collection_handles | append: ','
+                  endif
+                endfor
+              %}
+              {
+                id: {{ bundle_product.id }},
+                name: {{ bundle_product.title | json }},
+                image: "{{ bundle_product.featured_image | image_url: width: 120, height: 120 }}",
+                nuta: {{ bundle_product.metafields.custom.inspiration.value.name | default: '' | json }},
+                inspiration_image: "{% if bundle_product.metafields.custom.inspiration.value %}{{ bundle_product.metafields.custom.inspiration.value.image | image_url: width: 90, height: 90 }}{% endif %}",
+                inspiration_name: {{ bundle_product.metafields.custom.inspiration.value.name | default: '' | json }},
+                occasion: {{ bundle_product.metafields.custom.occasion.value | default: '' | strip_newlines | json }},
+                tags: {{ bundle_product.tags | json }},
+                collections: "{{ collection_handles }}",
+                isNewArrival: {% if bundle_collection_handle == new_arrival_collection_handle %}true{% else %}false{% endif %},
+                variants: {
+                  {% for variant in bundle_product.variants %}
+                    "{{ variant.title | downcase |  replace: ' ml', 'ml' }}": {
+                      title: "{{ variant.title }}",
+                      id: "{{ variant.id }}"
+                    },
+                  {% endfor %}
+                }
+              },
+            {% endfor %}
+          {% endpaginate %}
         {% endfor %}
-      ],
+      ].reduce((products, product) => {
+        const existing = products.find(item => item.id === product.id);
+        if (existing) {
+          existing.isNewArrival = existing.isNewArrival || product.isNewArrival;
+        } else {
+          products.push(product);
+        }
+        return products;
+      }, []),
+      productInCollection(product, handle) {
+        return (product.collections || '').split(',').includes(handle);
+      },
+      matchesProduct(product) {
+        const categoryMatches = this.activeCategory === 'All'
+          ? true
+          : this.activeCategory === 'New Arrivals'
+            ? product.isNewArrival
+            : product.tags.some(tag => tag === this.activeCategory);
+        const search = this.searchText.trim().toLowerCase();
+        return categoryMatches && (search === '' || product.name.toLowerCase().includes(search) || (product.inspiration_name || '').toLowerCase().includes(search));
+      },
       addRemoveProduct(product) {
         if (this.selectedProducts.length < {{ product_count }} && !this.isProductSelected(product.id)) {
           product.variant = product.variants[this.selectedVariant]

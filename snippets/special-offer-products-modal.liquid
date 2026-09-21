@@ -44,6 +44,10 @@
             @click="$store.bundleBuilder.activeCategory = 'Voor Vrouwen'"
             :class="$store.bundleBuilder.activeCategory === 'Voor Vrouwen' ? 'border-[#944234] bg-[#944234] text-white hover:!text-white' : 'bg-white border-gray-200'"
             class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#944234] hover:border-[#944234]">Women</button>
+          <button
+            @click="$store.bundleBuilder.activeCategory = 'New Arrivals'"
+            :class="$store.bundleBuilder.activeCategory === 'New Arrivals' ? 'border-[#944234] bg-[#944234] text-white hover:!text-white' : 'bg-white border-gray-200'"
+            class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#944234] hover:border-[#944234]">New Arrivals</button>
         </div>
       </div>
       <div class="px-3 pb-3">
@@ -82,8 +86,7 @@
       <template x-if="$store.bundleBuilder.selectedProducts.length < $store.bundleBuilder.bundleLength">
         <div class="flex flex-col gap-1.5">
           <template x-for="product in $store.bundleBuilder.availableProducts" :key="product.id">
-            <template x-if="(product.tags.some(tag => tag === $store.bundleBuilder.activeCategory) || $store.bundleBuilder.activeCategory === 'All') &&
-         ($store.bundleBuilder.searchText === '' || product.name.toLowerCase().includes($store.bundleBuilder.searchText.toLowerCase()) || (product.inspiration_name && product.inspiration_name.toLowerCase().includes($store.bundleBuilder.searchText.toLowerCase())))">
+            <template x-if="$store.bundleBuilder.matchesProduct(product)">
               <button
                 @click="$store.bundleBuilder.addRemoveProduct(product)"
                 :class="$store.bundleBuilder.isProductSelected(product.id) ? 'border-[#944234]' : 'border-gray-200 border'"
