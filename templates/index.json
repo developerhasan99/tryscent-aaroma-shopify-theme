@@ -198,8 +198,8 @@
         "collection": "heetste-zomergeuren-2026",
         "button_text": "Shop All",
         "button_link": "shopify://collections/heetste-zomergeuren-2026",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "popular_products_jYtPeh": {
@@ -212,8 +212,8 @@
         "collection": "top-sellers",
         "button_text": "Shop All",
         "button_link": "shopify://collections/all",
-        "padding_top": 72,
-        "padding_bottom": 72
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "popular_products_nC8A3n": {
