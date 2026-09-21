@@ -249,9 +249,8 @@
       "blocks": {
         "category_yXjfNN": {
           "type": "category",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/website_bundle.webp",
+            "image": "shopify://shop_images/MAGYX_Site_Bundle_Save.webp",
             "text": "Bundle & Save",
             "link": "shopify://collections/bundle-save"
           }
