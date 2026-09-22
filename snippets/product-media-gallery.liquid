@@ -9,6 +9,7 @@
   assign german_marketing_images = shop.metaobjects['marketing_images']['for-german'].images.value
   assign french_marketing_images = shop.metaobjects['marketing_images']['for-french'].images.value
   assign estonia_marketing_images = shop.metaobjects['marketing_images']['for-eesti'].images.value
+  assign english_marketing_images = shop.metaobjects['marketing_images']['for-english'].images.value
 %}
 
 <div class="sticky top-6">
@@ -366,6 +367,18 @@
           ],
           thumbnail: [
             {% for item in estonia_marketing_images %}
+              "{{ item | image_url: width: 300, height: 300 }}"{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          ]
+        },
+        en: {
+          main: [
+            {% for item in english_marketing_images %}
+              "{{ item | image_url: width: 1024, height: 1024 }}"{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          ],
+          thumbnail: [
+            {% for item in english_marketing_images %}
               "{{ item | image_url: width: 300, height: 300 }}"{% unless forloop.last %},{% endunless %}
             {% endfor %}
           ]
