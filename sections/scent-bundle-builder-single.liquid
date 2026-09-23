@@ -206,7 +206,7 @@
       <select x-model="gender" x-show="genderOptions.length">
         <option value="">Gender</option>
         <template x-for="o in genderOptions" :key="o">
-          <option :value="o" x-text="o"></option>
+          <option :value="o" x-text="genderLabel(o)"></option>
         </template>
       </select>
       <select x-model="occasion" x-show="occasionOptions.length">
@@ -359,6 +359,9 @@
               {%- if t contains 'brand:' -%}
                 {%- assign brand_slug = t | remove: 'brand:' -%}
                 {%- break -%}
+              {%- elsif t contains 'marke:' -%}
+                {%- assign brand_slug = t | remove: 'marke:' -%}
+                {%- break -%}
               {%- endif -%}
             {%- endfor -%}
             {%- assign brand_name = '' -%}
@@ -463,11 +466,23 @@
           this.products.forEach(function (p) { p.brand.split('||').forEach(function (b) { if (b) set.add(b); }); });
           return Array.from(set).sort();
         },
+        genderBucket(raw) {
+          var g = (raw || '').trim().toLowerCase();
+          if (!g) return '';
+          var men = ['voor mannen', 'pour homme', 'für männer', 'fur manner', 'herren', 'homme', 'men', 'for men'];
+          var women = ['voor vrouwen', 'pour femme', 'für frauen', 'fur frauen', 'damen', 'femme', 'women', 'for women'];
+          if (men.indexOf(g) > -1) return 'men';
+          if (women.indexOf(g) > -1) return 'women';
+          return '';
+        },
+        genderLabel(key) {
+          return key === 'men' ? 'For Men' : key === 'women' ? 'For Women' : '';
+        },
         get genderOptions() {
-          var allowed = ['FOR MEN', 'FOR WOMEN'];
+          var self = this;
           var set = new Set();
-          this.products.forEach(function (p) { p.gender.split('||').forEach(function (g) { if (allowed.indexOf(g) > -1) set.add(g); }); });
-          return allowed.filter(function (g) { return set.has(g); });
+          this.products.forEach(function (p) { p.gender.split('||').forEach(function (g) { var b = self.genderBucket(g); if (b) set.add(b); }); });
+          return ['men', 'women'].filter(function (g) { return set.has(g); });
         },
         get occasionOptions() {
           var set = new Set();
@@ -478,7 +493,7 @@
           var q = this.q.trim().toLowerCase();
           return this.products.filter(function (p) {
             if (this.brand && p.brand.split('||').indexOf(this.brand) === -1) return false;
-            if (this.gender && p.gender.split('||').indexOf(this.gender) === -1) return false;
+            if (this.gender && !p.gender.split('||').some(function (g) { return this.genderBucket(g) === this.gender; }, this)) return false;
             if (this.occasion && p.occasion !== this.occasion) return false;
             if (q && p.name.toLowerCase().indexOf(q) === -1) return false;
             return true;
