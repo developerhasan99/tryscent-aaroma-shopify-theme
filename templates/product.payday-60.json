@@ -269,7 +269,7 @@
         "subheading": "<p>Buy 2x100ml of your favorite perfumes and get <strong>3x100ml FREE</strong> in the PayDay bundle</p>",
         "slot_label": "Choose your scent",
         "discount_slot_label": "Discounted scent",
-        "discount_pill_label": "-60%",
+        "discount_pill_label": "Free",
         "counter_text": "[selected] / [total] selected",
         "hint_text": "Add [remaining] more scents to unlock your discount!",
         "hint_text_one": "Add 1 more scent to unlock your discount!",
