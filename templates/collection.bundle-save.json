@@ -54,7 +54,7 @@
       "type": "scent-bundle-builder",
       "name": "Scent bundle builder",
       "settings": {
-        "grid_collection": "",
+        "grid_collection": "bestseller-singles",
         "variant_ml": "100",
         "tier_1_label": "2+1",
         "tier_1_badge": "Najpopularniejszy",
