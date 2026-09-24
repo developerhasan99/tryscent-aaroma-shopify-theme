@@ -55,7 +55,7 @@
         "secondary_color": "#f1ebea",
         "top_banner_text": "LIMITED TIME ONLY",
         "prepend_text": "WAREHOUSE CLEARANCE SALE",
-        "countdown_date": "2026/09/21 23:59:59",
+        "countdown_date": "",
         "append_text": "BUY 2, GET 1 FREE",
         "link": "shopify://collections/bestsellers"
       }
