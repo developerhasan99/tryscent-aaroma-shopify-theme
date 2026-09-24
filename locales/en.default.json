@@ -1583,7 +1583,7 @@
           "disclaimer": {
             "privacy_policy": "Privacy policy",
             "terms_of_service": "Terms of Use",
-            "description_html": "By checking the checkbox above, you agree to receive recurring automated messages from Aaroma Co, including cart reminders, at the phone number provided. Consent is not a condition of purchase. Reply STOP to unsubscribe. Reply HELP for help. Message frequency varies. Msg & data rates may apply. View our {{ privacy_policy_link }} and {{ terms_of_service_link }}.",
+            "description_html": "Door het bovenstaande selectievakje aan te vinken, stemt u ermee in om terugkerende, geautomatiseerde berichten van Aaroma Co, te ontvangen, waaronder herinneringen aan uw winkelwagen, op het opgegeven telefoonnummer. Toestemming is geen voorwaarde voor aankoop. Antwoord STOP om u af te melden. Antwoord HELP voor hulp. De frequentie van berichten kan variëren. Er kunnen bericht- en datakosten van toepassing zijn. Bekijk ons {{ privacy_policy_link }} en {{ terms_of_service_link }}.",
             "description_transactional_html": "You can receive text messages about order confirmation and shipping updates. Reply STOP to unsubscribe. Reply HELP for assistance. Message frequency may vary. Message and data rates may apply. Please review our %{privacy_policy_modal_link} and %{terms_of_service_modal_link}."
           },
           "get_offers_by_text": "Receive offers via SMS"
