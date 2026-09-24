@@ -49,11 +49,46 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "scent_bundle_builder_RPB4R4": {
+      "type": "scent-bundle-builder",
+      "name": "Scent bundle builder",
+      "settings": {
+        "grid_collection": "",
+        "variant_ml": "100",
+        "tier_1_label": "2+1",
+        "tier_1_badge": "Most popular",
+        "tier_1_total": 3,
+        "tier_1_free": 1,
+        "enable_tier_2": true,
+        "tier_2_label": "4+2",
+        "tier_2_badge": "Best value",
+        "tier_2_total": 6,
+        "tier_2_free": 2,
+        "heading": "Build your own – pick & save",
+        "subheading": "Perfumes – get your free bottles",
+        "slot_label": "Choose your scent",
+        "free_slot_label": "Free scent",
+        "free_pill_label": "FREE",
+        "counter_text": "[selected] / [total] selected",
+        "hint_text": "Add [remaining] more scents to unlock your free scents!",
+        "hint_text_one": "Add 1 more scent to unlock your free scent!",
+        "done_text": "Your bundle is ready!",
+        "total_label": "Regular total",
+        "discount_label": "Discount",
+        "price_label": "Your price",
+        "savings_label": "You save",
+        "search_placeholder": "Find your perfume",
+        "cta_label": "Add",
+        "empty_text": "No scents match your search.",
+        "cta_button_label": "Add to cart"
+      }
     }
   },
   "order": [
     "custom_liquid_Wq7F7g",
     "banner",
-    "product-grid"
+    "product-grid",
+    "scent_bundle_builder_RPB4R4"
   ]
 }
