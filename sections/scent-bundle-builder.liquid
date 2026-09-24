@@ -6,12 +6,12 @@
   assign t1_total = st.tier_1_total | plus: 0
   assign t1_free = st.tier_1_free | plus: 0
   assign t1_paid = t1_total | minus: t1_free
-  assign t1_ribbon = 'Buy ' | append: t1_paid | append: ', get ' | append: t1_free | append: ' free'
+  assign t1_ribbon = st.tier_1_ribbon | default: 'Buy [paid], get [free] free' | replace: '[paid]', t1_paid | replace: '[free]', t1_free | replace: '[total]', t1_total
 
   assign t2_total = st.tier_2_total | plus: 0
   assign t2_free = st.tier_2_free | plus: 0
   assign t2_paid = t2_total | minus: t2_free
-  assign t2_ribbon = 'Buy ' | append: t2_paid | append: ', get ' | append: t2_free | append: ' free'
+  assign t2_ribbon = st.tier_2_ribbon | default: 'Buy [paid], get [free] free' | replace: '[paid]', t2_paid | replace: '[free]', t2_free | replace: '[total]', t2_total
 
   assign eligible_handles = ''
   for p in grid_pool.products
@@ -520,6 +520,13 @@
         "default": "Most popular"
       },
       {
+        "type": "text",
+        "id": "tier_1_ribbon",
+        "label": "Image offer text",
+        "info": "Shown on product images. Use [paid], [free], [total]",
+        "default": "Buy [paid], get [free] free"
+      },
+      {
         "type": "number",
         "id": "tier_1_total",
         "label": "Total bottles",
@@ -553,6 +560,13 @@
         "label": "Badge text",
         "info": "Leave blank to hide",
         "default": "Best value"
+      },
+      {
+        "type": "text",
+        "id": "tier_2_ribbon",
+        "label": "Image offer text",
+        "info": "Shown on product images. Use [paid], [free], [total]",
+        "default": "Buy [paid], get [free] free"
       },
       {
         "type": "number",
