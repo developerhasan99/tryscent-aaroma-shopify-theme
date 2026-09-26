@@ -98,6 +98,7 @@
         },
         "label_h4EKbX": {
           "type": "label",
+          "disabled": true,
           "settings": {
             "label": "SAVE UPTO 50% OFF WITH OUR BUNDLES & GIFT SETS"
           }
@@ -105,17 +106,19 @@
         "label_yJphg9": {
           "type": "label",
           "settings": {
-            "label": "100% AUTHENTIC"
+            "label": "Free shipping over  €40!"
           }
         },
         "label_nYhF3R": {
           "type": "label",
+          "disabled": true,
           "settings": {
             "label": "EXPERT-CURATED COLLECTIONS"
           }
         },
         "label_RqnDUx": {
           "type": "label",
+          "disabled": true,
           "settings": {
             "label": "RISK-FREE 60 DAYS MONEY BACK GUARANTEE"
           }
@@ -128,7 +131,6 @@
         "label_nYhF3R",
         "label_RqnDUx"
       ],
-      "disabled": true,
       "name": "Marquee Labels",
       "settings": {}
     },
