@@ -218,6 +218,7 @@
     },
     "popular_products_nC8A3n": {
       "type": "popular-products",
+      "disabled": true,
       "name": "Popular Products",
       "settings": {
         "background_color": "#fcfbf9",
@@ -232,6 +233,7 @@
     },
     "popular_products_nimyqA": {
       "type": "popular-products",
+      "disabled": true,
       "name": "Popular Products",
       "settings": {
         "background_color": "#fcfbf9",
@@ -286,6 +288,7 @@
         "category_kcgbew",
         "category_PLwfRa"
       ],
+      "disabled": true,
       "name": "Home Categories",
       "settings": {
         "background_color": "#fcfbf9",

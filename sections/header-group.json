@@ -49,6 +49,7 @@
         "payment_icon_i3Hr68",
         "payment_icon_EJx9b8"
       ],
+      "disabled": true,
       "name": "Offer Timebar",
       "settings": {
         "primary_color": "#723631",
@@ -106,7 +107,7 @@
         "label_yJphg9": {
           "type": "label",
           "settings": {
-            "label": "Free shipping over  €40!"
+            "label": "30% OFF ENTIRE CART"
           }
         },
         "label_nYhF3R": {
