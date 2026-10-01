@@ -49,11 +49,13 @@
         "payment_icon_i3Hr68",
         "payment_icon_EJx9b8"
       ],
-      "disabled": true,
       "name": "Offer Timebar",
       "settings": {
-        "primary_color": "#723631",
-        "secondary_color": "#f1ebea",
+        "enable_top_bar": false,
+        "enable_timer": false,
+        "enable_badges": false,
+        "primary_color": "#F1EBEA",
+        "secondary_color": "#723631",
         "top_banner_text": "LIMITED TIME ONLY",
         "prepend_text": "AUTUMN SALE",
         "countdown_date": "",
@@ -132,6 +134,7 @@
         "label_nYhF3R",
         "label_RqnDUx"
       ],
+      "disabled": true,
       "name": "Marquee Labels",
       "settings": {}
     },
