@@ -3,6 +3,7 @@
 {% assign product_count = product.metafields.custom.choose_your_fragrances_options %}
 {% assign dropdown_ml = product.metafields.custom.select_bundle_dropdown_ml | default: "50" %}
 {% assign bundle_ml = dropdown_ml | append: "ml" %}
+{% assign bundle_size_token = dropdown_ml | append: '' | downcase | strip | replace: ' ', '' | remove: 'ml' | append: 'ml' %}
 {% assign selected_variant = product.selected_or_first_available_variant %}
 {% assign fixed_bundle_products = product.metafields.custom.fixed_bundle_products.value %}
 
@@ -116,6 +117,8 @@
       </svg>
     </div>
   </button>
+  <p x-data x-show="$store.bundleBuilder.cartError" x-text="$store.bundleBuilder.cartError"
+     role="alert" aria-live="assertive" class="!mt-2 !mb-0 text-sm text-center text-red-600"></p>
 </div>
 
 <div class="!my-6">
@@ -129,12 +132,13 @@
 <script>
   document.addEventListener('alpine:init', function() {
     Alpine.store('bundleBuilder', {
-      selectedVariant: "{{ bundle_ml }}",
+      selectedVariant: {{ bundle_size_token | json }},
       bundleLength: {{ product_count }},
       showModal: false,
       activeCategory: "All",
       searchText: "",
       addingToCart: false,
+      cartError: '',
       selectedProducts: [
         {% if product.tags contains 'fixed_bundle' %}
           {% for fixed_var in fixed_bundle_products %}
@@ -157,6 +161,21 @@
           {% paginate bundle_collection.products by 250 %}
             {% for bundle_product in bundle_collection.products %}
               {% liquid
+                assign bundle_variant = nil
+                for variant in bundle_product.variants
+                  assign variant_token = variant.title | downcase | strip | replace: ' ', ''
+                  if variant_token == bundle_size_token
+                    assign bundle_variant = variant
+                    break
+                  endif
+                endfor
+                if bundle_variant == blank or bundle_variant.available == false
+                  continue
+                endif
+                if bundle_variant.inventory_management == 'shopify' and bundle_variant.inventory_quantity < 1
+                  continue
+                endif
+
                 assign collection_handles = ''
                 for collection in bundle_product.collections
                   assign collection_handles = collection_handles | append: collection.handle
@@ -177,12 +196,10 @@
                 collections: "{{ collection_handles }}",
                 isNewArrival: {% if bundle_collection_handle == new_arrival_collection_handle %}true{% else %}false{% endif %},
                 variants: {
-                  {% for variant in bundle_product.variants %}
-                    "{{ variant.title | downcase |  replace: ' ml', 'ml' }}": {
-                      title: "{{ variant.title }}",
-                      id: "{{ variant.id }}"
-                    },
-                  {% endfor %}
+                  {{ bundle_size_token | json }}: {
+                    title: {{ bundle_variant.title | json }},
+                    id: "{{ bundle_variant.id }}"
+                  }
                 }
               },
             {% endfor %}
@@ -232,7 +249,13 @@
       doATCandCheckout() {
         // Set loading state
         this.addingToCart = true;
-        
+        this.cartError = '';
+
+        // Fall back to the bundle-size variant for products added without one (e.g. quiz prefill)
+        this.selectedProducts.forEach(product => {
+          product.variant = product.variant || product.variants[this.selectedVariant];
+        });
+
         // Create properties object with bundle items
         const properties = {
           "_bundle_items": this.selectedProducts.map(product => 
@@ -261,19 +284,23 @@
           },
           body: JSON.stringify(items),
         })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
+        .then(async response => {
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || data.status) {
+            const error = new Error(data.description || data.message || `Request failed with status ${response.status}`);
+            error.response = data;
+            throw error;
           }
-          return response.json();
+          return data;
         })
         .then(() => {
           // Redirect to cart after successful addition
           window.location.href = '/checkout';
         })
         .catch(error => {
-          console.error('Error adding to cart:', error);
-          // Handle error (e.g., show error message to user)
+          console.error('Error adding to cart:', error, error.response || '');
+          const data = error.response || {};
+          this.cartError = data.description || data.message || {{ 'sections.cart.cart_error' | t | json }};
         })
         .finally(() => {
           this.addingToCart = false;
