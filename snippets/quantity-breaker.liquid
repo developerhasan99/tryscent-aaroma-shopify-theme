@@ -321,12 +321,12 @@
               :class="$store.qb.activeCategory === 'All' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
               class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#17803d] hover:border-[#17803d]">Bestseller</button>
             <button
-              @click="$store.qb.activeCategory = 'fuer-maenner'"
-              :class="$store.qb.activeCategory === 'fuer-maenner' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
+              @click="$store.qb.activeCategory = 'Voor Mannen'"
+              :class="$store.qb.activeCategory === 'Voor Mannen' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
               class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#17803d] hover:border-[#17803d]">Men</button>
             <button
-              @click="$store.qb.activeCategory = 'fuer-frauen'"
-              :class="$store.qb.activeCategory === 'fuer-frauen' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
+              @click="$store.qb.activeCategory = 'Voor Vrouwen'"
+              :class="$store.qb.activeCategory === 'Voor Vrouwen' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
               class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#17803d] hover:border-[#17803d]">Women</button>
           </div>
         </div>
@@ -371,10 +371,10 @@
                   </div>
                   <div class="flex items-center gap-1.5">
                     <span
-                      x-show="product.tags.some(tag => tag === 'fuer-maenner')"
+                      x-show="product.tags.some(tag => tag === 'Voor Mannen')"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#f1f4f2] text-[#6b7280] text-[10px] font-semibold leading-tight">Men</span>
                     <span
-                      x-show="product.tags.some(tag => tag === 'fuer-frauen')"
+                      x-show="product.tags.some(tag => tag === 'Voor Vrouwen')"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#f1f4f2] text-[#6b7280] text-[10px] font-semibold leading-tight">Women</span>
                     <span
                       x-show="product.occasion"
