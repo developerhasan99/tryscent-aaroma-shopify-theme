@@ -55,11 +55,11 @@
         "enable_timer": true,
         "enable_badges": false,
         "primary_color": "#000000",
-        "secondary_color": "#F2E8E2",
+        "secondary_color": "#f2e8e2",
         "top_banner_text": "LIMITED TIME ONLY",
         "prepend_text": "Buy 1, get 1 FREE!",
         "countdown_date": "",
-        "append_text": "Shop Now",
+        "append_text": "Buy 2, get 3 FREE!",
         "link": "shopify://collections/bestsellers"
       }
     },
