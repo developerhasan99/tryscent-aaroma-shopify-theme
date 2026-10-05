@@ -364,7 +364,7 @@
                   height="56">
                 <div class="text-left flex flex-col gap-1 mr-auto min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h3 class="my-0 font-bold text-base leading-tight text-black line-clamp-1" x-text="product.name"></h3>
+                    <h3 class="my-0 font-bold text-base leading-tight text-black line-clamp-1" x-html="product.name"></h3>
                     <span
                       x-show="product.tags.some(tag => tag.toLowerCase() === 'bestseller')"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#17803d] text-white text-[10px] font-semibold leading-tight">Bestseller</span>
