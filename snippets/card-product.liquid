@@ -136,15 +136,15 @@ TODO: Show bestseller tag if the product contains "bestseller" tag.
             <div class="card__promo-marquee absolute left-0 right-0 bottom-0 bg-[#137c44] text-white" aria-label="Buy 3, get 1 free">
               <div class="card__promo-marquee-rail">
                 <div class="card__promo-marquee-group">
-                  <span class="card__promo-marquee-text">30% OFF</span>
+                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
                   <span class="card__promo-marquee-dot" aria-hidden="true"></span>
-                  <span class="card__promo-marquee-text">30% OFF</span>
+                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
                   <span class="card__promo-marquee-dot" aria-hidden="true"></span>
                 </div>
                 <div class="card__promo-marquee-group" aria-hidden="true">
-                  <span class="card__promo-marquee-text">30% OFF</span>
+                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
                   <span class="card__promo-marquee-dot" aria-hidden="true"></span>
-                  <span class="card__promo-marquee-text">30% OFF</span>
+                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
                   <span class="card__promo-marquee-dot" aria-hidden="true"></span>
                 </div>
               </div>
@@ -271,6 +271,11 @@ TODO: Show bestseller tag if the product contains "bestseller" tag.
               </span>
             {% endif %}
               </div>
+
+            <div class="mt-2 flex flex-col gap-1 font-bold tracking-normal text-[#c8202f] text-base leading-tight">
+              <p class="m-0 !text-[#c8202f]">Buy 1, get 1 FREE!</p>
+              <p class="m-0 !text-[#c8202f]">Buy 2, get 3 FREE!</p>
+            </div>
             
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
