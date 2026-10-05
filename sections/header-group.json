@@ -52,14 +52,14 @@
       "name": "Offer Timebar",
       "settings": {
         "enable_top_bar": false,
-        "enable_timer": false,
+        "enable_timer": true,
         "enable_badges": false,
-        "primary_color": "#F1EBEA",
+        "primary_color": "#f1ebea",
         "secondary_color": "#723631",
         "top_banner_text": "LIMITED TIME ONLY",
-        "prepend_text": "AUTUMN SALE",
+        "prepend_text": "Buy 1, get 1 FREE!",
         "countdown_date": "",
-        "append_text": "30% OFF ENTIRE CART",
+        "append_text": "Shop Now",
         "link": "shopify://collections/bestsellers"
       }
     },
