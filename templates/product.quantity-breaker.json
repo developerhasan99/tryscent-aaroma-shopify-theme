@@ -58,7 +58,14 @@
         },
         "atc_bundle_builder_aLJUaV": {
           "type": "atc_bundle_builder",
+          "disabled": true,
           "settings": {}
+        },
+        "custom_liquid_HeCWbk": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'quantity-breaker' %}"
+          }
         },
         "tsr_block_zMAA3j": {
           "type": "tsr_block",
@@ -184,6 +191,7 @@
         "text_8gxCPt",
         "custom_liquid_4ajMA6",
         "atc_bundle_builder_aLJUaV",
+        "custom_liquid_HeCWbk",
         "tsr_block_zMAA3j",
         "money_back_MK4mE8",
         "icon_with_text_rgXMXN",
