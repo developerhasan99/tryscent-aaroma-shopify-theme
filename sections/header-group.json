@@ -94,47 +94,42 @@
       "blocks": {
         "label_Qg6CjC": {
           "type": "label",
-          "disabled": true,
           "settings": {
-            "label": "FREE SHIPPING ON ORDERS ABOVE $50"
+            "label": "🚚 Free shipping on orders over €50"
           }
         },
-        "label_h4EKbX": {
+        "label_QEEHfb": {
           "type": "label",
-          "disabled": true,
           "settings": {
-            "label": "SAVE UPTO 50% OFF WITH OUR BUNDLES & GIFT SETS"
+            "label": "🚚 Free shipping on orders over €50"
           }
         },
-        "label_yJphg9": {
+        "label_iyePna": {
           "type": "label",
           "settings": {
-            "label": "30% OFF ENTIRE CART"
+            "label": "🚚 Free shipping on orders over €50"
           }
         },
-        "label_nYhF3R": {
+        "label_YacV8q": {
           "type": "label",
-          "disabled": true,
           "settings": {
-            "label": "EXPERT-CURATED COLLECTIONS"
+            "label": "🚚 Free shipping on orders over €50"
           }
         },
-        "label_RqnDUx": {
+        "label_PPUE4g": {
           "type": "label",
-          "disabled": true,
           "settings": {
-            "label": "RISK-FREE 60 DAYS MONEY BACK GUARANTEE"
+            "label": "🚚 Free shipping on orders over €50"
           }
         }
       },
       "block_order": [
         "label_Qg6CjC",
-        "label_h4EKbX",
-        "label_yJphg9",
-        "label_nYhF3R",
-        "label_RqnDUx"
+        "label_QEEHfb",
+        "label_iyePna",
+        "label_YacV8q",
+        "label_PPUE4g"
       ],
-      "disabled": true,
       "name": "Marquee Labels",
       "settings": {}
     },
