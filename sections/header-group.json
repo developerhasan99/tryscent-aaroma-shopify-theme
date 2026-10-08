@@ -49,6 +49,7 @@
         "payment_icon_i3Hr68",
         "payment_icon_EJx9b8"
       ],
+      "disabled": true,
       "name": "Offer Timebar",
       "settings": {
         "enable_top_bar": false,
