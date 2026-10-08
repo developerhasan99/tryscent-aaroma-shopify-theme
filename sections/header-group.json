@@ -49,7 +49,6 @@
         "payment_icon_i3Hr68",
         "payment_icon_EJx9b8"
       ],
-      "disabled": true,
       "name": "Offer Timebar",
       "settings": {
         "enable_top_bar": false,
@@ -58,9 +57,9 @@
         "primary_color": "#000000",
         "secondary_color": "#f2e8e2",
         "top_banner_text": "LIMITED TIME ONLY",
-        "prepend_text": "Buy 1, get 1 FREE!",
+        "prepend_text": "Buy 3, get 1 FREE!",
         "countdown_date": "",
-        "append_text": "Buy 2, get 3 FREE!",
+        "append_text": "",
         "link": "shopify://collections/bestsellers"
       }
     },
