@@ -6,7 +6,7 @@
   for variant in product.variants
     assign variant_title_down = variant.title | downcase
 
-    if variant_title_down contains '100'
+    if variant_title_down contains '50' and variant.available
       assign selected_variant = variant
       break
     endif
@@ -48,6 +48,8 @@
 
     <div class="grid grid-cols-3 gap-3" id="variant-selector">
       {% for variant in product.variants reversed %}
+        {% comment %} sold-out sizes are hidden (all kept if the whole product is sold out) {% endcomment %}
+        {% if product.available and variant.available == false %}{% continue %}{% endif %}
         {% liquid
           assign variant_ml = 0
           if variant.title contains '100'
@@ -68,7 +70,7 @@
             type="button"
             @click="$store.qb.selectSize('{{ size_key }}')"
             class="variant-button rounded-lg px-3 py-2.5 bg-white border-2 border-solid cursor-pointer relative"
-            :class="$store.qb.selectedSize === '{{ size_key }}' ? 'border-[#c8202f]' : 'border-gray-200'"
+            :class="$store.qb.selectedSize === '{{ size_key }}' ? 'border-black' : 'border-gray-200'"
             data-variant-id="{{ variant.id }}"
             data-variant-title="{{ variant.title }}"
             data-original-price="{{ variant.price | money }}"
@@ -80,62 +82,60 @@
               {% endif %}
             </div>
             {% if variant.title contains '50' %}
-              <span class="text-[10px] italic text-white rounded absolute -top-[10px] left-1/2 [transform:translateX(-50%)] bg-[#c8202f] px-2 py-0.5 leading-normal whitespace-nowrap">Popular</span>
+              <span class="text-[10px] italic text-white rounded absolute -top-[10px] left-1/2 [transform:translateX(-50%)] bg-[#c8202f] px-2 py-0.5 leading-normal">Popular</span>
             {% endif %}
             {% if variant.title contains '100' %}
-              <span class="text-[10px] italic text-white rounded absolute -top-[10px] left-1/2 [transform:translateX(-50%)] bg-[#17803d] px-2 py-0.5 leading-normal whitespace-nowrap">Bestseller</span>
+              <span class="text-[10px] italic text-white rounded absolute -top-[10px] left-1/2 [transform:translateX(-50%)] bg-[#17803d] px-2 py-0.5 leading-normal">Bestseller</span>
             {% endif %}
           </button>
       {% endfor %}
     </div>
   {% endif %}
 
-  {% comment %} Quantity breaker tiers {% endcomment %}
-  <div class="!mt-[22px] mb-[11px]">
-    <h2 class="m-0 text-[17px] font-extrabold text-black leading-tight">Buy More Save More:</h2>
-    <p class="m-0 mt-0.5 text-[13px] text-gray-500">Buy More &amp; Save More, or buy one at a time.</p>
-  </div>
+  {% comment %} Quantity breaker tiers — hidden for 30 ml (single bottle only) {% endcomment %}
+  <div x-show="!$store.qb.singleOnly">
+  <h2 class="m-0 text-base md:text-lg font-bold !mt-5">Buy more, save more:</h2>
+  <p class="m-0 mb-3 text-sm text-gray-500">Buy more &amp; save – or order a single bottle.</p>
 
-  <div class="flex flex-col gap-[15px]">
+  <div class="flex flex-col gap-3">
     <template x-for="tier in $store.qb.tiers" :key="tier.key">
       <div
-        class="rounded-[15px] border-2 border-solid relative transition-colors duration-200"
-        :class="$store.qb.selectedTierKey === tier.key ? 'border-[#c8202f] bg-[#fdf3f3] shadow-md' : 'border-gray-200 bg-white hover:border-gray-300'">
+        class="rounded-xl border-2 border-solid relative transition-colors duration-200"
+        :class="$store.qb.selectedTierKey === tier.key ? 'border-[#c8202f] bg-[#fdf2f2] shadow-sm' : 'border-gray-200 bg-white'">
         {% comment %} Card header — selects the tier {% endcomment %}
         <div
           @click="$store.qb.selectTier(tier.key)"
-          class="px-[15px] py-[14px] cursor-pointer flex items-center gap-[11px]">
+          class="px-3 py-3 cursor-pointer flex items-center gap-3">
           <span
-            class="shrink-0 size-[22px] rounded-full border-2 border-solid bg-white flex items-center justify-center transition-colors"
+            class="shrink-0 size-5 rounded-full border-2 border-solid flex items-center justify-center transition-colors"
             :class="$store.qb.selectedTierKey === tier.key ? 'border-[#c8202f]' : 'border-gray-300'">
             <span
               x-show="$store.qb.selectedTierKey === tier.key"
-              class="size-[11px] rounded-full bg-[#c8202f]"></span>
+              class="size-2.5 rounded-full bg-[#c8202f]"></span>
           </span>
 
           <span class="grow min-w-0">
             <span class="flex items-center gap-2 flex-wrap">
-              <span class="text-[15px] font-extrabold text-black leading-tight" x-text="tier.label"></span>
+              <span class="text-sm md:text-base font-bold text-black" x-text="tier.label"></span>
               <span
                 x-show="$store.qb.savingsPercent(tier) > 0"
                 x-cloak
-                class="rounded-md bg-[#17803d] text-white text-[13px] font-extrabold px-2 py-1 leading-none tracking-wide shadow-sm"
-                x-text="'-' + $store.qb.savingsPercent(tier) + '%'"></span>
+                class="rounded bg-[#17803d] text-white text-[11px] md:text-xs font-bold px-1.5 py-1 leading-none"
+                x-text="'−' + $store.qb.savingsPercent(tier) + '%'"></span>
             </span>
             <span
-              class="block text-[13px] font-semibold text-[#17803d] mt-1"
-              x-show="tier.total > 1 || tier.note"
+              class="block text-xs md:text-sm text-[#17803d] mt-1 font-bold"
               x-text="tier.total > 1 ? 'Only ' + $store.qb.money($store.qb.perBottle(tier)) + ' per bottle' : tier.note"></span>
           </span>
 
           <span class="shrink-0 text-right leading-tight">
             <span
-              class="block text-base text-gray-700 font-semibold line-through"
+              class="block text-xs md:text-sm font-bold text-gray-500 line-through"
               x-show="$store.qb.tierCompare(tier) > $store.qb.tierPrice(tier)"
               x-text="$store.qb.money($store.qb.tierCompare(tier))"></span>
-            <span class="block text-[19px] font-extrabold text-black" x-text="$store.qb.money($store.qb.tierPrice(tier))"></span>
+            <span class="block text-base md:text-lg font-extrabold text-black" x-text="$store.qb.money($store.qb.tierPrice(tier))"></span>
             <span
-              class="block text-xs text-gray-400"
+              class="block text-[11px] text-gray-400"
               x-show="tier.total === 1"
               x-text="'incl. VAT'"></span>
           </span>
@@ -146,69 +146,69 @@
           x-text="tier.badge"
           x-cloak
           :style="{ '--qb-badge-c': tier.badgeColor }"
-          class="absolute -top-[11px] right-[19px] bg-[color:var(--qb-badge-c)] text-white text-[11px] leading-[16px] not-italic font-bold tracking-wide px-2.5 py-0.5 shadow-sm
-            before:content-[''] before:absolute before:right-full before:top-0 before:-z-10 before:border-solid before:border-y-[10px] before:border-y-transparent before:border-r-[8px] before:border-r-[color:var(--qb-badge-c)] before:border-l-0
-            after:content-[''] after:absolute after:left-full after:top-0 after:-z-10 after:border-solid after:border-y-[10px] after:border-y-transparent after:border-l-[8px] after:border-l-[color:var(--qb-badge-c)] after:border-r-0"></span>
+          class="absolute -top-2.5 right-4 bg-[color:var(--qb-badge-c)] text-white text-[10px] leading-normal not-italic font-bold tracking-wide px-2 py-0.5 shadow-sm
+            before:content-[''] before:absolute before:right-full before:top-0 before:-z-10 before:border-solid before:border-y-[9px] before:border-y-transparent before:border-r-[7px] before:border-r-[color:var(--qb-badge-c)] before:border-l-0
+            after:content-[''] after:absolute after:left-full after:top-0 after:-z-10 after:border-solid after:border-y-[9px] after:border-y-transparent after:border-l-[7px] after:border-l-[color:var(--qb-badge-c)] after:border-r-0"></span>
 
         {% comment %} Expanded body — bundle slots (1 pre-selected + the rest chosen by the customer) {% endcomment %}
         <div
           x-show="$store.qb.selectedTierKey === tier.key"
           x-cloak
-          class="mx-3 mb-3 rounded-xl bg-white border border-solid border-gray-200 p-3 flex flex-col gap-[11px]">
-          <p x-show="tier.total > 1" class="m-0 text-[13px] font-semibold text-gray-600">
-            <span x-text="tier.total"></span> scents in bundle —
+          class="px-3 pb-3 flex flex-col gap-2">
+          <p x-show="tier.total > 1" class="m-0 text-[11px] font-semibold text-gray-500">
+            <span x-text="tier.total"></span> scents in the bundle —
             <span x-show="$store.qb.remaining > 0" x-text="$store.qb.remaining + ' left to choose'"></span>
             <span x-show="$store.qb.remaining === 0" class="text-[#17803d]">complete ✓</span>
           </p>
 
-          <template x-for="(slot, i) in $store.qb.slotList(tier)" :key="i">
-            <div class="flex items-center gap-[11px]">
+          <template x-for="(slot, i) in $store.qb.picks" :key="i">
+            <div class="flex items-center gap-3 rounded-xl bg-white border border-solid border-gray-200 p-2.5">
               <div class="relative shrink-0 flex">
-                <template x-if="slot.product">
+                <template x-if="slot">
                   <img
-                    :src="slot.product.image"
-                    :alt="slot.product.name"
-                    width="52"
-                    height="52"
-                    class="size-[52px] rounded-lg object-cover bg-white border border-solid border-black/10">
+                    :src="slot.image"
+                    :alt="slot.name"
+                    width="48"
+                    height="48"
+                    class="size-12 rounded-lg object-cover bg-white border border-solid border-black/10">
                 </template>
-                <template x-if="!slot.product">
-                  <div class="size-[52px] rounded-lg bg-white border border-dashed border-solid border-black/25 flex items-center justify-center text-gray-300">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+                <template x-if="!slot">
+                  <div class="size-12 rounded-lg bg-white border border-dashed border-solid border-black/25 flex items-center justify-center text-gray-300">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
                   </div>
                 </template>
               </div>
 
               <div class="grow min-w-0">
-                <template x-if="slot.product">
+                <template x-if="slot">
                   <div>
-                    <div class="text-sm font-bold text-black line-clamp-1" x-text="slot.product.name"></div>
+                    <div class="text-[13px] md:text-sm font-bold text-black line-clamp-1" x-text="slot.name"></div>
                     <div
-                      class="text-xs text-gray-500 line-clamp-1 mt-0.5"
-                      x-show="slot.product.inspiration_name"
-                      x-text="'Inspired by ' + slot.product.inspiration_name"></div>
+                      class="text-[11px] text-gray-500 line-clamp-1"
+                      x-show="slot.inspiration_name"
+                      x-text="'Inspired by ' + slot.inspiration_name"></div>
+                    <div
+                      x-show="i === 0 && slot.id === $store.qb.mainProduct.id"
+                      class="text-[11px] font-bold text-[#17803d]">Preselected</div>
                   </div>
                 </template>
-                <template x-if="!slot.product">
-                  <div class="text-sm font-semibold text-gray-500">Choose scent</div>
+                <template x-if="!slot">
+                  <div class="text-[13px] font-semibold text-gray-500">Choose scent</div>
                 </template>
               </div>
 
-              <span
-                x-show="slot.preselected"
-                class="shrink-0 text-xs font-semibold text-[#17803d]">Preselected</span>
               <button
-                x-show="!slot.preselected"
                 type="button"
-                @click="$store.qb.openModal()"
-                class="shrink-0 rounded-lg text-xs font-semibold px-[15px] py-[7px] cursor-pointer border border-solid transition-colors"
-                :class="slot.product ? 'bg-white text-black border-gray-300 hover:border-black' : 'bg-black text-white border-black hover:bg-gray-800'"
-                x-text="slot.product ? 'Change' : 'Select'"></button>
+                @click="$store.qb.openModal(i)"
+                class="shrink-0 rounded-lg text-[11px] font-semibold px-3 py-1.5 cursor-pointer border border-solid transition-colors"
+                :class="slot ? 'bg-white text-black border-gray-300 hover:border-black' : 'bg-black text-white border-black hover:bg-gray-800'"
+                x-text="slot ? 'Change' : 'Select'"></button>
             </div>
           </template>
         </div>
       </div>
     </template>
+  </div>
   </div>
 
   {% comment %} Add to cart form — real product-form component; bundle items are
@@ -239,16 +239,16 @@
         :value="$store.qb.selectedVariantId"
         class="product-variant-id">
 
-      {% comment %} slot 0 — the pre-selected current product {% endcomment %}
-      <input type="hidden" name="items[0][id]" :value="$store.qb.selectedVariantId">
-      <input type="hidden" name="items[0][quantity]" value="1">
-
-      {% comment %} slots 1..n — customer-chosen bonus fragrances {% endcomment %}
-      <template x-for="(p, idx) in $store.qb.selectedProducts.slice(0, $store.qb.bundleLength)" :key="p.id">
+      {% comment %} one line per bundle slot — the same fragrance may appear more than once {% endcomment %}
+      <template x-for="(p, idx) in $store.qb.picks.filter(Boolean)" :key="idx">
         <span>
-          <input type="hidden" :name="'items[' + (idx + 1) + '][id]'" :value="p.variant.id">
-          <input type="hidden" :name="'items[' + (idx + 1) + '][quantity]'" value="1">
-          <input type="hidden" :name="'items[' + (idx + 1) + '][properties][Bundle scent]'" :value="p.name">
+          <input type="hidden" :name="'items[' + idx + '][id]'" :value="p.variant.id">
+          <input type="hidden" :name="'items[' + idx + '][quantity]'" value="1">
+          <input
+            type="hidden"
+            :name="'items[' + idx + '][properties][Bundle Scent]'"
+            :value="p.name"
+            :disabled="$store.qb.selectedTier.total === 1">
         </span>
       </template>
 
@@ -263,7 +263,7 @@
         <span
           x-show="!$store.qb.isComplete"
           x-cloak
-          x-text="'Choose ' + $store.qb.remaining + ' more ' + ($store.qb.remaining === 1 ? 'scent' : 'scents')"></span>
+          x-text="'Choose ' + $store.qb.remaining + ($store.qb.remaining === 1 ? ' more scent' : ' more scents')"></span>
 
         <span x-show="$store.qb.isComplete">{{ 'products.product.add_to_cart' | t }}</span>
         {% comment %} <div class="flex items-center" x-show="$store.qb.isComplete">
@@ -276,6 +276,20 @@
             <span class="current-price">{{ selected_variant.price | money }}</span>
           </div>
         </div> {% endcomment %}
+
+        {% comment %} 30 ml single bottle — price on the button, same look as reactive-atc {% endcomment %}
+        <div
+          x-show="$store.qb.singleOnly"
+          x-cloak
+          class="ml-2 pl-2 border-0 border-l flex items-center border-solid border-gray-200/20">
+          <div class="inline-block text-lg bg-[#0c5224] px-3 rounded" role="status">
+            <span
+              x-show="$store.qb.unit.compare > $store.qb.unit.price"
+              class="line-through text-white/50 text-base"
+              x-text="$store.qb.money($store.qb.unit.compare)"></span>
+            <span x-text="$store.qb.money($store.qb.unit.price)"></span>
+          </div>
+        </div>
 
         {%- render 'loading-spinner' -%}
       </button>
@@ -309,7 +323,7 @@
             </span>
           </h2>
           <p class="my-0 text-center text-sm text-[#6b7280]">
-            <span x-text="$store.qb.selectedTier.total"></span> scents in bundle ·
+            <span x-text="$store.qb.selectedTier.total"></span> scents in the bundle ·
             Size <span x-text="$store.qb.selectedSizeLabel"></span>
           </p>
         </div>
@@ -321,12 +335,12 @@
               :class="$store.qb.activeCategory === 'All' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
               class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#17803d] hover:border-[#17803d]">Bestseller</button>
             <button
-              @click="$store.qb.activeCategory = 'Voor Mannen'"
-              :class="$store.qb.activeCategory === 'Voor Mannen' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
+              @click="$store.qb.activeCategory = 'fuer-maenner'"
+              :class="$store.qb.activeCategory === 'fuer-maenner' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
               class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#17803d] hover:border-[#17803d]">Men</button>
             <button
-              @click="$store.qb.activeCategory = 'Voor Vrouwen'"
-              :class="$store.qb.activeCategory === 'Voor Vrouwen' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
+              @click="$store.qb.activeCategory = 'fuer-frauen'"
+              :class="$store.qb.activeCategory === 'fuer-frauen' ? 'border-[#17803d] bg-[#17803d] text-white hover:!text-white' : 'bg-white border-gray-200'"
               class="px-2 py-1.5 rounded-full font-semibold border-2 border-solid cursor-pointer hover:text-[#17803d] hover:border-[#17803d]">Women</button>
           </div>
         </div>
@@ -350,11 +364,12 @@
         <div class="flex flex-col gap-1.5">
           <template x-for="product in $store.qb.availableProducts" :key="product.id">
             <template
-              x-if="(product.tags.some(tag => tag === $store.qb.activeCategory) || $store.qb.activeCategory === 'All') &&
+              x-if="product.variants[$store.qb.selectedSize] &&
+                (product.tags.some(tag => tag === $store.qb.activeCategory) || $store.qb.activeCategory === 'All') &&
                 ($store.qb.searchText === '' || product.name.toLowerCase().includes($store.qb.searchText.toLowerCase()) || (product.inspiration_name && product.inspiration_name.toLowerCase().includes($store.qb.searchText.toLowerCase())))">
-              <button
-                @click="$store.qb.addRemoveProduct(product)"
-                :class="$store.qb.isProductSelected(product.id) ? 'border-[#17803d]' : 'border-gray-200 border'"
+              <div
+                @click="$store.qb.countOf(product.id) || $store.qb.pickProduct(product)"
+                :class="$store.qb.countOf(product.id) ? 'border-[#17803d]' : 'border-gray-200 border'"
                 class="border-[1.5px] border-solid w-full p-2 flex items-center gap-2 justify-between cursor-pointer rounded-xl bg-white">
                 <img
                   class="object-cover rounded-lg"
@@ -364,17 +379,17 @@
                   height="56">
                 <div class="text-left flex flex-col gap-1 mr-auto min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h3 class="my-0 font-bold text-base leading-tight text-black line-clamp-1" x-html="product.name"></h3>
+                    <h3 class="my-0 font-bold text-base leading-tight text-black line-clamp-1" x-text="product.name"></h3>
                     <span
                       x-show="product.tags.some(tag => tag.toLowerCase() === 'bestseller')"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#17803d] text-white text-[10px] font-semibold leading-tight">Bestseller</span>
                   </div>
                   <div class="flex items-center gap-1.5">
                     <span
-                      x-show="product.tags.some(tag => tag === 'Voor Mannen')"
+                      x-show="product.tags.some(tag => tag === 'fuer-maenner')"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#f1f4f2] text-[#6b7280] text-[10px] font-semibold leading-tight">Men</span>
                     <span
-                      x-show="product.tags.some(tag => tag === 'Voor Vrouwen')"
+                      x-show="product.tags.some(tag => tag === 'fuer-frauen')"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#f1f4f2] text-[#6b7280] text-[10px] font-semibold leading-tight">Women</span>
                     <span
                       x-show="product.occasion"
@@ -382,16 +397,34 @@
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#f1f4f2] text-[#6b7280] text-[10px] font-semibold leading-tight line-clamp-1"></span>
                   </div>
                 </div>
-                <div class="shrink-0 ml-auto text-center">
+                <div class="shrink-0 ml-auto flex flex-col items-end gap-1">
                   <div class="text-xs font-semibold text-[#6b7280]" x-text="$store.qb.selectedSizeLabel"></div>
+                  <button
+                    x-show="!$store.qb.countOf(product.id)"
+                    type="button"
+                    @click.stop="$store.qb.pickProduct(product)"
+                    :aria-label="'Add ' + product.name"
+                    class="size-8 p-0 rounded-full border-[1.5px] border-solid border-[#17803d] bg-white flex items-center justify-center text-xl leading-none text-[#17803d] cursor-pointer">+</button>
                   <div
-                    class="size-8 rounded-full border-[1.5px] border-solid border-[#17803d] flex items-center justify-center text-xl text-[#17803d]"
-                    :class="{ 'bg-[#17803d]' : $store.qb.isProductSelected(product.id) }">
-                    <span x-show="!$store.qb.isProductSelected(product.id)">+</span>
-                    <svg x-show="$store.qb.isProductSelected(product.id)" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                    x-show="$store.qb.countOf(product.id)"
+                    class="flex items-center rounded-full border-[1.5px] border-solid border-[#17803d] overflow-hidden">
+                    <button
+                      type="button"
+                      @click.stop="$store.qb.unpickProduct(product)"
+                      :aria-label="'Remove ' + product.name"
+                      class="size-8 p-0 border-0 bg-white flex items-center justify-center text-xl leading-none text-[#17803d] cursor-pointer hover:bg-[#f1f4f2]">−</button>
+                    <span
+                      class="min-w-6 text-center text-sm font-bold text-black"
+                      aria-live="polite"
+                      x-text="$store.qb.countOf(product.id)"></span>
+                    <button
+                      type="button"
+                      @click.stop="$store.qb.pickProduct(product)"
+                      :aria-label="'Add ' + product.name"
+                      class="size-8 p-0 border-0 bg-[#17803d] flex items-center justify-center text-xl leading-none text-white cursor-pointer hover:bg-[#146b32]">+</button>
                   </div>
                 </div>
-              </button>
+              </div>
             </template>
           </template>
         </div>
@@ -411,11 +444,12 @@
 
 <script>
   document.addEventListener('alpine:init', function () {
-    var MONEY = new Intl.NumberFormat('de-DE', { style: 'currency', currency: '{{ cart.currency.iso_code | default: shop.currency }}' });
+    var MONEY = new Intl.NumberFormat('de-DE', { style: 'currency', currency: '{{ shop.currency }}' });
 
     Alpine.store('qb', {
       variants: {
         {% for variant in product.variants %}
+          {% if product.available and variant.available == false %}{% continue %}{% endif %}
           "{{ variant.title | downcase | remove: ' ' }}": {
             id: {{ variant.id }},
             label: "{{ variant.title }}",
@@ -429,26 +463,39 @@
 
       {% comment %} pay = bottles the customer pays for · total = bottles shipped (rest free via the automatic discount) {% endcomment %}
       tiers: [
-        { key: 't1', label: 'Regular single bottle', pay: 1, total: 1, badge: '', badgeColor: '', note: 'Just one bottle' },
-        { key: 't2', label: 'Buy 1 Get 1 Free', pay: 1, total: 2, badge: '', badgeColor: '' },
-        { key: 't3', label: 'Buy 2 Get 3 Free', pay: 2, total: 5, badge: 'Best Deal 🔥', badgeColor: '#17803d' }
+        { key: 't3', label: '2 + 3 FREE', pay: 2, total: 5, badge: 'Best Deal 🔥', badgeColor: '#17803d' },
+        { key: 't2', label: '1 + 1 FREE', pay: 1, total: 2, badge: '', badgeColor: '' },
+        { key: 't1', label: 'Single bottle', pay: 1, total: 1, badge: '', badgeColor: '', note: 'Just one bottle' }
       ],
-      selectedTierKey: 't1',
+      selectedTierKey: 't3',
 
       showModal: false,
       activeCategory: 'All',
       searchText: '',
-      selectedProducts: [],
+      {% comment %} One entry per bottle in the selected tier (null = not chosen yet).
+         Slot 0 starts as the current product but every slot is replaceable,
+         and the same fragrance may fill several slots. {% endcomment %}
+      picks: [],
+      activeSlot: 0,
 
       mainProduct: {
         id: {{ product.id }},
         name: "{{ product.title | escape }}",
         image: "{{ product.featured_image | image_url: width: 120, height: 120 }}",
-        inspiration_name: "{% if product.metafields.custom.inspiration.value %}{{ product.metafields.custom.inspiration.value.name | escape }}{% endif %}"
+        inspiration_name: "{% if product.metafields.custom.inspiration.value %}{{ product.metafields.custom.inspiration.value.name | escape }}{% endif %}",
+        occasion: "{{ product.metafields.custom.occasion | escape }}",
+        tags: {{ product.tags | json }},
+        variants: {
+          {% for variant in product.variants %}
+            {% if product.available and variant.available == false %}{% continue %}{% endif %}
+            "{{ variant.title | downcase | remove: ' ' }}": { id: {{ variant.id }}, title: "{{ variant.title }}" },
+          {% endfor %}
+        }
       },
 
       availableProducts: [
         {% for bonus_product in bonus_collection.products %}
+          {% unless bonus_product.available %}{% continue %}{% endunless %}
           {
             id: {{ bonus_product.id }},
             name: "{{ bonus_product.title | escape }}",
@@ -458,6 +505,7 @@
             tags: {{ bonus_product.tags | json }},
             variants: {
               {% for variant in bonus_product.variants %}
+                {% unless variant.available %}{% continue %}{% endunless %}
                 "{{ variant.title | downcase | remove: ' ' }}": { id: {{ variant.id }}, title: "{{ variant.title }}" },
               {% endfor %}
             }
@@ -465,22 +513,35 @@
         {% endfor %}
       ],
 
+      init: function () {
+        var mainId = this.mainProduct.id;
+        {% comment %} keep the current product pickable in the modal after it's been replaced {% endcomment %}
+        if (!this.availableProducts.some(function (p) { return p.id === mainId; })) {
+          this.availableProducts.unshift(this.mainProduct);
+        }
+        this.picks = [this.withVariant(this.mainProduct)];
+        this.selectTier(this.singleOnly ? 't1' : this.selectedTierKey);
+      },
+
+      {% comment %} 30 ml is sold as a single bottle of this product only {% endcomment %}
+      get singleOnly() { return this.selectedSize.indexOf('30') !== -1; },
+
       get selectedTier() {
         var key = this.selectedTierKey;
         return this.tiers.find(function (t) { return t.key === key; }) || this.tiers[0];
       },
-      {% comment %} slot 0 is the pre-selected current product; the customer fills the rest {% endcomment %}
-      get bundleLength() { return Math.max(0, this.selectedTier.total - 1); },
-      get remaining() { return Math.max(0, this.bundleLength - this.selectedProducts.length); },
+      get remaining() { return this.picks.filter(function (p) { return !p; }).length; },
       get isComplete() { return this.remaining === 0; },
       get unit() { return this.variants[this.selectedSize] || Object.values(this.variants)[0]; },
       get selectedSizeLabel() { return this.unit ? this.unit.label : ''; },
+      get unitCompare() {
+        return this.unit.compare > this.unit.price ? this.unit.compare : this.unit.price;
+      },
       get currentPrice() { return this.tierPrice(this.selectedTier); },
       get currentCompare() { return this.tierCompare(this.selectedTier); },
 
       tierPrice: function (t) { return t.pay * this.unit.price; },
-      {% comment %} Savings are measured against the sale price, not compare_at_price {% endcomment %}
-      tierCompare: function (t) { return t.total * this.unit.price; },
+      tierCompare: function (t) { return t.total * this.unitCompare; },
       perBottle: function (t) { return Math.round(this.tierPrice(t) / t.total); },
       savingsPercent: function (t) {
         var full = this.tierCompare(t);
@@ -491,51 +552,66 @@
 
       selectSize: function (key) {
         if (!this.variants[key]) return;
+        var wasSingle = this.singleOnly;
         this.selectedSize = key;
         this.selectedVariantId = this.variants[key].id;
         var input = document.getElementById('product-variant-id');
         if (input) input.value = this.variants[key].id;
-        this.selectedProducts.forEach(function (p) {
+        var picks = this.picks;
+        picks.forEach(function (p, i) {
+          if (!p) return;
           if (p.variants[key]) p.variant = p.variants[key];
+          else picks[i] = null;
         });
+        if (this.singleOnly) {
+          this.picks = [this.withVariant(this.mainProduct)];
+          this.selectTier('t1');
+        } else if (wasSingle) {
+          this.selectTier('t3');
+        }
       },
 
       selectTier: function (key) {
         this.selectedTierKey = key;
-        if (this.selectedProducts.length > this.bundleLength) {
-          this.selectedProducts.splice(this.bundleLength);
+        var total = this.selectedTier.total;
+        this.picks.splice(total);
+        while (this.picks.length < total) this.picks.push(null);
+      },
+
+      withVariant: function (product) {
+        return Object.assign({}, product, {
+          variant: product.variants[this.selectedSize] || Object.values(product.variants)[0]
+        });
+      },
+
+      {% comment %} i = slot to fill; defaults to the first empty one {% endcomment %}
+      openModal: function (i) {
+        this.activeSlot = typeof i === 'number' ? i : Math.max(0, this.picks.indexOf(null));
+        this.showModal = true;
+      },
+
+      countOf: function (id) {
+        return this.picks.filter(function (p) { return p && p.id === id; }).length;
+      },
+
+      {% comment %} Fills the active slot, then moves on to the next empty one (or closes when full) {% endcomment %}
+      pickProduct: function (product) {
+        this.picks[this.activeSlot] = this.withVariant(product);
+        var next = this.picks.indexOf(null);
+        if (next === -1) this.showModal = false;
+        else this.activeSlot = next;
+      },
+
+      {% comment %} Empties the last slot holding this product; that slot is filled next {% endcomment %}
+      unpickProduct: function (product) {
+        for (var i = this.picks.length - 1; i >= 0; i--) {
+          if (this.picks[i] && this.picks[i].id === product.id) {
+            this.picks[i] = null;
+            this.activeSlot = this.picks.indexOf(null);
+            return;
+          }
         }
       },
-
-      {% comment %} Slot 0 = pre-selected current product · slots 1..n = customer picks (null until chosen) {% endcomment %}
-      slotList: function (tier) {
-        var out = [{ product: this.mainProduct, preselected: true }];
-        var need = Math.max(0, tier.total - 1);
-        for (var i = 0; i < need; i++) {
-          out.push({ product: this.selectedProducts[i] || null, preselected: false });
-        }
-        return out;
-      },
-
-      openModal: function () { this.showModal = true; },
-
-      isProductSelected: function (id) {
-        return this.selectedProducts.some(function (p) { return p.id === id; });
-      },
-
-      addRemoveProduct: function (product) {
-        var idx = this.selectedProducts.findIndex(function (p) { return p.id === product.id; });
-        if (idx > -1) { this.selectedProducts.splice(idx, 1); return; }
-        if (this.selectedProducts.length >= this.bundleLength) return;
-
-        var picked = Object.assign({}, product);
-        picked.variant = product.variants[this.selectedSize] || Object.values(product.variants)[0];
-        this.selectedProducts.push(picked);
-
-        if (this.selectedProducts.length >= this.bundleLength) this.showModal = false;
-      },
-
-      removeProduct: function (i) { this.selectedProducts.splice(i, 1); },
 
       syncGlobalPrices: function () {
         var priceText = this.money(this.currentPrice);
@@ -568,6 +644,7 @@
     });
   });
 </script>
+
 <div>
   <img
     class="max-w-full mx-auto mt-8 block [filter:grayscale(1)]"
