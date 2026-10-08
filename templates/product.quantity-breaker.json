@@ -58,11 +58,11 @@
         },
         "atc_bundle_builder_aLJUaV": {
           "type": "atc_bundle_builder",
-          "disabled": true,
           "settings": {}
         },
         "custom_liquid_HeCWbk": {
           "type": "custom_liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "{% render 'quantity-breaker' %}"
           }
