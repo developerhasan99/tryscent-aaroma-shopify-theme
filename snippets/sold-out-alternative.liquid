@@ -1,0 +1,167 @@
+{% comment %}
+  Renders a sold-out notice in place of the size selector + add to cart form.
+  If the product metafield custom.recommended_alternative (list of products)
+  has an in-stock entry other than the current product, the first one is shown
+  below the notice as a card with its own size tiles and add to cart.
+  Uses section.id from the enclosing section, like reactive-variant-selector.
+
+  Accepts:
+    - product: {Object} the sold-out product
+
+  Usage:
+  {% render 'sold-out-alternative', product: product %}
+{% endcomment %}
+
+<style>
+  .soa-select-none { user-select: none; }
+  .soa-notice-title { font-size: 16px; }
+  @media (min-width: 750px) { .soa-notice-title { font-size: 19px; } }
+  .soa-thumb { width: 80px; height: 80px; }
+  .soa-dot { width: 0.5rem; height: 0.5rem; }
+  .soa-tile:has(:checked) { border-color: #944234; }
+  .soa-tile:has(:focus-visible) { outline: 2px solid #944234; outline-offset: 2px; }
+</style>
+
+{%- liquid
+  assign alt = false
+  for p in product.metafields.custom.recommended_alternative.value
+    if p.available and p.id != product.id
+      assign alt = p
+      break
+    endif
+  endfor
+-%}
+
+<div
+  class="!mt-6 flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-100 text-gray-500 !py-3 px-3 text-center cursor-not-allowed soa-select-none"
+  aria-disabled="true">
+  <span class="leading-snug font-semibold soa-notice-title">{{ 'products.product.sold_out' | t }} – temporarily out of stock</span>
+  <span class="text-sm leading-snug">
+    {%- if alt -%}
+      This item can't be ordered right now. Try our alternative below.
+    {%- else -%}
+      This item can't be ordered right now.
+    {%- endif -%}
+  </span>
+</div>
+
+{%- if alt -%}
+  {%- liquid
+    assign alt_variant = alt.selected_or_first_available_variant
+    for v in alt.variants
+      if v.available and v.title contains '50'
+        assign alt_variant = v
+        break
+      endif
+    endfor
+  -%}
+  <div class="mt-4 rounded-xl border-2 border-solid border-gray-200 overflow-hidden bg-white" data-sold-out-alternative>
+    <div class="text-white font-semibold px-4 py-2 bg-[#22613a]">✓ Recommended alternative</div>
+    <div class="p-4">
+      <a href="{{ alt.url }}" class="flex items-center gap-4 no-underline text-black">
+        {%- if alt.featured_image -%}
+          <img
+            src="{{ alt.featured_image | image_url: width: 160 }}"
+            alt="{{ alt.featured_image.alt | default: alt.title | escape }}"
+            width="80"
+            height="80"
+            class="soa-thumb object-contain shrink-0"
+            loading="lazy">
+        {%- endif -%}
+        <div>
+          <h2 class="my-0 font-semibold text-lg tracking-tight">{{ alt.title }}</h2>
+          {%- if alt.metafields.custom.inspiration != blank -%}
+            <p class="text-base tracking-normal my-0 text-gray-700 leading-snug">Inspired by: {{ alt.metafields.custom.inspiration.value.name }}</p>
+          {%- endif -%}
+          <p class="mt-1 mb-0 text-sm text-green-700 flex items-center gap-1.5">
+            <span class="inline-block soa-dot rounded-full bg-green-600"></span>
+            {{- 'products.product.inventory_in_stock' | t -}}
+          </p>
+        </div>
+      </a>
+
+      <product-form class="product-form !m-0" data-section-id="{{ section.id }}">
+        {%- form 'product', alt, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          {%- if alt.variants.size > 1 -%}
+            <div class="flex flex-wrap justify-between items-center mb-3 !mt-6">
+              <h2 class="m-0 text-sm md:text-base font-semibold tracking-normal">Choose your size:</h2>
+              <div class="text-xs md:text-sm italic text-gray-500 tracking-normal">50 ml is the choice of 8 out of 10 customers.</div>
+            </div>
+            <div class="grid grid-cols-3 gap-3 mb-3" role="radiogroup">
+              {%- for v in alt.variants -%}
+                {%- unless v.available -%}{%- continue -%}{%- endunless -%}
+                {%- liquid
+                  assign ml = 0
+                  if v.title contains '100'
+                    assign ml = 100
+                  elsif v.title contains '50'
+                    assign ml = 50
+                  elsif v.title contains '30'
+                    assign ml = 30
+                  endif
+                -%}
+                {%- comment -%} No .variant-button: reactive-variant-selector queries it page-wide {%- endcomment -%}
+                <label class="soa-tile block text-center rounded-lg px-2 pt-4 pb-3 bg-white border-2 border-solid cursor-pointer font-['Figtree'] relative border-gray-200">
+                  <input class="sr-only" type="radio" name="id" value="{{ v.id }}"{% if v.id == alt_variant.id %} checked{% endif %}>
+                  <div class="text-center">
+                    <div class="text-sm font-semibold">{{ v.title }}</div>
+                  </div>
+                  {%- if v.title contains '50' -%}
+                    <span class="text-xs italic text-white rounded absolute -top-2.5 left-1/2 [transform:translateX(-50%)] bg-[#c8202f] px-2 py-0.5 whitespace-nowrap">Popular</span>
+                  {%- endif -%}
+                  {%- if v.title contains '100' -%}
+                    <span class="text-xs italic text-white rounded absolute -top-2.5 left-1/2 [transform:translateX(-50%)] bg-[#944234] px-2 py-0.5 whitespace-nowrap">Bestseller</span>
+                  {%- endif -%}
+                  {%- if ml > 0 -%}
+                    <div class="text-xs text-gray-500">{{ v.price | times: 1.0 | divided_by: ml | money }} / ml</div>
+                  {%- endif -%}
+                </label>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ alt_variant.id }}">
+          {%- endif -%}
+          {%- if alt.metafields.custom.nuta != blank -%}
+            <input type="hidden" name="properties[Inspired By]" value="{{ alt.metafields.custom.nuta | escape }}">
+          {%- endif -%}
+          {%- comment -%} No id / .cta_product_from_submit_btn: floating-atc queries that class {%- endcomment -%}
+          <button
+            type="submit"
+            name="add"
+            value="1"
+            class="atc-button shimmer-btn flex gap-2 flex-wrap items-center !mb-0 !py-4 !px-3 rounded-lg button bg-[#22613a] hover:bg-[#368856] transition-colors shadow-xl tracking-normal button--full-width button--primary"
+            aria-label="{{ 'products.product.add_to_cart' | t }}: {{ alt.title | escape }}">
+            <span class="text-[20px] md:text-[24px]">{{ 'products.product.add_to_cart' | t }}</span>
+            <div class="flex items-center">
+              <div class="inline-block text-base md:text-lg bg-[#1E5834] px-3 rounded" role="status">
+                {%- for v in alt.variants -%}
+                  {%- unless v.available -%}{%- continue -%}{%- endunless -%}
+                  <span data-price-for="{{ v.id }}"{% unless v.id == alt_variant.id %} hidden{% endunless %}>
+                    {%- if v.compare_at_price > v.price -%}
+                      <span class="line-through text-white/50 text-sm md:text-base">{{ v.compare_at_price | money }}</span>
+                    {% endif -%}
+                    {{- v.price | money -}}
+                  </span>
+                {%- endfor -%}
+              </div>
+            </div>
+            {%- render 'loading-spinner' -%}
+          </button>
+        {%- endform -%}
+      </product-form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const form = document.querySelector('[data-sold-out-alternative] form');
+      if (!form) return;
+      form.addEventListener('change', (e) => {
+        if (e.target.name !== 'id') return;
+        form.querySelectorAll('[data-price-for]').forEach((el) => {
+          el.hidden = el.dataset.priceFor !== e.target.value;
+        });
+      });
+    })();
+  </script>
+{%- endif -%}
