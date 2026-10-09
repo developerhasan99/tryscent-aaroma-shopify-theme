@@ -133,22 +133,26 @@ TODO: Show bestseller tag if the product contains "bestseller" tag.
                 >
               {%- endif -%}
             </div>
-            <div class="card__promo-marquee absolute left-0 right-0 bottom-0 bg-[#137c44] text-white" aria-label="Buy 3, get 1 free">
-              <div class="card__promo-marquee-rail">
-                <div class="card__promo-marquee-group">
-                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
-                  <span class="card__promo-marquee-dot" aria-hidden="true"></span>
-                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
-                  <span class="card__promo-marquee-dot" aria-hidden="true"></span>
+                {% unless product.tags contains 'Bundle_Price_Show' %}
+                {%- if settings.product_card_promo_text != blank -%}
+                {%- assign promo_lines = settings.product_card_promo_text | newline_to_br | split: '<br />' -%}
+                <div class="card__promo-marquee absolute left-0 right-0 bottom-0 bg-[#137c44] text-white" aria-label="{{ settings.product_card_promo_text | strip_newlines | escape }}">
+                    <div class="card__promo-marquee-rail">
+                    {%- for group in (1..2) -%}
+                        <div class="card__promo-marquee-group"{% if group == 2 %} aria-hidden="true"{% endif %}>
+                        {%- for line in promo_lines -%}
+                            {%- assign line = line | strip -%}
+                            {%- if line != blank -%}
+                            <span class="card__promo-marquee-text">{{ line }}</span>
+                            <span class="card__promo-marquee-dot" aria-hidden="true"></span>
+                            {%- endif -%}
+                        {%- endfor -%}
+                        </div>
+                    {%- endfor -%}
+                    </div>
                 </div>
-                <div class="card__promo-marquee-group" aria-hidden="true">
-                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
-                  <span class="card__promo-marquee-dot" aria-hidden="true"></span>
-                  <span class="card__promo-marquee-text">Buy 1, get 1 FREE!</span>
-                  <span class="card__promo-marquee-dot" aria-hidden="true"></span>
-                </div>
-              </div>
-            </div>
+                {%- endif -%}
+            {% endunless %}
           </div>
         {%- endif -%}
         <div class="card__content">
