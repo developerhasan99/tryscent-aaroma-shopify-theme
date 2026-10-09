@@ -128,6 +128,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "bestsellers",
     "cart_color_scheme": "scheme-1",
+    "product_card_promo_text": "Buy 3, get 1 FREE!\nBuy 3, get 1 FREE!\nBuy 3, get 1 FREE!\nBuy 3, get 1 FREE!",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
