@@ -58,13 +58,14 @@
         },
         "atc_bundle_builder_aLJUaV": {
           "type": "atc_bundle_builder",
+          "disabled": true,
           "settings": {}
         },
         "custom_liquid_HeCWbk": {
           "type": "custom_liquid",
           "disabled": true,
           "settings": {
-            "custom_liquid": "{% render 'quantity-breaker' %}"
+            "custom_liquid": "{% if product.available %}\n  {% render 'quantity-breaker' %}\n{% else %}\n  {% render 'reactive-variant-selector' %}\n{% endif %}"
           }
         },
         "tsr_block_zMAA3j": {
