@@ -178,8 +178,17 @@
                         Page one only: the infinite scroll appends every later page's
                         cells, and a tile repeated per page would land at a different
                         column each time.
+                        A block without a clip yet (just added in the editor) renders no
+                        cell at all; the snippet would print nothing and leave a blank
+                        grid cell behind.
                       {%- endcomment -%}
-                      {%- if paginate.current_page == 1 -%}
+                      {%- liquid
+                        assign fuel05_has_source = false
+                        if block.settings.video != blank or block.settings.video_url != blank
+                          assign fuel05_has_source = true
+                        endif
+                      -%}
+                      {%- if paginate.current_page == 1 and fuel05_has_source -%}
                         <li
                           class="grid__item fuel05-ugc fuel05-ugc--grid fuel05-ugc--grid-{{ block.settings.device | default: 'desktop' }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                           data-fuel05-row
@@ -551,6 +560,10 @@
               {
                 "value": "mobile",
                 "label": "Mobile"
+              },
+              {
+                "value": "both",
+                "label": "Desktop and mobile"
               }
             ],
             "default": "desktop"
