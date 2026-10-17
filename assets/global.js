@@ -350,6 +350,63 @@ function fetchConfig(type = "json") {
 }
 
 /*
+ * aaroma (Weglot subfolders): a translated page lives on a path Shopify itself does not know
+ * (/nl-nl/..., /fr-be/...; Weglot also rewrites Shopify.routes.root to it), while the theme's
+ * window.routes keep Shopify's own market path (/en-nl/cart). A cart request whose sections_url
+ * carries the translated prefix comes back with sections: null, so after "Add to cart" (or a
+ * quantity change) the drawer never opened on translated pages. Cart requests now render from
+ * Shopify's path, and the sections are fetched once more through the page's own path, which
+ * Weglot translates, so the drawer stays in the shopper's language.
+ */
+function cartShopifyRoot() {
+  const cartUrl = (window.routes && window.routes.cart_url) || "/cart";
+  return cartUrl.replace(/cart\/?$/, "") || "/";
+}
+
+function cartPageRoot() {
+  return (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || "/";
+}
+
+// Weglot serves the translated home page without the trailing slash (/nl-nl, root /nl-nl/).
+function cartPagePath() {
+  const path = window.location.pathname;
+  return path + "/" === cartPageRoot() ? cartPageRoot() : path;
+}
+
+function cartIsTranslatedPage() {
+  const pageRoot = cartPageRoot();
+  return pageRoot !== cartShopifyRoot() && cartPagePath().startsWith(pageRoot);
+}
+
+function cartSectionsUrl() {
+  if (!cartIsTranslatedPage()) return window.location.pathname;
+  return cartShopifyRoot() + cartPagePath().slice(cartPageRoot().length);
+}
+
+// The cart page as the shopper's language serves it (/nl-nl/cart), for section refreshes that
+// must come back translated; Shopify's own /en-nl/cart elsewhere.
+function cartPageCartUrl() {
+  return cartIsTranslatedPage() ? `${cartPageRoot()}cart` : window.routes.cart_url;
+}
+
+// Resolves to the sections object with each id replaced by the translated page's own rendering;
+// on an untranslated page, or if that request fails, the sections come back as they were.
+function cartTranslateSections(sections, ids) {
+  if (!cartIsTranslatedPage() || !ids.length) return Promise.resolve(sections);
+  return fetch(`${window.location.pathname}?sections=${ids.join(",")}`)
+    .then((response) => (response.ok ? response.json() : null))
+    .then((translated) => {
+      if (!translated) return sections;
+      const merged = Object.assign({}, sections || {});
+      ids.forEach((id) => {
+        if (translated[id]) merged[id] = translated[id];
+      });
+      return merged;
+    })
+    .catch(() => sections);
+}
+
+/*
  * Shopify Common JS
  *
  */

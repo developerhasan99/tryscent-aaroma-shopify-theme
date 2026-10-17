@@ -102,8 +102,10 @@ class CartItems extends HTMLElement {
   }
 
   onCartUpdate() {
+    // global.js: on a translated page this refresh goes through /nl-nl/cart so it stays translated;
+    // via /en-nl/cart it came back in English and could land after the translated drawer.
     if (this.tagName === "CART-DRAWER-ITEMS") {
-      return fetch(`${routes.cart_url}?section_id=cart-drawer`)
+      return fetch(`${cartPageCartUrl()}?section_id=cart-drawer`)
         .then((response) => response.text())
         .then((responseText) => {
           const html = new DOMParser().parseFromString(
@@ -123,7 +125,7 @@ class CartItems extends HTMLElement {
           console.error(e);
         });
     } else {
-      return fetch(`${routes.cart_url}?section_id=main-cart-items`)
+      return fetch(`${cartPageCartUrl()}?section_id=main-cart-items`)
         .then((response) => response.text())
         .then((responseText) => {
           const html = new DOMParser().parseFromString(
@@ -171,7 +173,7 @@ class CartItems extends HTMLElement {
       line,
       quantity,
       sections: this.getSectionsToRender().map((section) => section.section),
-      sections_url: window.location.pathname,
+      sections_url: cartSectionsUrl(),
     });
     const eventTarget =
       event.currentTarget instanceof CartRemoveButton ? "clear" : "change";
@@ -182,6 +184,17 @@ class CartItems extends HTMLElement {
       })
       .then((state) => {
         const parsedState = JSON.parse(state);
+        if (parsedState.errors) return parsedState;
+        // global.js: on a translated page the sections come back through the page's own path.
+        return cartTranslateSections(
+          parsedState.sections,
+          this.getSectionsToRender().map((section) => section.section)
+        ).then((sections) => {
+          parsedState.sections = sections;
+          return parsedState;
+        });
+      })
+      .then((parsedState) => {
 
         CartPerformance.measure(
           `${eventTarget}:paint-updated-sections"`,

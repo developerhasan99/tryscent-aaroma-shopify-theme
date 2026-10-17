@@ -40,7 +40,7 @@ if (!customElements.get("product-form")) {
             "sections",
             this.cart.getSectionsToRender().map((section) => section.id)
           );
-          formData.append("sections_url", window.location.pathname);
+          formData.append("sections_url", cartSectionsUrl());
           this.cart.setActiveElement(document.activeElement);
         }
         config.body = formData;
@@ -85,28 +85,35 @@ if (!customElements.get("product-form")) {
                 );
               });
             this.error = false;
-            const quickAddModal = this.closest("quick-add-modal");
-            if (quickAddModal) {
-              document.body.addEventListener(
-                "modalClosed",
-                () => {
-                  setTimeout(() => {
-                    CartPerformance.measure(
-                      "add:paint-updated-sections",
-                      () => {
-                        this.cart.renderContents(response);
-                      }
-                    );
-                  });
-                },
-                { once: true }
-              );
-              quickAddModal.hide(true);
-            } else {
-              CartPerformance.measure("add:paint-updated-sections", () => {
-                this.cart.renderContents(response);
-              });
-            }
+            // global.js: on a translated page the drawer comes back through the page's own path.
+            return cartTranslateSections(
+              response.sections,
+              this.cart.getSectionsToRender().map((section) => section.id)
+            ).then((sections) => {
+              response.sections = sections;
+              const quickAddModal = this.closest("quick-add-modal");
+              if (quickAddModal) {
+                document.body.addEventListener(
+                  "modalClosed",
+                  () => {
+                    setTimeout(() => {
+                      CartPerformance.measure(
+                        "add:paint-updated-sections",
+                        () => {
+                          this.cart.renderContents(response);
+                        }
+                      );
+                    });
+                  },
+                  { once: true }
+                );
+                quickAddModal.hide(true);
+              } else {
+                CartPerformance.measure("add:paint-updated-sections", () => {
+                  this.cart.renderContents(response);
+                });
+              }
+            });
           })
           .catch((e) => {
             console.error(e);
