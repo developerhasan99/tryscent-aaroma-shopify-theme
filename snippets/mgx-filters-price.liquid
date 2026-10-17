@@ -1,0 +1,51 @@
+{% comment %}
+  From / To fields of a price_range filter in the collection filter bar (snippets/mgx-filters.liquid),
+  in the shopper's currency. assets/mgx-filters.js applies them when the value changes (Enter or
+  leaving the field) and turns "1,234.50" or "1.234,50" into 1234.50 for the URL.
+
+  aaroma: amounts and the currency symbol carry data-wg-notranslate, so Weglot neither drops the
+  euro sign nor reformats the number; the fields keep Shopify's money format.
+
+  Accepts:
+  - filter: {Object} a filter of type price_range
+  - id_prefix: {String} unique per copy (the bar and the drawer each render the fields)
+{% endcomment %}
+{%- liquid
+  assign max_price_amount = filter.range_max | money | strip_html | escape
+  assign max_price_html = '<span data-wg-notranslate>' | append: max_price_amount | append: '</span>'
+-%}
+<div class="mgx-fc-price">
+  <p class="mgx-fc-price-max">{{ 'products.facets.max_price' | t: price: '[[mgx_price]]' | replace: '[[mgx_price]]', max_price_html }}</p>
+  <div class="mgx-fc-price-row">
+    <label class="mgx-fc-field" for="{{ id_prefix }}GTE">
+      <span class="mgx-fc-field-label">{{ 'products.facets.from' | t }}</span>
+      <span class="mgx-fc-input">
+        <span class="mgx-fc-cur" aria-hidden="true" data-wg-notranslate>{{ cart.currency.symbol }}</span>
+        <input
+          id="{{ id_prefix }}GTE"
+          name="{{ filter.min_value.param_name | escape }}"
+          type="text"
+          inputmode="decimal"
+          autocomplete="off"
+          placeholder="0"
+          data-wg-notranslate
+          {%- if filter.min_value.value != nil %} value="{{ filter.min_value.value | money_without_currency }}"{% endif %}>
+      </span>
+    </label>
+    <label class="mgx-fc-field" for="{{ id_prefix }}LTE">
+      <span class="mgx-fc-field-label">{{ 'products.facets.to' | t }}</span>
+      <span class="mgx-fc-input">
+        <span class="mgx-fc-cur" aria-hidden="true" data-wg-notranslate>{{ cart.currency.symbol }}</span>
+        <input
+          id="{{ id_prefix }}LTE"
+          name="{{ filter.max_value.param_name | escape }}"
+          type="text"
+          inputmode="decimal"
+          autocomplete="off"
+          placeholder="{{ filter.range_max | money_without_currency }}"
+          data-wg-notranslate
+          {%- if filter.max_value.value != nil %} value="{{ filter.max_value.value | money_without_currency }}"{% endif %}>
+      </span>
+    </label>
+  </div>
+</div>
