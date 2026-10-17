@@ -98,6 +98,54 @@
     },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "blocks": {
+        "fuel05_ugc_video_nR9Epz": {
+          "type": "fuel05_ugc_video",
+          "settings": {
+            "position": 10,
+            "device": "mobile",
+            "video": "shopify://files/videos/aaroma_co_DalmaJ_SmelLikeAnge_a186e21c.mov",
+            "video_url": "",
+            "product": "3x-100ml-perfume-bottles"
+          }
+        },
+        "fuel05_ugc_video_abCqai": {
+          "type": "fuel05_ugc_video",
+          "settings": {
+            "position": 8,
+            "device": "mobile",
+            "video": "shopify://files/videos/aaroma_co_JoeM_SmelLikeArma_ddb6a55c.mov",
+            "video_url": "",
+            "product": "nacht-van-passie-3x-50ml-parfumflesjes"
+          }
+        },
+        "fuel05_ugc_video_Faa9Er": {
+          "type": "fuel05_ugc_video",
+          "settings": {
+            "position": 4,
+            "device": "mobile",
+            "video": "shopify://files/videos/aaroma_co_EsmeeB_SmelLikeArma_dda7fc6e.mp4",
+            "video_url": "",
+            "product": "3-x-50ml-geurgarderobe-44"
+          }
+        },
+        "fuel05_ugc_video_w8m9iK": {
+          "type": "fuel05_ugc_video",
+          "settings": {
+            "position": 2,
+            "device": "mobile",
+            "video": "shopify://files/videos/aaroma_co_KristelW_SmelLikePist_ad4377e6.mov",
+            "video_url": "",
+            "product": "6-x-50ml-geurgarderobe-64"
+          }
+        }
+      },
+      "block_order": [
+        "fuel05_ugc_video_nR9Epz",
+        "fuel05_ugc_video_abCqai",
+        "fuel05_ugc_video_Faa9Er",
+        "fuel05_ugc_video_w8m9iK"
+      ],
       "settings": {
         "products_per_page": 36,
         "columns_desktop": 4,
