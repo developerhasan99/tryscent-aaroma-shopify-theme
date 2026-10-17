@@ -108,6 +108,21 @@
     },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "blocks": {
+        "fuel05_ugc_video_xxLTYL": {
+          "type": "fuel05_ugc_video",
+          "settings": {
+            "position": 2,
+            "device": "desktop",
+            "video": "shopify://files/videos/video.mp4",
+            "video_url": "",
+            "product": "6x-50ml"
+          }
+        }
+      },
+      "block_order": [
+        "fuel05_ugc_video_xxLTYL"
+      ],
       "settings": {
         "products_per_page": 36,
         "columns_desktop": 4,
