@@ -250,6 +250,11 @@
   font-weight: 600;
   letter-spacing: 0.66px;
   line-height: 1.2;
+  /* A word longer than the text column (Dutch and German compounds such as
+     "Parfumflessen", and whatever the translation app renders on /nl /de)
+     wraps inside the word, so the two-line clamp ends it with "…" like every
+     other long title, instead of cutting the word off at the column edge. */
+  overflow-wrap: anywhere;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

@@ -205,16 +205,24 @@
             and "From 129,99 kr" needs 124px, so the prefix wraps the pill a
             full text-line taller than drawn.
           {%- endcomment -%}
+          {%- comment -%}
+            Weglot (aaroma's /nl /fr /de /et subfolders) translates the hidden
+            "Regular price" label and a price next to it as one sentence and,
+            splitting it back, moved the number into the hidden span: only ",00"
+            stayed visible. So the label sits outside the <s>, and every money
+            value is data-wg-notranslate (Shopify already formats it per market).
+          {%- endcomment -%}
           {%- if offer_pct > 0 -%}
             <span class="fuel05-ugc__pill-offer">
-              <span class="fuel05-ugc__pill-price">{{ offer_price | money }}</span>
-              <s class="fuel05-ugc__pill-compare"><span class="visually-hidden">Regular price: </span>{{ offer_compare | money }}</s>
+              <span class="fuel05-ugc__pill-price" data-wg-notranslate>{{ offer_price | money }}</span>
+              <span class="visually-hidden">Regular price:</span>
+              <s class="fuel05-ugc__pill-compare" data-wg-notranslate>{{ offer_compare | money }}</s>
             </span>
             {%- if offer_per > 0 -%}
-              <span class="fuel05-ugc__pill-per">{{ offer_per | money }} per bottle</span>
+              <span class="fuel05-ugc__pill-per"><span data-wg-notranslate>{{ offer_per | money }}</span> per bottle</span>
             {%- endif -%}
           {%- else -%}
-            <span class="fuel05-ugc__pill-price">{{ product_item.price | money }}</span>
+            <span class="fuel05-ugc__pill-price" data-wg-notranslate>{{ product_item.price | money }}</span>
           {%- endif -%}
         </span>
         <span class="fuel05-ugc__pill-add" aria-hidden="true">
