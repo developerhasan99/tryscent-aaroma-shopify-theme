@@ -67,12 +67,6 @@
             "custom_liquid": "{% if product.available %}\n  {% render 'quantity-breaker' %}\n{% else %}\n  {% render 'reactive-variant-selector' %}\n{% endif %}"
           }
         },
-        "tsr_block_zMAA3j": {
-          "type": "tsr_block",
-          "settings": {
-            "product": "6-x-50ml-parfumflessen"
-          }
-        },
         "money_back_MK4mE8": {
           "type": "money_back",
           "settings": {
@@ -213,7 +207,6 @@
         "custom_liquid_4ajMA6",
         "atc_bundle_builder_aLJUaV",
         "custom_liquid_HeCWbk",
-        "tsr_block_zMAA3j",
         "money_back_MK4mE8",
         "icon_with_text_rgXMXN",
         "people_purchased_cYxaYJ",
