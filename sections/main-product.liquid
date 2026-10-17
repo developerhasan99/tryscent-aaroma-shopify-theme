@@ -250,7 +250,8 @@
                   {% render 'reactive-variant-selector', product: product %}
                 </div>
               {%- when 'atc_bundle_builder' -%}
-                <div class="atc-bundle-builder" {{ block.shopify_attributes }}>
+                {%- comment -%} #atc_scroll_target: the bundle offer anchor; the UGC videos row's card for this page's own product scrolls here. {%- endcomment -%}
+                <div id="atc_scroll_target" class="atc-bundle-builder" {{ block.shopify_attributes }}>
                    {% if product.metafields.custom.choose_your_fragrances_options != blank %}
                     {% render 'special-offer-builder', product: product %}
                   {% else %}
@@ -307,6 +308,14 @@
                     <span class="jdgm-prev-badge__stars text-sm ml-2" data-score="5.00" tabindex="0" aria-label="5.00 stars" role="button"> <span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span> </span>
                   </h3>
                 </div>
+              {%- when 'ugc_videos' -%}
+                {%- comment -%}
+                  UGC video row (port of magyx.co). aaroma has one block loop,
+                  so the row's place among the blocks, the FAQ tabs included,
+                  comes straight from block_order (templates: right after
+                  cta_review, above the fragrance notes / description tabs).
+                {%- endcomment -%}
+                {% render 'ugc-video-row', block: block %}
               {%- when 'videos' -%}
                 {% render 'cta-videos', block: block %}
               {%- when 'text' -%}
@@ -2585,6 +2594,137 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "ugc_videos",
+      "name": "UGC videos",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Up to 3 clips in one row. Clip: pick one from Files (the picker also lets you upload from your computer) or paste a direct link to an .mp4 file. Folders, Google Drive and YouTube won't play as a clip. Empty slots don't show."
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay_preview",
+          "label": "Preview: clips play one after another without sound",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Video 1"
+        },
+        {
+          "type": "video",
+          "id": "video_1",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "video_url_1",
+          "label": "Video link (.mp4)",
+          "info": "Used when no video is picked above"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_1",
+          "label": "Cover (optional)"
+        },
+        {
+          "type": "text",
+          "id": "caption_1",
+          "label": "Caption",
+          "default": "Smells like the designer"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_caption_1",
+          "label": "Show caption",
+          "default": true
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product",
+          "info": "The product card on the clip and in the player links to this product. Empty = this page's product, and the card then scrolls to the offer."
+        },
+        {
+          "type": "header",
+          "content": "Video 2"
+        },
+        {
+          "type": "video",
+          "id": "video_2",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "video_url_2",
+          "label": "Video link (.mp4)",
+          "info": "Used when no video is picked above"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_2",
+          "label": "Cover (optional)"
+        },
+        {
+          "type": "text",
+          "id": "caption_2",
+          "label": "Caption",
+          "default": "Lasts 12+ hours"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_caption_2",
+          "label": "Show caption",
+          "default": true
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product",
+          "info": "The product card on the clip and in the player links to this product. Empty = this page's product, and the card then scrolls to the offer."
+        },
+        {
+          "type": "header",
+          "content": "Video 3"
+        },
+        {
+          "type": "video",
+          "id": "video_3",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "video_url_3",
+          "label": "Video link (.mp4)",
+          "info": "Used when no video is picked above"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_3",
+          "label": "Cover (optional)"
+        },
+        {
+          "type": "text",
+          "id": "caption_3",
+          "label": "Caption",
+          "default": "High-quality ingredients"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_caption_3",
+          "label": "Show caption",
+          "default": true
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product",
+          "info": "The product card on the clip and in the player links to this product. Empty = this page's product, and the card then scrolls to the offer."
         }
       ]
     }

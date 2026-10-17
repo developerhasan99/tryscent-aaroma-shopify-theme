@@ -104,6 +104,27 @@
           "disabled": true,
           "settings": {}
         },
+        "ugc_videos_main": {
+          "type": "ugc_videos",
+          "settings": {
+            "autoplay_preview": true,
+            "video_1": "shopify://files/videos/aaroma_co_KristelW_SmelLikePist_ad4377e6.mov",
+            "video_url_1": "",
+            "caption_1": "Smells like the designer",
+            "show_caption_1": true,
+            "product_1": "6-x-50ml-parfumflessen",
+            "video_2": "shopify://files/videos/aaroma_co_EsmeeB_SmelLikeArma_dda7fc6e.mp4",
+            "video_url_2": "",
+            "caption_2": "Lasts 12+ hours",
+            "show_caption_2": true,
+            "product_2": "6-x-50ml-parfumflessen",
+            "video_3": "shopify://files/videos/aaroma_co_DalmaJ_SmelLikeAnge_a186e21c.mov",
+            "video_url_3": "",
+            "caption_3": "High-quality ingredients",
+            "show_caption_3": true,
+            "product_3": "6-x-50ml-parfumflessen"
+          }
+        },
         "expanded_notes_paBaYD": {
           "type": "expanded_notes",
           "settings": {}
@@ -197,6 +218,7 @@
         "icon_with_text_rgXMXN",
         "people_purchased_cYxaYJ",
         "cta_review_g7n3R8",
+        "ugc_videos_main",
         "expanded_notes_paBaYD",
         "collapsible_tab_pdYPYn",
         "collapsible_tab_XYmgtQ",
