@@ -1,0 +1,104 @@
+/* Collection description (snippets/collection-description.liquid), port of magyx.co ddcec4b
+   (theessencevault.co.uk pattern): 14px / 22.5px text (13px / 19px on phones), 23px under the title, 615px column,
+   15px between paragraphs, an underlined "+ Read more" / "- Read less" toggle in the same size. The fold itself
+   (first two sentences shown) is set up by the snippet's inline script.
+   - banner (sections/main-collection-banner.liquid): centred column under the centred title, as on magyx.co.
+   - hero (sections/collection-hero.liquid): same type and fold, but follows the hero's left-aligned title.
+   px on purpose: the theme's root font-size is 10px. Colours = aaroma (text #121212, muted 75%). */
+.cdesc.cdesc {
+  font-size: 13px;
+  line-height: 19px;
+  color: rgba(18, 18, 18, 0.75);
+}
+
+.collection-hero__text-wrapper .collection-hero__description.cdesc--banner {
+  max-width: 615px;
+  margin: 23px auto 20px;
+  font-size: 13px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.cdesc.cdesc--hero {
+  max-width: 615px;
+  margin: 23px 0 0;
+  text-align: start;
+}
+
+@media screen and (min-width: 640px) {
+  /* Hero box (sections/collection-hero.liquid, .chero): from 640px it has a fixed clamp height, which the opened
+     description can outgrow. Keep that height as a minimum and let the box grow, with 40px of air top and bottom
+     (no change while the content fits). 640-767px already shows the desktop image and its left-hand fade, so the
+     text column gets the desktop layout there too (Tailwind only switches it at 768px): half width, so the text stays
+     on the fade and off the photo, and no phone-image gap above the text (pt-80, 320px, which pushed the text out of
+     the box in that band). */
+  .chero.chero {
+    height: auto;
+    min-height: clamp(430px, 33.33vw, 600px);
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .chero .chero__col.chero__col {
+    width: 50%;
+    padding-top: 0;
+  }
+}
+
+.cdesc .cdesc__text p {
+  margin: 0 0 14px;
+}
+
+.cdesc .cdesc__text > :last-child {
+  margin-bottom: 0;
+}
+
+/* Collapsed: the paragraph that holds the second sentence is the last one shown, so it loses its bottom gap. */
+.cdesc:not(.is-open) .cdesc__cut {
+  margin-bottom: 0;
+}
+
+/* Shown only once the script has folded the text (no JS or nothing to fold = no toggle). */
+.cdesc__toggle {
+  display: none;
+  margin: 4px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: #121212;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.cdesc.is-folded .cdesc__toggle {
+  display: inline-block;
+}
+
+.cdesc__toggle[aria-expanded='true'] .cdesc__label--more,
+.cdesc__toggle[aria-expanded='false'] .cdesc__label--less {
+  display: none;
+}
+
+.cdesc .cdesc__toggle:focus-visible {
+  outline: 2px solid #121212;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+@media screen and (min-width: 750px) {
+  .cdesc.cdesc,
+  .collection-hero__text-wrapper .collection-hero__description.cdesc--banner {
+    font-size: 14px;
+    line-height: 22.5px;
+  }
+
+  .cdesc .cdesc__text p {
+    margin-bottom: 15px;
+  }
+}

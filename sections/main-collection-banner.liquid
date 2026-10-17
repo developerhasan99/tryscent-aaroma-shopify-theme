@@ -1,5 +1,6 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+{{ 'collection-description.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   @media screen and (max-width: 749px) {
@@ -17,8 +18,15 @@
         {{- collection.title | escape -}}
       </h1>
 
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+      {%- if section.settings.show_collection_description and collection.description != blank -%}
+        {%- render 'collection-description',
+          description: collection.description,
+          id: section.id,
+          more_label: section.settings.description_more_label,
+          less_label: section.settings.description_less_label,
+          variant: 'banner',
+          class: 'collection-hero__description'
+        -%}
       {%- endif -%}
     </div>
 
@@ -59,6 +67,19 @@
       "id": "show_collection_description",
       "default": true,
       "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "text",
+      "id": "description_more_label",
+      "label": "Description: show more",
+      "default": "Read more",
+      "info": "The description shows its first two sentences; this opens the rest"
+    },
+    {
+      "type": "text",
+      "id": "description_less_label",
+      "label": "Description: show less",
+      "default": "Read less"
     },
     {
       "type": "checkbox",
