@@ -262,11 +262,17 @@
     closeDrawer(false);
   });
 
-  // Tabbing out of an open dropdown closes it.
+  // Tabbing out of an open dropdown closes it. A mouse press on a part of the panel that cannot take
+  // focus (an option's text, padding) moves focus to the nearest focusable ancestor, here
+  // <main tabindex="-1">: that is not leaving the dropdown, and closing it there hid the option before
+  // the click landed, so no filter applied on desktop. Clicks outside are closed by the click handler.
   document.addEventListener('focusin', (event) => {
     const bar = byId(BAR);
     const open = bar && bar.querySelector('.mgx-fc-pill[aria-expanded="true"]');
-    if (open && !open.closest('.mgx-fc-dd').contains(event.target)) closePanels();
+    if (!open) return;
+    const dd = open.closest('.mgx-fc-dd');
+    if (dd.contains(event.target) || event.target.contains(dd)) return;
+    closePanels();
   });
 
   // aaroma: the drawer is a phone/tablet layout (mgx-filters.css, max-width 989px). Turning a
