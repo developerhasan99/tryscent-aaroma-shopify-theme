@@ -219,7 +219,10 @@
   right: 12px;
   bottom: 12px;
   display: flex;
-  align-items: flex-end;
+  /* Photo, text and "+" centre on one axis. The text column is taller than
+     the photo, and bottom-aligning them left the text starting at the pill's
+     top edge while the photo sat at its bottom. */
+  align-items: center;
   gap: 12px;
   background: #fff;
   border-radius: 8px;
@@ -228,7 +231,16 @@
   color: #000;
 }
 
+/* Carries the -N% sticker on the photo's top-left corner. */
+.fuel05-ugc__pill-media {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
 .fuel05-ugc__pill-thumb {
+  display: block;
   width: 66px;
   height: 66px;
   object-fit: cover;
@@ -244,12 +256,14 @@
   gap: 2px;
 }
 
+/* Type sizes sit a step under aaroma's own product cards (17px title, 18px
+   price on a phone): the pill is a label on the clip, not a second card. */
 .fuel05-ugc__pill-title {
   margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.66px;
-  line-height: 1.2;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 1.25;
   /* A word longer than the text column (Dutch and German compounds such as
      "Parfumflessen", and whatever the translation app renders on /nl /de)
      wraps inside the word, so the two-line clamp ends it with "…" like every
@@ -263,9 +277,9 @@
 
 .fuel05-ugc__pill-price {
   margin: 0;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.35;
   white-space: nowrap;
 }
 
@@ -293,23 +307,30 @@
    same as magyx.co's grid tiles: a -N% sticker on the photo's top left
    corner, the struck regular price beside the price, the price per bottle in
    the accent. The accent is aaroma's own red (#c8202f, the "Popular" badges and
-   the quantity breaker's selected tier), not the MAGYX amber. The photo sits
-   at the pill's bottom (align-items: flex-end), so the sticker is placed from
-   the bottom: padding + photo + 4px, minus its own height. */
+   the quantity breaker's selected tier), not the MAGYX amber. The sticker is
+   placed from the photo's own corner (.fuel05-ugc__pill-media), so it stays on
+   the photo at every pill height. */
 .fuel05-ugc__pill-badge {
   position: absolute;
-  left: 6px;
-  bottom: 64px;
-  padding: 0 6px;
+  top: -6px;
+  left: -6px;
+  padding: 0 5px;
   border-radius: 3px;
   background: #c8202f;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
-  line-height: 18px;
+  line-height: 16px;
   letter-spacing: 0;
   white-space: nowrap;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* A product without a photo: the sticker opens the text column. */
+.fuel05-ugc__pill-badge--inline {
+  position: static;
+  align-self: flex-start;
+  margin-bottom: 2px;
 }
 
 /* A narrow tile or a long price drops the struck price under the price. */
@@ -322,7 +343,7 @@
 }
 
 .fuel05-ugc__pill-compare {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0;
@@ -350,25 +371,25 @@
 
 @container (max-width: 249px) {
   .fuel05-ugc--grid .fuel05-ugc__pill-badge {
-    left: 4px;
-    bottom: 46px;
-    padding: 0 5px;
-    font-size: 11px;
-    line-height: 16px;
+    top: -5px;
+    left: -5px;
+    padding: 0 4px;
+    font-size: 10.5px;
+    line-height: 15px;
   }
 
   .fuel05-ugc--grid .fuel05-ugc__pill-compare {
-    font-size: 11px;
+    font-size: 10.5px;
   }
 }
 
 @container (max-width: 199px) {
   .fuel05-ugc--grid .fuel05-ugc__pill-badge {
-    left: 3px;
-    bottom: 38px;
+    top: -4px;
+    left: -4px;
     padding: 0 4px;
-    font-size: 10px;
-    line-height: 14px;
+    font-size: 9.5px;
+    line-height: 13px;
   }
 
   .fuel05-ugc--grid .fuel05-ugc__pill-offer {
@@ -404,6 +425,14 @@
     width: 28px;
     height: 28px;
   }
+
+  .fuel05-ugc--grid .fuel05-ugc__pill-title {
+    font-size: 11.5px;
+  }
+
+  .fuel05-ugc--grid .fuel05-ugc__pill-price {
+    font-size: 13.5px;
+  }
 }
 
 /* Phone widths (168-190px of tile): desktop type sizes would make the pill a
@@ -420,13 +449,13 @@
   }
 
   .fuel05-ugc--grid .fuel05-ugc__pill-title {
-    font-size: 12px;
-    letter-spacing: 0.3px;
+    font-size: 10.5px;
+    letter-spacing: 0;
     line-height: 1.25;
   }
 
   .fuel05-ugc--grid .fuel05-ugc__pill-price {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.3;
   }
 
