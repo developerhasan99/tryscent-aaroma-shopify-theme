@@ -269,5 +269,15 @@
     if (open && !open.closest('.mgx-fc-dd').contains(event.target)) closePanels();
   });
 
+  // aaroma: the drawer is a phone/tablet layout (mgx-filters.css, max-width 989px). Turning a
+  // tablet or widening the window past it with the drawer open hid the drawer but left the page
+  // scroll-locked, so the drawer closes (and unlocks the page) when the bar layout takes over.
+  const desktop = window.matchMedia('(min-width: 990px)');
+  const onLayout = () => {
+    if (desktop.matches) closeDrawer(false);
+  };
+  if (typeof desktop.addEventListener === 'function') desktop.addEventListener('change', onLayout);
+  else if (typeof desktop.addListener === 'function') desktop.addListener(onLayout);
+
   window.mgxFilters = { go };
 })();
