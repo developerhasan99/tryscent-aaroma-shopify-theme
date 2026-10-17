@@ -157,26 +157,19 @@
 
 .fuel05-ugc--grid .fuel05-ugc__tile {
   width: 100%;
-  /* Swiper's global .swiper-slide sets height: 100%, which would hand the tile
-     whatever height the neighbouring product cards have. */
-  height: auto;
-  aspect-ratio: 260 / 494;
+  /* The tile fills its grid cell at every width (as on tryscent.eu). The
+     product cards beside it set the row height (image, title, price under it),
+     and the video is inset with object-fit: cover, so it absorbs the
+     difference. magyx.co's fixed 260:494 shape only matched its own cards: on
+     aaroma's shorter cards it stretched the row by 48px at 1440 and 129px at
+     820, and left a 17px gap under the tile at 1024. The floor keeps a row
+     that holds only tiles from collapsing. */
+  height: 100%;
+  min-height: 300px;
+  aspect-ratio: auto;
   /* The pill sizes itself off the tile's own width, not the viewport's: the
      same tile is 260px at 1440, 216px at 1024 and 168px on a phone. */
   container-type: inline-size;
-}
-
-@media screen and (max-width: 749px) {
-  /* The grid cell is taller than the card drawn in it, because the product
-     cards beside it carry a title and a price under their image and the row
-     stretches every cell to the tallest. A fixed ratio left 35px of page
-     showing under the tile, which is the white strip Roi boxed. Filling the
-     cell instead bottom-aligns the card with its neighbours, and the video is
-     already inset with object-fit: cover, so it absorbs the extra height. */
-  .fuel05-ugc--grid .fuel05-ugc__tile {
-    height: 100%;
-    aspect-ratio: auto;
-  }
 }
 
 /* Same grey as the card behind it. A video element paints white until its
