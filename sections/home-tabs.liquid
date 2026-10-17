@@ -1,0 +1,255 @@
+{% comment %}
+  Product tabs: heading, subheading, one tab per collection block and a product grid per tab.
+  Port of magyx.co's rebuild of magicperfume.co's homepage tabs, in aaroma's own look: the
+  cards are aaroma's card-product (same markup, prices and badges as the Popular Products
+  section) and the grid uses the same Dawn classes, so it is 2 across on phones and tablets and
+  4 across from 990px. Every panel is rendered by Liquid (Weglot translates all of them); the
+  script only shows and hides panels. Styles in assets/home-tabs.css, switching in
+  assets/home-tabs.js. Added from "Add section" in the theme editor.
+{% endcomment %}
+{{ 'home-tabs.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'home-tabs.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign heading_id = 'HomeTabsHeading-' | append: section.id
+  assign skip_card_styles = false
+-%}
+
+<div
+  class="home-ptabs section-{{ section.id }}-padding"
+  {% if section.settings.background_color != blank %}
+    style="background-color: {{ section.settings.background_color }};"
+  {% endif %}
+>
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 id="{{ heading_id }}" class="home-ptabs__heading text-3xl md:text-4xl font-black my-0">
+        {{- section.settings.heading | escape -}}
+      </h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="home-ptabs__sub">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+
+    <home-product-tabs class="home-ptabs__tabs">
+      <div
+        class="home-ptabs__list"
+        role="tablist"
+        {% if section.settings.heading != blank %}
+          aria-labelledby="{{ heading_id }}"
+        {% endif %}
+      >
+        {%- for block in section.blocks -%}
+          <button
+            type="button"
+            class="home-ptabs__tab"
+            role="tab"
+            id="HomeTab-{{ section.id }}-{{ forloop.index }}"
+            aria-controls="HomePanel-{{ section.id }}-{{ forloop.index }}"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+            data-block-id="{{ block.id }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.icon != blank -%}
+              {{
+                block.settings.icon
+                | image_url: width: 48
+                | image_tag: class: 'home-ptabs__tab-icon', width: 20, height: 20, alt: '', loading: 'lazy'
+              }}
+            {%- endif -%}
+            <span>{{ block.settings.title | escape }}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign tab_collection = block.settings.collection
+          assign tab_index = forloop.index
+          assign card_section_id = section.id | append: '-' | append: tab_index
+        -%}
+        <div
+          class="home-ptabs__panel"
+          role="tabpanel"
+          id="HomePanel-{{ section.id }}-{{ tab_index }}"
+          aria-labelledby="HomeTab-{{ section.id }}-{{ tab_index }}"
+          tabindex="0"
+          {% unless forloop.first %}
+            hidden
+          {% endunless %}
+        >
+          {%- if tab_collection != blank and tab_collection.products_count > 0 -%}
+            <ul
+              class="home-ptabs__grid grid product-grid grid--2-col-tablet-down grid--4-col-desktop"
+              role="list"
+            >
+              {%- for product in tab_collection.products limit: section.settings.products_per_tab -%}
+                <li
+                  class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  {% if settings.animations_reveal_on_scroll %}
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};"
+                  {% endif %}
+                >
+                  {% render 'card-product',
+                    card_product: product,
+                    show_rating: true,
+                    lazy_load: true,
+                    skip_styles: skip_card_styles,
+                    section_id: card_section_id
+                  %}
+                </li>
+                {%- assign skip_card_styles = true -%}
+              {%- endfor -%}
+            </ul>
+            {%- if block.settings.button_text != blank -%}
+              <div class="home-ptabs__more">
+                <a
+                  href="{{ tab_collection.url }}"
+                  class="home-ptabs__all no-underline text-black border-2 border-solid border-black px-6 py-2 inline-block"
+                >
+                  {{- block.settings.button_text | escape -}}
+                </a>
+              </div>
+            {%- endif -%}
+          {%- elsif request.design_mode -%}
+            <p class="home-ptabs__empty">Pick a collection for this tab.</p>
+          {%- else -%}
+            <p class="home-ptabs__empty">{{ 'sections.collection_template.empty' | t }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </home-product-tabs>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product tabs",
+  "class": "home-tabs",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A scent for every side of you"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Pick a tab and discover the scents that match."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fcfbf9"
+    },
+    {
+      "type": "range",
+      "id": "products_per_tab",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Products per tab",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "info": "Emoji work here, e.g. 🔥 Bestsellers.",
+          "default": "Tab"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "Optional small image shown before the title."
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Link to collection",
+          "info": "Button under the products. Leave empty to hide it.",
+          "default": "View all"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product tabs",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "title": "Bestsellers"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "title": "New scents"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
