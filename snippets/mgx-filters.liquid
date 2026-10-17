@@ -214,8 +214,12 @@
     <noscript><button type="submit" class="mgx-fc-apply">{{ 'products.facets.apply' | t }}</button></noscript>
   </form>
   <div class="mgx-fc-foot">
+    {%- comment -%}
+      aaroma: the count is data-wg-notranslate, so Weglot translates "Apply" once
+      instead of a new "Apply (N)" sentence for every result count.
+    {%- endcomment -%}
     <button type="button" class="mgx-fc-apply" data-mgx-fc-close data-mgx-fc-apply>
-      {{- 'products.facets.apply' | t }} ({{ results.products_count }})
+      {{- 'products.facets.apply' | t }} <span data-wg-notranslate>({{ results.products_count }})</span>
     </button>
     <a class="mgx-fc-clearlink" href="{{ results.url }}" data-mgx-fc-clear{% unless show_clear %} hidden{% endunless %}>{{ label_clear }}</a>
   </div>

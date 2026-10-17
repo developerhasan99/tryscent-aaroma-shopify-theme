@@ -97,7 +97,12 @@
     if (cached) return cached;
     const [title = '', ...rest] = (li.dataset.mgxHay || '').split(' | ');
     const foldedTitle = fold(title);
-    let hay = ` ${fold([title, rest.join(' '), tagWords(li.dataset.mgxTags)].join(' '))} ${numberWords(foldedTitle).join(' ')} `;
+    // aaroma: Weglot translates the card's visible title (/nl /fr /de /et) but not the data-mgx-hay
+    // attribute, so the title as the shopper reads it joins the haystack: "parfumcollectie" or
+    // "coffret" find the bundle on those pages, the source title still works everywhere.
+    const heading = li.querySelector('.card__heading');
+    const shownTitle = heading ? heading.textContent : '';
+    let hay = ` ${fold([title, shownTitle, rest.join(' '), tagWords(li.dataset.mgxTags)].join(' '))} ${numberWords(foldedTitle).join(' ')} `;
     SYNONYMS.forEach((group) => {
       if (group.some((phrase) => hay.includes(` ${phrase} `))) hay += `${group.join(' ')} `;
     });
