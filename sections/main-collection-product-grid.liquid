@@ -112,6 +112,24 @@
         </aside>
       {%- endif -%}
 
+      {%- assign fuel05_has_tiles = false -%}
+      {%- for b in section.blocks -%}
+        {%- if b.type == 'fuel05_ugc_video' -%}
+          {%- assign fuel05_has_tiles = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- comment -%}
+        The asset tags sit outside #ProductGridContainer on purpose: facets.js replaces
+        that container's innerHTML on every filter and sort, and a script tag inserted
+        through innerHTML never runs. fuel05-ugc.js arms itself and re-scans on its own,
+        so it only has to load once, here.
+      {%- endcomment -%}
+      {%- if fuel05_has_tiles -%}
+        {{ 'fuel05-ugc.css' | asset_url | stylesheet_tag }}
+        <script src="{{ 'fuel05-ugc.js' | asset_url }}" defer="defer"></script>
+      {%- endif -%}
+
       <div
         class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         id="ProductGridContainer"
@@ -152,6 +170,35 @@
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
+                {%- assign product_position = forloop.index -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.position == product_position -%}
+                    {%- if block.type == 'fuel05_ugc_video' -%}
+                      {%- comment -%}
+                        Page one only: the infinite scroll appends every later page's
+                        cells, and a tile repeated per page would land at a different
+                        column each time.
+                      {%- endcomment -%}
+                      {%- if paginate.current_page == 1 -%}
+                        <li
+                          class="grid__item fuel05-ugc fuel05-ugc--grid fuel05-ugc--grid-{{ block.settings.device | default: 'desktop' }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                          data-fuel05-row
+                          {% if settings.animations_reveal_on_scroll %}
+                          data-cascade
+                          style="--animation-order: {{ product_position }};"
+                          {% endif %}
+                          {{ block.shopify_attributes }}>
+                          {% render 'fuel05-ugc-tile'
+                            , video: block.settings.video
+                            , video_url: block.settings.video_url
+                            , poster: block.settings.video_poster
+                            , product_item: block.settings.product
+                          %}
+                        </li>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
                 <li
                   class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {% if settings.animations_reveal_on_scroll %}
@@ -480,6 +527,56 @@
         "unit": "px",
         "label": "t:sections.all.padding.padding_bottom",
         "default": 36
+      }
+    ],
+    "blocks": [
+      {
+        "type": "fuel05_ugc_video",
+        "name": "UGC video",
+        "settings": [
+          {
+            "type": "number",
+            "id": "position",
+            "label": "Position"
+          },
+          {
+            "type": "select",
+            "id": "device",
+            "label": "Show on",
+            "options": [
+              {
+                "value": "desktop",
+                "label": "Desktop"
+              },
+              {
+                "value": "mobile",
+                "label": "Mobile"
+              }
+            ],
+            "default": "desktop"
+          },
+          {
+            "type": "video",
+            "id": "video",
+            "label": "Video"
+          },
+          {
+            "type": "text",
+            "id": "video_url",
+            "label": "Video URL",
+            "info": "Used when no video is picked above"
+          },
+          {
+            "type": "image_picker",
+            "id": "video_poster",
+            "label": "Poster image"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Linked product"
+          }
+        ]
       }
     ]
   }
