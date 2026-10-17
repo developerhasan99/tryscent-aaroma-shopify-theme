@@ -18,13 +18,17 @@
    every other block. The top margin is lifted to the FAQ tabs' own
    (component-accordion.css `.accordion`, 2.5rem), which is the gap the first
    tab had under the money-back guarantee / bundle builder before the row came
-   in: 25px above the row, and 25px below it, where the tab's own margin
-   collapses with the column's 1.5rem. Same specificity as the column rule;
-   this file loads after it (inside the row, further down the page), so it
-   wins on source order alone. */
-.ugc-row {
+   in: 25px above the row and 25px below it. The bottom margin is the row's
+   own too (it collapses with the next tab's 2.5rem), so the gap below does
+   not hang on the tab winning its own fight with the column rule. The class
+   is doubled so it beats the column's `.product__info-container > * + *` on
+   specificity, not on which stylesheet loads last (a featured-product
+   section placed after main links section-main-product.css again, further
+   down the page). */
+.ugc-row.ugc-row {
   position: relative;
   margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 /* Pause / resume for the auto-advancing preview: WCAG 2.2.2 needs a way to
@@ -64,6 +68,14 @@
   clip-path: none;
   outline: 2px solid #fff;
   outline-offset: 2px;
+}
+
+/* Paused: the same label, the colours reversed (aria-pressed carries the
+   state for screen readers). */
+.ugc-row__toggle[aria-pressed="true"] {
+  background: #fff;
+  color: #121212;
+  box-shadow: inset 0 0 0 1px #121212;
 }
 
 /* One row, each clip a third of the column. With one or two clips they keep
@@ -189,13 +201,22 @@
 }
 
 /* The collection grid tile's white product card (fuel05-ugc.css: photo,
-   title, price), sized down for a clip a third of the column wide. Tiles
-   under 130px (phones, and 98px in the tablet range) get a 26px photo and a
-   10px title, which keeps the price clear of the edge at 98px; from 130px
-   (desktop) the card takes 32px, 11px and 12px. The title may take four
-   lines: long bundle names ("3 stuks parfumflesjes van 100 ml" on /nl) need
-   three at these widths, and the cap only stops a far longer name from
-   covering the clip. The
+   title, price), sized down for a clip a third of the column wide.
+
+   Layout. Under a 150px tile (phones, tablets, small laptops) the title runs
+   across the whole card and the photo sits under it, beside the price. A
+   title column beside the photo was 40-84px wide there, narrower than single
+   words of aaroma's translated titles at 10px ("Parfumcollectie" 73px,
+   "Parfümflaschen" 72px, even "Wardrobe" 46px on a tablet), so the word
+   broke inside itself: "Parfumcollec" / "tie". Across the card the title has
+   70-125px. From a 150px tile (desktop) the column beside the photo is 88px
+   or more, which holds those words at 11px, so the card is magyx.co's again:
+   photo and title side by side.
+
+   Sizes. Tiles under 130px (phones, and 86-126px in the tablet range) get a
+   26px photo and a 10px title; from 130px the card takes 32px, 11px and
+   12px. The title may take three lines across the card or four beside the
+   photo, so a far longer name ends in "…" instead of covering the clip. The
    collection card's "+" has no room at these widths. The card is at least
    44px tall, a full thumb target, whatever the title's length. */
 .ugc-row__product {
@@ -204,9 +225,14 @@
   right: 4px;
   bottom: 4px;
   min-height: 44px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "title title"
+    "thumb price";
   align-items: center;
-  gap: 4px;
+  column-gap: 4px;
+  row-gap: 2px;
   padding: 4px;
   box-sizing: border-box;
   background: #fff;
@@ -218,6 +244,7 @@
 }
 
 .ugc-row__product-thumb {
+  grid-area: thumb;
   display: block;
   width: 26px;
   height: 26px;
@@ -226,25 +253,29 @@
   flex-shrink: 0;
 }
 
+/* The plain card's title-and-price wrapper steps aside under 150px, so its
+   title and price take the same places in the card's grid as the offer
+   card's. */
 .ugc-row__product-info {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
+  display: contents;
 }
 
 .ugc-row__product-title {
+  grid-area: title;
   font-size: 10px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0;
-  /* A word longer than the card's text column (Dutch and German compounds
-     such as "Parfumflessen" on /nl /de) wraps inside the word, so the clamp
-     ends a long title with "…" instead of cutting a word at the card edge. */
+  /* A word longer than the whole card (a 20-letter Estonian compound on a
+     phone) is hyphenated where the browser has the page language's
+     dictionary (Weglot sets <html lang>), and otherwise still wraps inside
+     the word, so the clamp ends a long title with "…" instead of cutting a
+     word off at the card edge. */
+  -webkit-hyphens: auto;
+  hyphens: auto;
   overflow-wrap: anywhere;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -256,26 +287,17 @@
   white-space: nowrap;
 }
 
+.ugc-row__product-info > .ugc-row__product-price {
+  grid-area: price;
+}
+
 /* The offer card (snippets/ugc-offer-data: a regular price above today's),
-   as on the grid tiles: photo and title side by side as before, the price on
-   its own row across the whole card, with room for the struck regular price.
-   Without a saving the card is the plain one above, unchanged. */
-.ugc-row__product--offer {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  column-gap: 4px;
-  row-gap: 2px;
-}
-
-.ugc-row__product--offer .ugc-row__product-title {
-  grid-column: 2;
-}
-
-/* Wraps instead of clipping: a long price drops the struck price to a line
-   of its own. Numbers only, so no letter spacing from the body. */
+   as on the grid tiles: the price with room for the struck regular price.
+   It wraps instead of clipping: beside the photo the struck price drops to a
+   line of its own under the price, inside the photo's height. Numbers only,
+   so no letter spacing from the body. */
 .ugc-row__product-offer {
-  grid-column: 1 / -1;
+  grid-area: price;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -287,11 +309,16 @@
   line-height: 1.2;
 }
 
-/* Shown from a 108px tile: below it the struck price would need a line of
-   its own and a long title would cover too much of the clip, so there the
-   tab alone shows the saving. */
-.ugc-row__product-compare {
+/* The struck price shows from a 108px tile, as on magyx.co; below it the
+   -N% tab alone shows the saving. The hidden "Regular price:" label goes
+   with it: it sits beside the <s> rather than inside (Weglot), so on its own
+   a screen reader would read "Regular price: -39%". */
+.ugc-row__product-compare,
+.ugc-row__product-compare-label {
   display: none;
+}
+
+.ugc-row__product-compare {
   font-size: 9px;
   font-weight: 600;
   line-height: 1.2;
@@ -299,9 +326,9 @@
   white-space: nowrap;
 }
 
-/* The saving as a red tab on the card's top edge, above the photo. It
-   overlaps the card by 3px, inside the 4px padding, so it never touches the
-   photo or the title. White on aaroma's red #c8202f is 5.7:1. */
+/* The saving as a red tab on the card's top edge. It overlaps the card
+   by 3px, inside the 4px padding, so it never touches the photo or the
+   title. White on aaroma's red #c8202f is 5.7:1. */
 .ugc-row__product-badge {
   position: absolute;
   left: 4px;
@@ -318,8 +345,28 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
+/* Tiles up to 98px (750-820px windows, two-column tablet layout): the card
+   sits 3px from the tile edge with 3px of padding, which gives the title
+   74px of width instead of 70px. That holds the longest single words of the
+   translated titles at 10px ("Parfumcollectie" 73px, "Parfümflaschen" 72px),
+   which otherwise broke as "Parfumcollecti" / "e". The focus ring's white
+   band loses 1px at the tile edge here; the black ring stays whole. */
+@container (max-width: 97.98px) {
+  .ugc-row__product {
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    padding: 4px 3px;
+  }
+
+  .ugc-row__product-badge {
+    left: 3px;
+  }
+}
+
 @container (min-width: 108px) {
-  .ugc-row__product-compare {
+  .ugc-row__product-compare,
+  .ugc-row__product-compare-label {
     display: inline;
   }
 }
@@ -329,7 +376,8 @@
     left: 6px;
     right: 6px;
     bottom: 6px;
-    gap: 6px;
+    column-gap: 6px;
+    row-gap: 3px;
     padding: 6px;
     border-radius: 8px;
   }
@@ -347,11 +395,6 @@
     font-size: 12px;
   }
 
-  .ugc-row__product--offer {
-    column-gap: 6px;
-    row-gap: 3px;
-  }
-
   .ugc-row__product-offer {
     column-gap: 5px;
   }
@@ -366,6 +409,34 @@
     padding: 0 5px;
     font-size: 10px;
     line-height: 14px;
+  }
+}
+
+/* From a 150px tile the card is magyx.co's: photo and title side by side,
+   the offer card's prices across the card under them, the plain card's
+   price under its title. */
+@container (min-width: 150px) {
+  .ugc-row__product {
+    grid-template-areas:
+      "thumb title"
+      "price price";
+  }
+
+  .ugc-row__product:not(.ugc-row__product--offer) {
+    display: flex;
+    align-items: center;
+  }
+
+  .ugc-row__product-info {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .ugc-row__product-title {
+    -webkit-line-clamp: 4;
   }
 }
 
@@ -505,10 +576,11 @@
 
 /* The collection grid tile's product pill (fuel05-ugc.css), same values, here
    under the clip instead of over it so it never covers the video controls.
-   Copied rather than shared because that file hides the pill on phones. */
+   Copied rather than shared because that file hides the pill on phones.
+   Photo, text and "+" centre on one axis, as on the grid tile. */
 .ugc-player__pill {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 12px;
   background: #fff;
   border-radius: 8px;
@@ -522,7 +594,16 @@
   display: none;
 }
 
+/* The photo's own box, so the -N% sticker is placed from its corner. */
+.ugc-player__pill-media {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
 .ugc-player__pill-thumb {
+  display: block;
   width: 66px;
   height: 66px;
   object-fit: cover;
@@ -540,11 +621,15 @@
 
 .ugc-player__pill-title {
   margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.66px;
-  line-height: 1.2;
-  /* As the card title: long compounds wrap inside the word under the clamp. */
+  /* The grid pill's type (fuel05-ugc.css), a half step up for the wider
+     player: 13px regular weight, near-zero letter spacing. */
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 1.25;
+  /* As the card title: hyphenate, then wrap inside the word under the clamp. */
+  -webkit-hyphens: auto;
+  hyphens: auto;
   overflow-wrap: anywhere;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -554,20 +639,21 @@
 
 .ugc-player__pill-price {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.35;
   white-space: nowrap;
 }
 
+/* aaroma's add-to-cart green, as the grid tile's "+" (fuel05-ugc.css). */
 .ugc-player__pill-add {
   box-sizing: border-box;
   width: 32px;
   height: 32px;
   flex-shrink: 0;
-  border: 1px solid #121212;
+  border: 1px solid #146b32;
   border-radius: 8px;
-  color: #121212;
+  color: #137c44;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -585,30 +671,37 @@
 }
 
 /* Offer pill: the same red -N% as the tile's tab, as a sticker on the
-   photo's top left corner (the photo sits at the pill's bottom, 12px + 66px
-   above its edge), then price and struck regular price, and the price per
-   bottle in the same red. */
+   photo's top left corner (placed from .ugc-player__pill-media), then price
+   and struck regular price, and the price per bottle in the same red. */
 .ugc-player__pill--offer {
   position: relative;
 }
 
 .ugc-player__pill-badge {
   position: absolute;
-  left: 6px;
-  bottom: 64px;
-  padding: 0 6px;
+  top: -6px;
+  left: -6px;
+  padding: 0 5px;
   border-radius: 3px;
   background: #c8202f;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
-  line-height: 18px;
+  line-height: 16px;
   letter-spacing: 0;
   white-space: nowrap;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 /* A narrow frame or a long price drops the struck price under the price. */
+/* No photo: the sticker heads the text column instead. */
+.ugc-player__pill-badge--inline {
+  position: static;
+  align-self: flex-start;
+  margin-bottom: 2px;
+  box-shadow: none;
+}
+
 .ugc-player__pill-offer {
   display: flex;
   flex-wrap: wrap;

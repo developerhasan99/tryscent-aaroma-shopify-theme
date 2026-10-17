@@ -202,9 +202,10 @@
     if (toggle) {
       toggle.addEventListener('click', () => {
         paused = !paused;
-        // The label carries the state ("Pause" / "Resume"); no aria-pressed
-        // on top, which would read as "Resume preview, pressed".
-        toggle.textContent = paused ? toggle.dataset.labelPlay : toggle.dataset.labelPause;
+        // aaroma: the label stays as Weglot translated it in the page and the
+        // state goes in aria-pressed ("Pause preview, pressed" = paused). A
+        // label swapped in by script is never translated (magyx.co swaps it).
+        toggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
         refresh();
       });
     }

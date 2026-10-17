@@ -1,7 +1,7 @@
 {%- comment -%}
   The saving a UGC product card shows (PDP / bundle-page video row and the
   collection grid's UGC tile), as on magyx.whop.site's videos row: against the
-  regular (compare-at) price, rounded to a whole percent. No regular price above
+  regular (compare-at) price, rounded down to a whole percent. No regular price above
   today's = no output = the plain card.
 
   Outputs "pct|price|compare|per_bottle" (money in cents, per_bottle 0 when the
@@ -15,8 +15,11 @@
 {%- liquid
   assign offer_variant = product.selected_or_first_available_variant
   if offer_variant != blank and offer_variant.compare_at_price > offer_variant.price
-    assign offer_pct = offer_variant.price | times: 100.0 | divided_by: offer_variant.compare_at_price
-    assign offer_pct = 100 | minus: offer_pct | round
+    # Rounded down, the same sum as the product page's own price block
+    # (main-product, .bundle-price-pdp): whole cents in, whole-number
+    # division out, so a 37.97% saving reads -37% on the tile, the row and
+    # the page it links to, never -38% beside -37%.
+    assign offer_pct = offer_variant.compare_at_price | minus: offer_variant.price | times: 100 | divided_by: offer_variant.compare_at_price
     if offer_pct > 0 and offer_pct < 100
       # Bottle count from a title like "6 x 50ml ..." / "6X 50ml ...": the part
       # before the first x must be a plain number, anything else = no count.

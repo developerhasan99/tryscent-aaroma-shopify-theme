@@ -267,7 +267,11 @@
   /* A word longer than the text column (Dutch and German compounds such as
      "Parfumflessen", and whatever the translation app renders on /nl /de)
      wraps inside the word, so the two-line clamp ends it with "…" like every
-     other long title, instead of cutting the word off at the column edge. */
+     other long title, instead of cutting the word off at the column edge.
+     Hyphenated first where the browser has the page language's dictionary
+     (Weglot sets <html lang>). */
+  -webkit-hyphens: auto;
+  hyphens: auto;
   overflow-wrap: anywhere;
   display: -webkit-box;
   -webkit-line-clamp: 2;
