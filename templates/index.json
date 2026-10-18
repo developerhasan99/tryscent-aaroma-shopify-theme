@@ -110,94 +110,8 @@
       "name": "Marquee Labels",
       "settings": {}
     },
-    "trust_icons_aW8kQ2": {
-      "type": "trust-icons",
-      "blocks": {
-        "item_mEuR1a": {
-          "type": "item",
-          "settings": {
-            "icon": "box",
-            "title": "Made in Europe",
-            "text": "Produced to strict European perfumery standards."
-          }
-        },
-        "item_dRoP2b": {
-          "type": "item",
-          "settings": {
-            "icon": "drop",
-            "title": "20-24% fragrance oils",
-            "text": "A scent made to stay with you all day."
-          }
-        },
-        "item_gUar3c": {
-          "type": "item",
-          "settings": {
-            "icon": "shield",
-            "title": "60-day guarantee",
-            "text": "Try the perfume at home. Not for you? You have 60 days to return it."
-          }
-        },
-        "item_lAst4d": {
-          "type": "item",
-          "settings": {
-            "icon": "clock",
-            "title": "Long-lasting scent",
-            "text": "Lasts up to 12 hours."
-          }
-        }
-      },
-      "block_order": [
-        "item_mEuR1a",
-        "item_dRoP2b",
-        "item_gUar3c",
-        "item_lAst4d"
-      ],
-      "name": "Trust icons",
-      "settings": {
-        "icon_color": "#c8202f",
-        "background_color": "#ffffff",
-        "border_bottom": true,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "home_tabs_Rt5NxP": {
-      "type": "home-tabs",
-      "blocks": {
-        "tab_bEst5e": {
-          "type": "tab",
-          "settings": {
-            "title": "🔥 Bestsellers",
-            "collection": "top-sellers",
-            "button_text": "View all"
-          }
-        },
-        "tab_nEw6f": {
-          "type": "tab",
-          "settings": {
-            "title": "Newest scents",
-            "collection": "heetste-zomergeuren-2026",
-            "button_text": "View all"
-          }
-        }
-      },
-      "block_order": [
-        "tab_bEst5e",
-        "tab_nEw6f"
-      ],
-      "name": "Product tabs",
-      "settings": {
-        "heading": "A scent for every side of your personality",
-        "subheading": "Discover perfumes that move with your style and bring out your character.",
-        "background_color": "#ffffff",
-        "products_per_tab": 8,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
     "feature_highlights_wfUacV": {
       "type": "feature-highlights",
-      "disabled": true,
       "blocks": {
         "perks_CBpKqp": {
           "type": "perks",
@@ -276,13 +190,13 @@
     },
     "popular_products_pNDeh4": {
       "type": "popular-products",
-      "disabled": true,
       "name": "Popular Products",
       "settings": {
         "background_color": "#fcfbf9",
         "title": "Newest Drops",
         "description": "<p>See what's fresh in our collection</p>",
         "collection": "heetste-zomergeuren-2026",
+        "products_to_show": 8,
         "button_text": "Shop All",
         "button_link": "shopify://collections/heetste-zomergeuren-2026",
         "padding_top": 40,
@@ -291,13 +205,13 @@
     },
     "popular_products_jYtPeh": {
       "type": "popular-products",
-      "disabled": true,
       "name": "Popular Products",
       "settings": {
         "background_color": "#fcfbf9",
         "title": "Most Popular",
         "description": "<p>The scents our customers keep coming back for.</p>",
         "collection": "top-sellers",
+        "products_to_show": 8,
         "button_text": "Shop All",
         "button_link": "shopify://collections/all",
         "padding_top": 40,
@@ -313,6 +227,7 @@
         "title": "Men’s Fragrances",
         "description": "",
         "collection": "men",
+        "products_to_show": 8,
         "button_text": "View All",
         "button_link": "shopify://collections/men",
         "padding_top": 36,
@@ -328,6 +243,7 @@
         "title": "Women’s Fragrances",
         "description": "",
         "collection": "women",
+        "products_to_show": 8,
         "button_text": "View All",
         "button_link": "shopify://collections/women",
         "padding_top": 36,
@@ -583,6 +499,7 @@
         },
         "review_eGyDpR": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/345.png",
             "content": "<p>\"Great product. A smart alternative to brand-name perfumes. Lasts a long time and you get great value for money.\"</p>",
@@ -633,6 +550,7 @@
         },
         "review_DzktgE": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/2026-07-02_16h57_29.png",
             "content": "<p>\"Perfect and beautiful.\"</p>",
@@ -814,6 +732,7 @@
         },
         "review_UfaJJE": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/tryscent143.png",
             "content": "<p>\"Neatly packaged and received undamaged. The scent is lovely. High quality.\"</p>",
@@ -1101,10 +1020,8 @@
     "homepage_hero_XnJ8mD",
     "home_hero_banner_qmaB3G",
     "marquee_labels_RLdqpN",
-    "trust_icons_aW8kQ2",
     "feature_highlights_wfUacV",
     "featured_on_H7jhJ4",
-    "home_tabs_Rt5NxP",
     "popular_products_pNDeh4",
     "popular_products_jYtPeh",
     "popular_products_nC8A3n",
