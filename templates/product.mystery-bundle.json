@@ -259,7 +259,7 @@
           "settings": {
             "perk_image": "shopify://shop_images/icons_time.png",
             "perk_title": "Long-lasting wear",
-            "perk_content": "12+ hours of wear \u2014 often longer."
+            "perk_content": "12+ hours of wear — often longer."
           }
         }
       },
@@ -399,7 +399,7 @@
         "text_nb9PHi": {
           "type": "text",
           "settings": {
-            "content": "<ul><li>Produced in European facilities</li><li>Ingredients and formulas according to IFRA guidelines</li><li>No compromises, no grey market or questionable blends</li></ul><p>Developed to the strict European cosmetics regulations \u2014 the toughest in the world.</p>",
+            "content": "<ul><li>Produced in European facilities</li><li>Ingredients and formulas according to IFRA guidelines</li><li>No compromises, no grey market or questionable blends</li></ul><p>Developed to the strict European cosmetics regulations — the toughest in the world.</p>",
             "mobile_content": "",
             "font_size": 18
           }
@@ -857,6 +857,7 @@
       "blocks": {
         "review_3UwLEa": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/pinkm.png",
             "content": "<p>\"Happy with Aaroma. The scent closely resembles the original and lasts well. Neat packaging, nice bottle. Excellent choice for anyone looking for quality at a fair price.\"</p>",
@@ -867,20 +868,21 @@
             "product": "black-berry-vanilla-musk"
           }
         },
-        "review_mfXEf4": {
+        "review_bDjyFd": {
           "type": "review",
           "settings": {
-            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.35.58_AM.jpg",
-            "content": "<p>\"One of my favorite scents. Delivered quickly. Lovely.\"</p>",
-            "author": "Alex W.",
-            "date": "2 days ago",
-            "rating": 5,
+            "review_image": "shopify://shop_images/2026-07-02_16h49_01.png",
+            "content": "<p>\"The product was neatly packaged. The perfume wasn't broken, didn't leak and was in good condition. The scent is perfect and didn't smell bad. I love it, high quality\"</p>",
+            "author": "Anne E.",
+            "date": "4 months ago",
+            "rating": 4,
             "show_verified_badge": true,
-            "product": ""
+            "product": "azure-dreams-pure"
           }
         },
         "review_e6x6wf": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/345.png",
             "content": "<p>\"Great product. A smart alternative to brand-name perfumes. Lasts a long time and you get great value for money.\"</p>",
@@ -906,6 +908,7 @@
         },
         "review_Txn6JT": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/2026-07-02_16h41_42.png",
             "content": "<p>\"This is the best perfume I've smelled in ages. The fragrance accords get me every time. This stays in my permanent collection.\"</p>",
@@ -931,6 +934,7 @@
         },
         "review_hM9rtB": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/2026-07-02_16h57_29.png",
             "content": "<p>\"Perfect and beautiful.\"</p>",
@@ -943,6 +947,7 @@
         },
         "review_kt8X7g": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/Mounissa_Soilihi.jpg",
             "content": "<p>\"I'd been looking for years for a scent that smells luxurious and lasts a long time. This is exactly what I was looking for.\"</p>",
@@ -951,6 +956,30 @@
             "rating": 4,
             "show_verified_badge": true,
             "product": "fresh-escape-premium"
+          }
+        },
+        "review_ECzVHt": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/2026-07-02_16h58_13.png",
+            "content": "<p>\"The scent that makes you feel put together. Not too heavy, just right.\"</p>",
+            "author": "Michael R.",
+            "date": "4 months ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": "alpha-oil"
+          }
+        },
+        "review_FPPj4G": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Claudia_Martins_4.png",
+            "content": "<p>\"Smells exactly like Luna Rossa Carbon, for a fraction of the price. I can't believe how close it is to the original.\"</p>",
+            "author": "Diana R.",
+            "date": "4 months ago",
+            "rating": 4,
+            "show_verified_badge": false,
+            "product": ""
           }
         },
         "review_4Kaa7g": {
@@ -1026,28 +1055,16 @@
             "product": "6x-30ml-perfume-bottles"
           }
         },
-        "review_FPPj4G": {
+        "review_mfXEf4": {
           "type": "review",
           "settings": {
-            "review_image": "shopify://shop_images/Claudia_Martins_4.png",
-            "content": "<p>\"Smells exactly like Luna Rossa Carbon, for a fraction of the price. I can't believe how close it is to the original.\"</p>",
-            "author": "Diana R.",
-            "date": "4 months ago",
-            "rating": 4,
-            "show_verified_badge": false,
-            "product": ""
-          }
-        },
-        "review_ECzVHt": {
-          "type": "review",
-          "settings": {
-            "review_image": "shopify://shop_images/2026-07-02_16h58_13.png",
-            "content": "<p>\"The scent that makes you feel put together. Not too heavy, just right.\"</p>",
-            "author": "Michael R.",
-            "date": "4 months ago",
+            "review_image": "shopify://shop_images/WhatsApp_Image_2026-09-09_at_8.35.58_AM.jpg",
+            "content": "<p>\"One of my favorite scents. Delivered quickly. Lovely.\"</p>",
+            "author": "Alex W.",
+            "date": "2 days ago",
             "rating": 5,
             "show_verified_badge": true,
-            "product": "alpha-oil"
+            "product": ""
           }
         },
         "review_khwidR": {
@@ -1060,18 +1077,6 @@
             "rating": 4,
             "show_verified_badge": true,
             "product": "pineapple-smoke-vanilla-50-ml-1-7-fl-oz"
-          }
-        },
-        "review_bDjyFd": {
-          "type": "review",
-          "settings": {
-            "review_image": "shopify://shop_images/2026-07-02_16h49_01.png",
-            "content": "<p>\"The product was neatly packaged. The perfume wasn't broken, didn't leak and was in good condition. The scent is perfect and didn't smell bad. I love it, high quality\"</p>",
-            "author": "Anne E.",
-            "date": "4 months ago",
-            "rating": 4,
-            "show_verified_badge": true,
-            "product": "azure-dreams-pure"
           }
         },
         "review_j6hdKK": {
@@ -1264,23 +1269,23 @@
       },
       "block_order": [
         "review_3UwLEa",
-        "review_mfXEf4",
+        "review_bDjyFd",
         "review_e6x6wf",
         "review_DmYgGk",
         "review_Txn6JT",
         "review_RfzFHR",
         "review_hM9rtB",
         "review_kt8X7g",
+        "review_ECzVHt",
+        "review_FPPj4G",
         "review_4Kaa7g",
         "review_GygAby",
         "review_4tkqMw",
         "review_p9c8VL",
         "review_J3fGrW",
         "review_HrFqp7",
-        "review_FPPj4G",
-        "review_ECzVHt",
+        "review_mfXEf4",
         "review_khwidR",
-        "review_bDjyFd",
         "review_j6hdKK",
         "review_nyfHeN",
         "review_kVe6Gy",
