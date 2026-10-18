@@ -479,6 +479,7 @@
       "blocks": {
         "review_QpAqbF": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/pinkm.png",
             "content": "<p>\"Happy with Aaroma. The scent closely resembles the original and lasts well. Neat packaging, nice bottle. Excellent choice for anyone looking for quality at a fair price.\"</p>",
@@ -487,6 +488,18 @@
             "rating": 5,
             "show_verified_badge": false,
             "product": "black-berry-vanilla-musk"
+          }
+        },
+        "review_FKXfqw": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Claudia_Martins_4.png",
+            "content": "<p>\"Smells exactly like Luna Rossa Carbon, for a fraction of the price. I can't believe how close it is to the original.\"</p>",
+            "author": "Diana R.",
+            "date": "4 months ago",
+            "rating": 4,
+            "show_verified_badge": false,
+            "product": ""
           }
         },
         "review_VXQ3rE": {
@@ -646,18 +659,6 @@
             "rating": 5,
             "show_verified_badge": true,
             "product": "6x-30ml-perfume-bottles"
-          }
-        },
-        "review_FKXfqw": {
-          "type": "review",
-          "settings": {
-            "review_image": "shopify://shop_images/Claudia_Martins_4.png",
-            "content": "<p>\"Smells exactly like Luna Rossa Carbon, for a fraction of the price. I can't believe how close it is to the original.\"</p>",
-            "author": "Diana R.",
-            "date": "4 months ago",
-            "rating": 4,
-            "show_verified_badge": false,
-            "product": ""
           }
         },
         "review_czWngB": {
@@ -886,6 +887,7 @@
       },
       "block_order": [
         "review_QpAqbF",
+        "review_FKXfqw",
         "review_VXQ3rE",
         "review_AJWW8m",
         "review_yVBEA7",
@@ -899,7 +901,6 @@
         "review_MG8Qhw",
         "review_AAA4eY",
         "review_cgAPB6",
-        "review_FKXfqw",
         "review_czWngB",
         "review_xHWRRX",
         "review_EmHVLk",
