@@ -74,7 +74,7 @@
                 height="40"
             >
             <div class="text-left min-w-0 flex-1 flex flex-col gap-1">
-                <div class="font-bold text-sm leading-tight text-black line-clamp-1" x-text="$store.bundleBuilder.selectedProducts[index - 1].name"></div>
+                <div class="font-bold text-sm leading-tight text-black line-clamp-1" x-text="$store.bundleBuilder.selectedProducts[index - 1].label || $store.bundleBuilder.selectedProducts[index - 1].name"></div>
                 <div class="text-xs line-clamp-1 text-[#6b7280]"><span x-text="$store.bundleBuilder.selectedProducts[index - 1].inspiration_name"></span> - <span x-text="$store.bundleBuilder.selectedProducts[index - 1].variant.title"></span></div>
             </div>
             {% unless product.tags contains 'fixed_bundle' %}
@@ -98,7 +98,7 @@
       }"
     class="w-full flex gap-2 flex-wrap items-center !mb-0 text-lg font-bold !py-3 !px-2 rounded-full button bg-[#944234] transition-colors shadow-xl tracking-normal button--full-width"
   >
-    <span x-show="$store.bundleBuilder.selectedProducts.length < {{ product_count }}" x-text="'Select ' + ({{ product_count }} - $store.bundleBuilder.selectedProducts.length) + ' more'"></span>
+    <span x-show="$store.bundleBuilder.selectedProducts.length < {{ product_count }}">Select <span x-text="{{ product_count }} - $store.bundleBuilder.selectedProducts.length"></span> more</span>
     <span x-show="$store.bundleBuilder.selectedProducts.length === {{ product_count }}">Buy now</span>
     <span class="size-2 rounded-full inline-block bg-white/50"></span>
     <span class="current-price">{{ selected_variant.price | money }}</span>
@@ -129,9 +129,41 @@
   </p>
 </div>
 
+{% comment %} Product titles + occasions as page text: Weglot translates these on /nl-nl/ etc.,
+   the store reads them for display (label). `name` stays the admin title for the order line. {% endcomment %}
+{% comment %} display:none, not [hidden]: Weglot skips [hidden] elements {% endcomment %}
+<div data-bb-names class="hidden">
+  {%- for fixed_var in fixed_bundle_products -%}
+    <div data-id="{{ fixed_var.product.id }}">{{ fixed_var.product.title | escape }}</div>
+  {%- endfor -%}
+  {%- for bundle_collection_handle in bundle_collection_handles -%}
+    {%- assign bundle_collection = collections[bundle_collection_handle] -%}
+    {%- paginate bundle_collection.products by 250 -%}
+      {%- for bundle_product in bundle_collection.products -%}
+        {%- unless bundle_product.available -%}{%- continue -%}{%- endunless -%}
+        <div data-id="{{ bundle_product.id }}">{{ bundle_product.title | escape }}</div>
+        {%- if bundle_product.metafields.custom.occasion.value != blank -%}
+          <div data-occ="{{ bundle_product.id }}">{{ bundle_product.metafields.custom.occasion.value | strip_newlines | escape }}</div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+  {%- endfor -%}
+</div>
+
 <script>
   document.addEventListener('alpine:init', function() {
     Alpine.store('bundleBuilder', {
+      init() {
+        const bank = document.querySelector('[data-bb-names]');
+        const read = (sel) => {
+          const el = bank && bank.querySelector(sel);
+          return el ? el.textContent.trim() : '';
+        };
+        this.selectedProducts.concat(this.availableProducts).forEach((p) => {
+          p.label = read(`[data-id="${p.id}"]`) || p.name;
+          p.occasionLabel = read(`[data-occ="${p.id}"]`) || p.occasion || '';
+        });
+      },
       selectedVariant: {{ bundle_size_token | json }},
       bundleLength: {{ product_count }},
       showModal: false,

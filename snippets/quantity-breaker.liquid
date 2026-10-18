@@ -116,19 +116,26 @@
               class="size-2.5 rounded-full bg-[#c8202f]"></span>
           </span>
 
-          <span class="grow min-w-0">
-            <span class="flex items-center gap-2 flex-wrap">
-              <span class="text-sm md:text-base font-bold text-black" x-text="tier.label"></span>
+          {% comment %} Labels are page text (not x-text) so Weglot translates them. Each label sits in its
+             own <div>: Weglot merges sibling inline tags into one sentence, which then has no translation. {% endcomment %}
+          <div class="grow min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <div class="text-sm md:text-base font-bold text-black">
+                <div x-show="tier.key === 't1'">Single bottle</div>
+                <div x-show="tier.key === 't2'" x-cloak>2 + 1 FREE</div>
+                <div x-show="tier.key === 't3'" x-cloak>3 + 2 FREE</div>
+              </div>
               <span
                 x-show="$store.qb.savingsPercent(tier) > 0"
                 x-cloak
                 class="rounded bg-[#17803d] text-white text-[11px] md:text-xs font-bold px-1.5 py-1 leading-none"
                 x-text="'−' + $store.qb.savingsPercent(tier) + '%'"></span>
-            </span>
-            <span
-              class="block text-xs md:text-sm text-[#17803d] mt-1 font-bold"
-              x-text="tier.total > 1 ? 'Only ' + $store.qb.money($store.qb.perBottle(tier)) + ' per bottle' : tier.note"></span>
-          </span>
+            </div>
+            <div class="text-xs md:text-sm text-[#17803d] mt-1 font-bold">
+              <div x-show="tier.total === 1">Just one bottle</div>
+              <div x-show="tier.total > 1" x-cloak>Only <span x-text="$store.qb.money($store.qb.perBottle(tier))"></span> per bottle</div>
+            </div>
+          </div>
 
           <span class="shrink-0 text-right leading-tight">
             <span
@@ -138,19 +145,17 @@
             <span class="block text-base md:text-lg font-extrabold text-black" x-text="$store.qb.money($store.qb.tierPrice(tier))"></span>
             <span
               class="block text-[11px] text-gray-400"
-              x-show="tier.total === 1"
-              x-text="'incl. VAT'"></span>
+              x-show="tier.total === 1">incl. VAT</span>
           </span>
         </div>
 
         <span
           x-show="tier.badge"
-          x-text="tier.badge"
           x-cloak
           :style="{ '--qb-badge-c': tier.badgeColor }"
           class="absolute -top-2.5 right-4 bg-[color:var(--qb-badge-c)] text-white text-[10px] leading-normal not-italic font-bold tracking-wide px-2 py-0.5 shadow-sm
             before:content-[''] before:absolute before:right-full before:top-0 before:-z-10 before:border-solid before:border-y-[9px] before:border-y-transparent before:border-r-[7px] before:border-r-[color:var(--qb-badge-c)] before:border-l-0
-            after:content-[''] after:absolute after:left-full after:top-0 after:-z-10 after:border-solid after:border-y-[9px] after:border-y-transparent after:border-l-[7px] after:border-l-[color:var(--qb-badge-c)] after:border-r-0"></span>
+            after:content-[''] after:absolute after:left-full after:top-0 after:-z-10 after:border-solid after:border-y-[9px] after:border-y-transparent after:border-l-[7px] after:border-l-[color:var(--qb-badge-c)] after:border-r-0">Best Deal 🔥</span>
 
         {% comment %} Expanded body — bundle slots (1 pre-selected + the rest chosen by the customer) {% endcomment %}
         <div
@@ -159,7 +164,7 @@
           class="px-3 pb-3 flex flex-col gap-2">
           <p x-show="tier.total > 1" class="m-0 text-[11px] font-semibold text-gray-500">
             <span x-text="tier.total"></span> scents in the bundle —
-            <span x-show="$store.qb.remaining > 0" x-text="$store.qb.remaining + ' left to choose'"></span>
+            <span x-show="$store.qb.remaining > 0"><span x-text="$store.qb.remaining"></span> left to choose</span>
             <span x-show="$store.qb.remaining === 0" class="text-[#17803d]">complete ✓</span>
           </p>
 
@@ -184,11 +189,10 @@
               <div class="grow min-w-0">
                 <template x-if="slot">
                   <div>
-                    <div class="text-[13px] md:text-sm font-bold text-black line-clamp-1" x-text="slot.name"></div>
+                    <div class="text-[13px] md:text-sm font-bold text-black line-clamp-1" x-text="slot.label"></div>
                     <div
                       class="text-[11px] text-gray-500 line-clamp-1"
-                      x-show="slot.inspiration_name"
-                      x-text="'Inspired by ' + slot.inspiration_name"></div>
+                      x-show="slot.inspiration_name">Inspired by <span data-wg-notranslate x-text="slot.inspiration_name"></span></div>
                     <div
                       x-show="i === 0 && slot.id === $store.qb.mainProduct.id"
                       class="text-[11px] font-bold text-[#17803d]">Preselected</div>
@@ -203,8 +207,10 @@
                 type="button"
                 @click="$store.qb.openModal(i)"
                 class="shrink-0 rounded-lg text-[11px] font-semibold px-3 py-1.5 cursor-pointer border border-solid transition-colors"
-                :class="slot ? 'bg-white text-black border-gray-300 hover:border-black' : 'bg-black text-white border-black hover:bg-gray-800'"
-                x-text="slot ? 'Change' : 'Select'"></button>
+                :class="slot ? 'bg-white text-black border-gray-300 hover:border-black' : 'bg-black text-white border-black hover:bg-gray-800'">
+                <div x-show="slot">Change</div>
+                <div x-show="!slot">Select</div>
+              </button>
             </div>
           </template>
         </div>
@@ -262,10 +268,10 @@
         :class="!$store.qb.isComplete ? 'opacity-60 cursor-not-allowed' : ''"
         class="atc-button shimmer-btn cta_product_from_submit_btn flex gap-x-2 flex-wrap items-center justify-center !mb-0 text-2xl !p-3 rounded-lg button hover:bg-[#17803d] bg-[#146b32] transition-colors shadow-xl tracking-normal button--full-width button--primary"
         aria-label="Add to cart">
-        <span
-          x-show="!$store.qb.isComplete"
-          x-cloak
-          x-text="'Choose ' + $store.qb.remaining + ($store.qb.remaining === 1 ? ' more scent' : ' more scents')"></span>
+        <div x-show="!$store.qb.isComplete" x-cloak>
+          <div x-show="$store.qb.remaining === 1">Choose 1 more scent</div>
+          <div x-show="$store.qb.remaining > 1">Choose <span x-text="$store.qb.remaining"></span> more scents</div>
+        </div>
 
         <span x-show="$store.qb.isComplete">{{ 'products.product.add_to_cart' | t }}</span>
         {% comment %} <div class="flex items-center" x-show="$store.qb.isComplete">
@@ -381,7 +387,7 @@
                   height="56">
                 <div class="text-left flex flex-col gap-1 mr-auto min-w-0">
                   <div class="flex items-center gap-1.5">
-                    <h3 class="my-0 font-bold text-base leading-tight text-black line-clamp-1" x-text="product.name"></h3>
+                    <h3 class="my-0 font-bold text-base leading-tight text-black line-clamp-1" x-text="product.label"></h3>
                     <span
                       x-show="product.tags.some(tag => tag.toLowerCase() === 'bestseller')"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#17803d] text-white text-[10px] font-semibold leading-tight">Bestseller</span>
@@ -395,7 +401,7 @@
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#f1f4f2] text-[#6b7280] text-[10px] font-semibold leading-tight">Women</span>
                     <span
                       x-show="product.occasion"
-                      x-html="product.occasion"
+                      x-text="product.occasionLabel"
                       class="shrink-0 px-2 py-0.5 rounded-full bg-[#f1f4f2] text-[#6b7280] text-[10px] font-semibold leading-tight line-clamp-1"></span>
                   </div>
                 </div>
@@ -442,6 +448,21 @@
     </div>
   </div>
   </template>
+</div>
+
+{% comment %} Product titles + occasions as page text: Weglot translates these on /nl-nl/ etc.,
+   the store reads them for display (label). `name` stays the admin title for the order line. {% endcomment %}
+{% comment %} display:none, not [hidden]: Weglot skips [hidden] elements {% endcomment %}
+<div data-qb-names class="hidden">
+  <div data-id="{{ product.id }}">{{ product.title | escape }}</div>
+  <div data-occ="{{ product.id }}">{{ product.metafields.custom.occasion | escape }}</div>
+  {%- for bonus_product in bonus_collection.products -%}
+    {%- unless bonus_product.available -%}{%- continue -%}{%- endunless -%}
+    <div data-id="{{ bonus_product.id }}">{{ bonus_product.title | escape }}</div>
+    {%- if bonus_product.metafields.custom.occasion != blank -%}
+      <div data-occ="{{ bonus_product.id }}">{{ bonus_product.metafields.custom.occasion | escape }}</div>
+    {%- endif -%}
+  {%- endfor -%}
 </div>
 
 <script>
@@ -517,6 +538,15 @@
 
       init: function () {
         var mainId = this.mainProduct.id;
+        var bank = document.querySelector('[data-qb-names]');
+        var read = function (sel) {
+          var el = bank && bank.querySelector(sel);
+          return el ? el.textContent.trim() : '';
+        };
+        [this.mainProduct].concat(this.availableProducts).forEach(function (p) {
+          p.label = read('[data-id="' + p.id + '"]') || p.name;
+          p.occasionLabel = read('[data-occ="' + p.id + '"]') || p.occasion;
+        });
         {% comment %} keep the current product pickable in the modal after it's been replaced {% endcomment %}
         if (!this.availableProducts.some(function (p) { return p.id === mainId; })) {
           this.availableProducts.unshift(this.mainProduct);
