@@ -1,0 +1,229 @@
+{% comment %}
+  Trust icons: a row of line icons with a title and a short text, divided by hairlines.
+  Port of the tryscent.eu homepage trust row (a Custom liquid block there) as an editable
+  section with blocks, in aaroma's colours. 4 across from 750px, 2 x 2 on phones.
+  Sizes are in px: the theme's root font size is 10px.
+{% endcomment %}
+{%- style -%}
+  .trust-icons-{{ section.id }} {
+    --ti-icon: {{ section.settings.icon_color }};
+    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top | times: 0.6 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.6 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .trust-icons-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="trust-icons trust-icons-{{ section.id }}{% if section.settings.border_bottom %} trust-icons--border{% endif %}">
+  <div class="page-width">
+    <ul class="trust-icons__grid" role="list">
+      {%- for block in section.blocks -%}
+        <li class="trust-icons__item" {{ block.shopify_attributes }}>
+          <div class="trust-icons__icon" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'box' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7.5" width="16" height="12.5" rx="1"/><path d="M4 7.5 6.5 4h11L20 7.5"/><path d="M12 4v3.5"/><path d="M9.5 12h5"/></svg>
+              {%- when 'drop' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c3.4 4.3 5.8 7.4 5.8 10.2a5.8 5.8 0 1 1-11.6 0C6.2 10.9 8.6 7.8 12 3.5z"/><path d="M9.6 14.2a2.6 2.6 0 0 0 2.3 2.5"/></svg>
+              {%- when 'shield' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6v5.4c0 4.4-2.9 7.7-7 9.1-4.1-1.4-7-4.7-7-9.1V6z"/><path d="m9 11.9 2.2 2.2 3.8-4.2"/></svg>
+              {%- when 'clock' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+              {%- when 'truck' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5h11v9H3z"/><path d="M14 9.5h3.6l3.4 3.4v2.6h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>
+              {%- when 'leaf' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13.5 14-14 .4 9-5 14-12 14z"/><path d="M5 19c3-4 6-6.5 9.5-8.5"/></svg>
+              {%- when 'star' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.8 2.5 5.2 5.7.8-4.1 4 1 5.6L12 16.7l-5.1 2.7 1-5.6-4.1-4 5.7-.8z"/></svg>
+            {%- endcase -%}
+          </div>
+          {%- if block.settings.title != blank -%}
+            <h3 class="trust-icons__title">{{ block.settings.title | escape }}</h3>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="trust-icons__text">{{ block.settings.text | escape }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .trust-icons--border {
+    border-bottom: 1px solid #e8e6e1;
+  }
+  .trust-icons .page-width {
+    max-width: 1180px;
+  }
+  .trust-icons__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .trust-icons__item {
+    padding: 16px 12px;
+    text-align: center;
+    border-bottom: 1px solid #e8e6e1;
+  }
+  .trust-icons__item:nth-child(odd) {
+    border-right: 1px solid #e8e6e1;
+  }
+  .trust-icons__item:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+  .trust-icons__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    margin: 0 auto 12px;
+    color: var(--ti-icon);
+  }
+  .trust-icons__icon svg {
+    width: 34px;
+    height: 34px;
+  }
+  .trust-icons__title {
+    margin: 0 0 6px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+    color: #121212;
+  }
+  .trust-icons__text {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #5c5c5c;
+  }
+  @media screen and (min-width: 750px) {
+    .trust-icons__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .trust-icons__item,
+    .trust-icons__item:nth-child(odd) {
+      padding: 16px 24px;
+      border-bottom: 0;
+      border-right: 1px solid #e8e6e1;
+    }
+    .trust-icons__item:last-child {
+      border-right: 0;
+    }
+    .trust-icons__icon svg {
+      width: 36px;
+      height: 36px;
+    }
+    .trust-icons__title {
+      font-size: 15px;
+    }
+    .trust-icons__text {
+      font-size: 13.5px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Trust icons",
+  "class": "trust-icons-section",
+  "max_blocks": 8,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#c8202f"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom",
+      "label": "Line under the section",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "box", "label": "Package" },
+            { "value": "drop", "label": "Drop" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "star", "label": "Star" }
+          ],
+          "default": "box"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Made in Europe"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Produced to strict European perfumery standards."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust icons",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "box", "title": "Made in Europe", "text": "Produced to strict European perfumery standards." } },
+        { "type": "item", "settings": { "icon": "drop", "title": "20-24% fragrance oils", "text": "A scent made to stay with you all day." } },
+        { "type": "item", "settings": { "icon": "shield", "title": "60-day guarantee", "text": "Try the perfume at home. Not for you? You have 60 days to return it." } },
+        { "type": "item", "settings": { "icon": "clock", "title": "Long-lasting scent", "text": "Lasts up to 12 hours." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

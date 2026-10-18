@@ -110,8 +110,94 @@
       "name": "Marquee Labels",
       "settings": {}
     },
+    "trust_icons_aW8kQ2": {
+      "type": "trust-icons",
+      "blocks": {
+        "item_mEuR1a": {
+          "type": "item",
+          "settings": {
+            "icon": "box",
+            "title": "Made in Europe",
+            "text": "Produced to strict European perfumery standards."
+          }
+        },
+        "item_dRoP2b": {
+          "type": "item",
+          "settings": {
+            "icon": "drop",
+            "title": "20-24% fragrance oils",
+            "text": "A scent made to stay with you all day."
+          }
+        },
+        "item_gUar3c": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "60-day guarantee",
+            "text": "Try the perfume at home. Not for you? You have 60 days to return it."
+          }
+        },
+        "item_lAst4d": {
+          "type": "item",
+          "settings": {
+            "icon": "clock",
+            "title": "Long-lasting scent",
+            "text": "Lasts up to 12 hours."
+          }
+        }
+      },
+      "block_order": [
+        "item_mEuR1a",
+        "item_dRoP2b",
+        "item_gUar3c",
+        "item_lAst4d"
+      ],
+      "name": "Trust icons",
+      "settings": {
+        "icon_color": "#c8202f",
+        "background_color": "#ffffff",
+        "border_bottom": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "home_tabs_Rt5NxP": {
+      "type": "home-tabs",
+      "blocks": {
+        "tab_bEst5e": {
+          "type": "tab",
+          "settings": {
+            "title": "🔥 Bestsellers",
+            "collection": "top-sellers",
+            "button_text": "View all"
+          }
+        },
+        "tab_nEw6f": {
+          "type": "tab",
+          "settings": {
+            "title": "Newest scents",
+            "collection": "heetste-zomergeuren-2026",
+            "button_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "tab_bEst5e",
+        "tab_nEw6f"
+      ],
+      "name": "Product tabs",
+      "settings": {
+        "heading": "A scent for every side of your personality",
+        "subheading": "Discover perfumes that move with your style and bring out your character.",
+        "background_color": "#ffffff",
+        "products_per_tab": 8,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "feature_highlights_wfUacV": {
       "type": "feature-highlights",
+      "disabled": true,
       "blocks": {
         "perks_CBpKqp": {
           "type": "perks",
@@ -190,6 +276,7 @@
     },
     "popular_products_pNDeh4": {
       "type": "popular-products",
+      "disabled": true,
       "name": "Popular Products",
       "settings": {
         "background_color": "#fcfbf9",
@@ -204,6 +291,7 @@
     },
     "popular_products_jYtPeh": {
       "type": "popular-products",
+      "disabled": true,
       "name": "Popular Products",
       "settings": {
         "background_color": "#fcfbf9",
@@ -1013,8 +1101,10 @@
     "homepage_hero_XnJ8mD",
     "home_hero_banner_qmaB3G",
     "marquee_labels_RLdqpN",
+    "trust_icons_aW8kQ2",
     "feature_highlights_wfUacV",
     "featured_on_H7jhJ4",
+    "home_tabs_Rt5NxP",
     "popular_products_pNDeh4",
     "popular_products_jYtPeh",
     "popular_products_nC8A3n",
