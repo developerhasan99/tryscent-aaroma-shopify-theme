@@ -128,7 +128,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "bestsellers",
     "cart_color_scheme": "scheme-1",
-    "product_card_promo_text": "Third Bottle on us!\nThird Bottle on us!\nThird Bottle on us!",
+    "product_card_promo_text": "",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
