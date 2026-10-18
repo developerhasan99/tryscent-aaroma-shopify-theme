@@ -267,7 +267,7 @@
           "settings": {
             "perk_image": "shopify://shop_images/icons_time.png",
             "perk_title": "Long-lasting wear",
-            "perk_content": "12+ hours of wear \u2014 often longer."
+            "perk_content": "12+ hours of wear — often longer."
           }
         }
       },
@@ -407,7 +407,7 @@
         "text_nb9PHi": {
           "type": "text",
           "settings": {
-            "content": "<ul><li>Produced in European facilities</li><li>Ingredients and formulas according to IFRA guidelines</li><li>No compromises, no grey market or questionable blends</li></ul><p>Developed to the strict European cosmetics regulations \u2014 the toughest in the world.</p>",
+            "content": "<ul><li>Produced in European facilities</li><li>Ingredients and formulas according to IFRA guidelines</li><li>No compromises, no grey market or questionable blends</li></ul><p>Developed to the strict European cosmetics regulations — the toughest in the world.</p>",
             "mobile_content": "",
             "font_size": 18
           }
@@ -440,6 +440,7 @@
       "blocks": {
         "review_ard3Cr": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/261_revie.png",
             "content": "<p>\"This is my first purchase and I'm addicted. I'll never buy perfume anywhere else. I could never find a dupe scent that smelled truly authentic and consistent.\"</p>",
@@ -452,6 +453,7 @@
         },
         "review_4dgat9": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/2026-07-02_16h41_42.png",
             "content": "<p>\"This is the best perfume I've smelled in a very long time. The notes make me crazy with joy. I'll keep this in my rotation forever.\"</p>",
@@ -546,6 +548,7 @@
         },
         "review_kh364D": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "review_image": "shopify://shop_images/2026-07-02_16h57_29.png",
             "content": "<p>\"It's perfect and beautiful 🥰🥰🥰\"</p>",
