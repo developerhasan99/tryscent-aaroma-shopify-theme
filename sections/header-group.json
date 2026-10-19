@@ -52,14 +52,14 @@
       "name": "Offer Timebar",
       "settings": {
         "enable_top_bar": false,
-        "enable_timer": true,
+        "enable_timer": false,
         "enable_badges": false,
         "primary_color": "#000000",
         "secondary_color": "#f2e8e2",
         "top_banner_text": "LIMITED TIME ONLY",
-        "prepend_text": "Autumn Sale!",
-        "countdown_date": "2026/10/18 23:59",
-        "append_text": "Buy 5, pay for 3!",
+        "prepend_text": "Halloween Sale!",
+        "countdown_date": "",
+        "append_text": "Buy 3, pay for 2!",
         "link": "shopify://collections/bestsellers"
       }
     },
@@ -130,6 +130,7 @@
         "label_YacV8q",
         "label_PPUE4g"
       ],
+      "disabled": true,
       "name": "Marquee Labels",
       "settings": {}
     },
