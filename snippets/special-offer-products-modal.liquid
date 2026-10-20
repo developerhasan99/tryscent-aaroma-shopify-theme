@@ -89,7 +89,7 @@
           <template x-for="product in $store.bundleBuilder.availableProducts" :key="product.id">
             <template x-if="$store.bundleBuilder.matchesProduct(product)">
               <button
-                @click="$store.bundleBuilder.addRemoveProduct(product)"
+                @click="$store.bundleBuilder.addProduct(product)"
                 :class="$store.bundleBuilder.isProductSelected(product.id) ? 'border-[#944234]' : 'border-gray-200 border'"
                 class="border-[1.5px] border-solid w-full p-2 flex items-center gap-2 justify-between cursor-pointer rounded-xl bg-white">
                 <img
@@ -122,9 +122,11 @@
                 </div>
                 <div class="shrink-0 ml-auto text-center">
                     <div class="text-xs font-semibold text-[#6b7280]" x-text="$store.bundleBuilder.selectedVariant"></div>
-                    <div class="size-8 rounded-full border-[1.5px] border-solid border-[#944234] flex items-center justify-center text-xl text-[#944234]" :class="{ 'bg-[#944234]' : $store.bundleBuilder.isProductSelected(product.id) }">
-                        <span x-show="!$store.bundleBuilder.isProductSelected(product.id)">+</span>
-                        <svg x-show="$store.bundleBuilder.isProductSelected(product.id)" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+                    <div x-show="!$store.bundleBuilder.isProductSelected(product.id)" class="size-8 mx-auto rounded-full border-[1.5px] border-solid border-[#944234] flex items-center justify-center text-xl text-[#944234]">+</div>
+                    <div x-show="$store.bundleBuilder.isProductSelected(product.id)" class="flex items-center gap-1">
+                        <span role="button" aria-label="Remove one" @click.stop="$store.bundleBuilder.removeOne(product.id)" class="size-8 rounded-full border-[1.5px] border-solid border-[#944234] flex items-center justify-center text-xl text-[#944234]">&minus;</span>
+                        <span class="min-w-5 font-bold text-black" x-text="$store.bundleBuilder.productCount(product.id)"></span>
+                        <span role="button" aria-label="Add one" class="size-8 rounded-full bg-[#944234] flex items-center justify-center text-xl text-white">+</span>
                     </div>
                 </div>
               </button>

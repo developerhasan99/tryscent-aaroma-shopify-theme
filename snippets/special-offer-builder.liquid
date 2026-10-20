@@ -226,22 +226,26 @@
         const search = this.searchText.trim().toLowerCase();
         return categoryMatches && (search === '' || product.name.toLowerCase().includes(search) || (product.inspiration_name || '').toLowerCase().includes(search));
       },
-      addRemoveProduct(product) {
-        if (this.selectedProducts.length < {{ product_count }} && !this.isProductSelected(product.id)) {
-          product.variant = product.variants[this.selectedVariant]
-          this.selectedProducts.push(product);
+      addProduct(product) {
+        if (this.selectedProducts.length >= {{ product_count }}) return;
+        product.variant = product.variants[this.selectedVariant]
+        this.selectedProducts.push(product);
 
-          if (this.selectedProducts.length === {{ product_count }}) {
-            this.showModal = false;
-            // Do auto ATC and redirect to checkout
-            this.doATCandCheckout();
-          }
-        } else {
-          this.removeProduct(this.selectedProducts.findIndex(item => item.id === product.id));
+        if (this.selectedProducts.length === {{ product_count }}) {
+          this.showModal = false;
+          // Do auto ATC and redirect to checkout
+          this.doATCandCheckout();
         }
+      },
+      removeOne(productId) {
+        const index = this.selectedProducts.findLastIndex(item => item.id === productId);
+        if (index > -1) this.removeProduct(index);
       },
       removeProduct(index) {
         this.selectedProducts.splice(index, 1);
+      },
+      productCount(productId) {
+        return this.selectedProducts.filter(product => product.id === productId).length;
       },
       isProductSelected(productId) {
         return this.selectedProducts.some(product => product.id === productId);
