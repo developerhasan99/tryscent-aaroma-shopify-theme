@@ -17,6 +17,29 @@
     }
   {% endif %}
 
+  {% if section.settings.mobile_background_image != blank and section.settings.mobile_image_offset > 0 %}
+    @media screen and (max-width: 749px) {
+      .section-{{ section.id }}-padding {
+        position: relative;
+        isolation: isolate;
+        background-image: none;
+        background-color: {{ section.settings.mobile_image_fill }};
+      }
+      .section-{{ section.id }}-padding::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: {{ section.settings.mobile_image_offset }}px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient({{ section.settings.mobile_image_fill }}, {{ section.settings.mobile_image_fill | color_modify: 'alpha', 0 }} 60px), url("{{ section.settings.mobile_background_image | image_url: width: 1920 }}");
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  {% endif %}
+
   {% if section.settings.mobile_buttons_bottom %}
     @media screen and (max-width: 749px) {
       .section-{{ section.id }}-padding {
@@ -186,6 +209,25 @@
         "unit": "px",
         "label": "Mobile Padding Bottom",
         "default": 36
+      }, {
+        "type": "header",
+        "content": "Mobile image position"
+      }, {
+        "type": "range",
+        "id": "mobile_image_offset",
+        "min": 0,
+        "max": 300,
+        "step": 4,
+        "unit": "px",
+        "label": "Push image down",
+        "info": "Moves the mobile background image down so the text sits above it. 0 = image fills the whole hero.",
+        "default": 160
+      }, {
+        "type": "color",
+        "id": "mobile_image_fill",
+        "label": "Color above the image",
+        "info": "Fills the space the image leaves at the top. Match it to the image's top edge.",
+        "default": "#0b0200"
       }, {
         "type": "header",
         "content": "Mobile buttons"
