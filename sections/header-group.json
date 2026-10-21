@@ -54,12 +54,12 @@
         "enable_top_bar": false,
         "enable_timer": false,
         "enable_badges": false,
-        "primary_color": "#FFFFFF",
+        "primary_color": "#ffffff",
         "secondary_color": "#000000",
         "top_banner_text": "LIMITED TIME ONLY",
         "prepend_text": "Halloween Sale!",
         "countdown_date": "",
-        "append_text": "Buy 3, pay for 2!",
+        "append_text": "30% OFF",
         "link": "shopify://collections/bestsellers"
       }
     },

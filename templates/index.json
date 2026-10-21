@@ -32,8 +32,8 @@
       "name": "Homepage Hero",
       "settings": {
         "background_color": "#fcfbf9",
-        "background_image": "shopify://shop_images/MAGYX_Site_Header.webp",
-        "mobile_background_image": "shopify://shop_images/MAGYX_Site_Header_Mobile_A.webp",
+        "background_image": "shopify://shop_images/magyx_halloween_desktop.png",
+        "mobile_background_image": "shopify://shop_images/magyx_halloween_mobile.png",
         "review_text": "LOVED BY 10,000+ CUSTOMERS",
         "title": "Premium-quality fragrance twins. For every day and every side of you.",
         "subtitle": "The scents you love, for less.",
@@ -161,43 +161,8 @@
         "padding_bottom": 40
       }
     },
-    "home_tabs_Rt5NxP": {
-      "type": "home-tabs",
-      "blocks": {
-        "tab_bEst5e": {
-          "type": "tab",
-          "settings": {
-            "title": "🔥 Bestsellers",
-            "collection": "top-sellers",
-            "button_text": "View all"
-          }
-        },
-        "tab_nEw6f": {
-          "type": "tab",
-          "settings": {
-            "title": "Newest scents",
-            "collection": "heetste-zomergeuren-2026",
-            "button_text": "View all"
-          }
-        }
-      },
-      "block_order": [
-        "tab_bEst5e",
-        "tab_nEw6f"
-      ],
-      "name": "Product tabs",
-      "settings": {
-        "heading": "A scent for every side of your personality",
-        "subheading": "Discover perfumes that move with your style and bring out your character.",
-        "background_color": "#ffffff",
-        "products_per_tab": 8,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
     "feature_highlights_wfUacV": {
       "type": "feature-highlights",
-      "disabled": true,
       "blocks": {
         "perks_CBpKqp": {
           "type": "perks",
@@ -238,6 +203,7 @@
         "perks_Cj3EAR",
         "perks_iX4iTY"
       ],
+      "disabled": true,
       "name": "Feature Highlights",
       "settings": {
         "background_color": "#ffffff",
@@ -272,6 +238,40 @@
         "background_color": "#ffffff",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "home_tabs_Rt5NxP": {
+      "type": "home-tabs",
+      "blocks": {
+        "tab_bEst5e": {
+          "type": "tab",
+          "settings": {
+            "title": "🔥 Bestsellers",
+            "collection": "top-sellers",
+            "button_text": "View all"
+          }
+        },
+        "tab_nEw6f": {
+          "type": "tab",
+          "settings": {
+            "title": "Newest scents",
+            "collection": "heetste-zomergeuren-2026",
+            "button_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "tab_bEst5e",
+        "tab_nEw6f"
+      ],
+      "name": "Product tabs",
+      "settings": {
+        "heading": "A scent for every side of your personality",
+        "subheading": "Discover perfumes that move with your style and bring out your character.",
+        "background_color": "#ffffff",
+        "products_per_tab": 8,
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "popular_products_pNDeh4": {
