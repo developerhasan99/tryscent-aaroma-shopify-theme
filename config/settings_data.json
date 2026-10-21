@@ -495,5 +495,10 @@
         }
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".snize-product-tag-bundle_price_show .snize-add-to-cart-button {display: none;}"
+    ]
   }
 }
