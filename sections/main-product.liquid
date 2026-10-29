@@ -253,7 +253,7 @@
                 {%- comment -%} #atc_scroll_target: the bundle offer anchor; the UGC videos row's card for this page's own product scrolls here. {%- endcomment -%}
                 <div id="atc_scroll_target" class="atc-bundle-builder" {{ block.shopify_attributes }}>
                    {% if product.metafields.custom.choose_your_fragrances_options != blank %}
-                    {% render 'special-offer-builder', product: product %}
+                    {% render 'special-offer-builder', product: product, block: block %}
                   {% else %}
                     {% render 'reactive-variant-selector', product: product %}
                   {% endif %}
@@ -1047,7 +1047,23 @@
     {
       "type": "atc_bundle_builder",
       "name": "Atc Bundle Builder",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "skip_atc_button",
+          "label": "Skip add to cart button",
+          "default": true,
+          "info": "Add the bundle to cart as soon as all products are selected. When off, the modal just closes and the shopper clicks the button."
+        },
+        {
+          "type": "checkbox",
+          "id": "open_checkout",
+          "label": "Go to checkout after adding",
+          "default": false,
+          "info": "When off, the cart drawer opens instead."
+        }
+      ]
     },
     {
       "type": "tsr_block",

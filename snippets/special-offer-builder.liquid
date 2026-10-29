@@ -233,8 +233,9 @@
 
         if (this.selectedProducts.length === {{ product_count }}) {
           this.showModal = false;
-          // Do auto ATC and redirect to checkout
-          this.doATCandCheckout();
+          {% if block.settings.skip_atc_button %}
+            this.doATCandCheckout();
+          {% endif %}
         }
       },
       removeOne(productId) {
@@ -279,6 +280,12 @@
             properties: properties
           }]
         };
+        const openCheckout = {{ block.settings.open_checkout | json }};
+        const cart = document.querySelector('cart-drawer');
+        if (cart && !openCheckout) {
+          items.sections = cart.getSectionsToRender().map(s => s.id);
+          items.sections_url = cartSectionsUrl();
+        }
 
         // Make the API call
         fetch('/cart/add.js', {
@@ -297,9 +304,18 @@
           }
           return data;
         })
-        .then(() => {
-          // Redirect to cart after successful addition
-          window.location.href = '/checkout';
+        .then(data => {
+          if (openCheckout) {
+            window.location.href = '/checkout';
+          } else if (!cart) {
+            window.location.href = '/cart';
+          } else {
+            // global.js: on a translated page the drawer comes back through the page's own path.
+            return cartTranslateSections(data.sections, items.sections).then(sections => {
+              data.sections = sections;
+              cart.renderContents(data);
+            });
+          }
         })
         .catch(error => {
           console.error('Error adding to cart:', error, error.response || '');
