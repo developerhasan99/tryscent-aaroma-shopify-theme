@@ -305,6 +305,9 @@
           return data;
         })
         .then(data => {
+          {% unless product.tags contains 'fixed_bundle' %}
+            this.selectedProducts = [];
+          {% endunless %}
           if (openCheckout) {
             window.location.href = '/checkout';
           } else if (!cart) {
