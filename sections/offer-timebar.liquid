@@ -125,6 +125,7 @@
     #shopify-section-{{ section.id }} .mgx-tb__offer {
       flex: 1 1 50%;
       justify-content: flex-end;
+      text-align: right;
       padding: 10px 44px 10px 24px;
       clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
     }
@@ -189,14 +190,14 @@
           <div class="mgx-tb__ends">Ends in</div>
           <div class="mgx-tb__clock" data-mgx-countdown data-deadline="{{ section.settings.countdown_date | escape }}" role="timer" aria-live="off">
             {%- if section.settings.countdown_date != blank -%}
-              <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="d">00</div><div class="mgx-tb__cap">Days</div></div>
+              <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="d">00</div><div class="mgx-tb__cap" data-wg-notranslate>Days</div></div>
               <i class="mgx-tb__sep" aria-hidden="true">:</i>
             {%- endif -%}
-            <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="h">00</div><div class="mgx-tb__cap">Hrs</div></div>
+            <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="h">00</div><div class="mgx-tb__cap" data-wg-notranslate>Hrs</div></div>
             <i class="mgx-tb__sep" aria-hidden="true">:</i>
-            <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="m">00</div><div class="mgx-tb__cap">Min</div></div>
+            <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="m">00</div><div class="mgx-tb__cap" data-wg-notranslate>Min</div></div>
             <i class="mgx-tb__sep" aria-hidden="true">:</i>
-            <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="s">00</div><div class="mgx-tb__cap">Sec</div></div>
+            <div class="mgx-tb__unit"><div class="mgx-tb__num" data-unit="s">00</div><div class="mgx-tb__cap" data-wg-notranslate>Sec</div></div>
           </div>
 
           {%- if section.settings.enable_badges and section.blocks.size > 0 -%}
@@ -285,6 +286,20 @@
       if (!clock) return;
       var cells = {};
       clock.querySelectorAll('[data-unit]').forEach(function (el) { cells[el.dataset.unit] = el; });
+
+      // Weglot leaves the short unit labels in English; set them from the page language it serves
+      var caps = {
+        nl: ['Dagen', 'Uur', 'Min', 'Sec'],
+        fr: ['Jours', 'Heures', 'Min', 'Sec'],
+        de: ['Tage', 'Std', 'Min', 'Sek'],
+        et: ['Päeva', 'Tundi', 'Min', 'Sek']
+      }[(document.documentElement.lang || '').slice(0, 2)];
+      if (caps) {
+        clock.querySelectorAll('.mgx-tb__unit').forEach(function (unit) {
+          var i = 'dhms'.indexOf(unit.querySelector('[data-unit]').dataset.unit);
+          unit.querySelector('.mgx-tb__cap').textContent = caps[i];
+        });
+      }
 
       // "Countdown date" when it parses, else the next local midnight (rolls over every day)
       function deadline() {
