@@ -52,13 +52,13 @@
       "name": "Offer Timebar",
       "settings": {
         "enable_top_bar": false,
-        "enable_timer": false,
+        "enable_timer": true,
         "enable_badges": false,
         "primary_color": "#ffffff",
         "secondary_color": "#000000",
         "top_banner_text": "LIMITED TIME ONLY",
         "prepend_text": "Halloween Sale!",
-        "countdown_date": "",
+        "countdown_date": "2026/11/04 23:59:59",
         "append_text": "30% OFF ENTIRE CART",
         "link": "shopify://collections/bestsellers"
       }
