@@ -504,6 +504,7 @@
         "point_Yp49mb"
       ],
       "settings": {
+        "video": "shopify://files/videos/MAGYX-SITE02.mp4",
         "background_color": "#ffffff",
         "image": "shopify://shop_images/MAGYX_Site_Showcase.webp",
         "rounded_image": true,
@@ -1106,6 +1107,7 @@
     "feature_highlights_wfUacV",
     "featured_on_H7jhJ4",
     "home_tabs_Rt5NxP",
+    "custom_liquid_6qnTBf",
     "popular_products_pNDeh4",
     "popular_products_jYtPeh",
     "popular_products_nC8A3n",
@@ -1115,7 +1117,6 @@
     "image_and_text",
     "special_offer_bogo_NqVrAK",
     "massive_review_section",
-    "custom_liquid_6qnTBf",
     "our_bestsellers_niPBnL",
     "175501299681a2aa62",
     "17551175978bd893d1",
