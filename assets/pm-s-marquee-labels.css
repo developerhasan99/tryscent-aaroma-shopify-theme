@@ -1,0 +1,14 @@
+/* pm-s-marquee-labels.css (WP-C2): premium ticker instance of sections/marquee-labels.liquid.
+   The component (.pm-ticker, 40px, 12/16 500 uppercase .1em, pause on hover / reduced motion) lives in pm-base.css;
+   the separator and link styles in pm-sections.css. Per-instance loop duration comes from the section's style block. */
+.premium .pm-ticker .pm-ticker__item span {
+  display: inline-block;
+}
+
+.premium .pm-ticker .pm-ticker__item img {
+  display: inline-block;
+  width: auto;
+  max-width: 1.2em;
+  height: 1.2em;
+  margin-right: 4px;
+}

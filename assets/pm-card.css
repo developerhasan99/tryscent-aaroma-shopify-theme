@@ -1,0 +1,325 @@
+/* magicperfume.co: sections 1-7 of tryscent.co pm-card.css (pm-card* classes only). Sections 8+ restyle Dawn/theme
+   product cards and are left out on purpose: magicperfume.co keeps its magyx.co product cards (02.11.2026). */
+/* pm-card.css (WP-D): the shared product card contract, loaded on every page from layout/theme.liquid.
+   Classes here are used by product-card (collection, home), card-product CSS (search, featured product),
+   you-may-like (C2), product-card-megamenu (B), cart-upsells (F) and the bonus-modal rows (C1, --row).
+   Contract:
+     .pm-card              root (works on <a>, <div>, <li>); flex column, no box, no border, no padding
+     .pm-card__media       1:1 frame, surface background, radius md (8), object-fit contain until the reshoot
+     .pm-card__media--cover  modifier for the reshoot: object-fit cover
+     .pm-card__badges      top-left stack, 8px inset, 4px gap, max 2 (third and later are hidden)
+     .pm-badge / --ink     badge styles come from pm-base.css
+     .pm-card__quick       36px (40px from 990) white square with the float shadow at the media's bottom right;
+                           always visible under 990, appears on card hover from 990 and widens on its own hover
+     .pm-card__quick-label text inside the quick square (button token), shown only while widened
+     .pm-card__body        info column: 12px top gap (16px from 990)
+     .pm-card__title       card token 13/18 700 .02em uppercase, 2-line clamp, 70% on card hover from 990
+     .pm-card__rule        20x1 rule in currentColor
+     .pm-card__meta        11/16 muted (12/16 from 990), 1 line
+     .pm-card__price       13/18 500 row; keep .ab-current-price on the price span
+     .pm-card__compare     12/18 400 muted line-through
+     .pm-card--row         horizontal variant: 56px thumb + text (+ optional quick square at the row end)
+   Rules: every selector starts with .premium, zero importance overrides, no colour outside the palette. */
+
+/* 1. Root */
+.premium .pm-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: rgb(var(--color-foreground));
+  text-align: left;
+  text-decoration: none;
+}
+
+.premium .pm-card:hover,
+.premium .pm-card:focus-visible {
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+}
+
+.premium .pm-card:focus-visible {
+  outline: 2px solid var(--pm-ink);
+  outline-offset: 2px;
+}
+
+/* 2. Media: square on surface, radius md, contain (the bottle shots carry their own backgrounds); no zoom, ever */
+.premium .pm-card__media {
+  position: relative;
+  display: block;
+  flex: none;
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--pm-radius-md);
+  background: var(--pm-surface);
+}
+
+.premium .pm-card__media > img,
+.premium .pm-card__media > picture,
+.premium .pm-card__media > picture > img,
+.premium .pm-card__media > a > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  transition: none;
+}
+
+.premium .pm-card__media--cover > img,
+.premium .pm-card__media--cover > picture > img,
+.premium .pm-card__media--cover > a > img {
+  object-fit: cover;
+}
+
+.premium .pm-card:hover .pm-card__media img {
+  transform: none;
+}
+
+/* 3. Badges: top-left stack, two at most */
+.premium .pm-card__badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.premium .pm-card__badges > :nth-child(n + 3) {
+  display: none;
+}
+
+/* 4. Quick affordance: 36px white square, float shadow, icon only; from 990 it is 40px, hidden until card hover,
+      and widens to show its label while hovered or focused */
+.premium .pm-card__quick {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 36px;
+  min-width: 36px;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--pm-radius-sm);
+  background: var(--pm-white);
+  color: var(--pm-ink);
+  box-shadow: var(--pm-shadow-float);
+  font-family: inherit;
+  font-size: var(--pm-fs-button);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: opacity var(--pm-dur) var(--pm-ease), transform var(--pm-dur) var(--pm-ease), box-shadow var(--pm-dur) var(--pm-ease);
+}
+
+.premium .pm-card__quick .pm-icon,
+.premium .pm-card__quick > svg {
+  display: block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.premium .pm-card__quick-label {
+  display: inline-block;
+  max-width: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width var(--pm-dur) var(--pm-ease), margin var(--pm-dur) var(--pm-ease), opacity var(--pm-dur) var(--pm-ease);
+}
+
+.premium .pm-card__quick:focus-visible {
+  outline: 2px solid var(--pm-ink);
+  outline-offset: 2px;
+}
+
+/* 5. Body */
+.premium .pm-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 12px 0 0;
+}
+
+.premium .pm-card__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  font-size: var(--pm-fs-card);
+  line-height: var(--pm-lh-card);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: inherit;
+  transition: opacity var(--pm-dur) var(--pm-ease);
+}
+
+.premium .pm-card__rule {
+  display: block;
+  flex: none;
+  width: 20px;
+  height: 1px;
+  margin: 8px 0;
+  border: 0;
+  background: currentColor;
+}
+
+.premium .pm-card__meta {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--pm-muted);
+}
+
+.premium .pm-card__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: inherit;
+}
+
+.premium .pm-card__compare {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: var(--pm-muted);
+  text-decoration: line-through;
+}
+
+/* 6. Row variant (cart upsells, bonus-modal rows): 56px thumb, text, optional action square at the end */
+.premium .pm-card--row {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  height: auto;
+}
+
+.premium .pm-card--row .pm-card__media {
+  width: 56px;
+  height: 56px;
+  aspect-ratio: 1 / 1;
+}
+
+.premium .pm-card--row .pm-card__badges {
+  display: none;
+}
+
+.premium .pm-card--row .pm-card__body {
+  flex: 1 1 auto;
+  padding: 0;
+}
+
+.premium .pm-card--row .pm-card__rule {
+  display: none;
+}
+
+.premium .pm-card--row .pm-card__price {
+  margin-top: 2px;
+}
+
+.premium .pm-card--row .pm-card__quick {
+  position: static;
+  flex: none;
+  margin-left: auto;
+  opacity: 1;
+  transform: none;
+}
+
+/* 7. From 990: 16px body gap, 12px meta, quick square 40px shown on card hover and widened on its own hover,
+      title to 70% on card hover (no image zoom) */
+@media (min-width: 990px) {
+  .premium .pm-card__body {
+    padding-top: 16px;
+  }
+
+  .premium .pm-card__meta {
+    font-size: 12px;
+  }
+
+  .premium .pm-card__quick {
+    height: 40px;
+    min-width: 40px;
+    padding: 0 12px;
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  .premium .pm-card:hover .pm-card__quick,
+  .premium .pm-card:focus-within .pm-card__quick,
+  .premium .pm-card__quick:hover,
+  .premium .pm-card__quick:focus-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .premium .pm-card__quick:hover .pm-card__quick-label,
+  .premium .pm-card__quick:focus-visible .pm-card__quick-label {
+    max-width: 160px;
+    margin-right: 8px;
+    opacity: 1;
+  }
+
+  .premium .pm-card:hover .pm-card__title {
+    opacity: 0.7;
+  }
+}
+
+/* Touch screens at any width keep the square visible (no hover to reveal it) */
+@media (hover: none) {
+  .premium .pm-card__quick {
+    opacity: 1;
+    transform: none;
+  }
+}
+

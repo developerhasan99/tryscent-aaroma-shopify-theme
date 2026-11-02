@@ -1,0 +1,176 @@
+/* pm-s-home-bundle-feed.css: sections/home-bundle-feed.liquid ("Bundle feed"). Loaded by the section.
+   375: banner tile (2.15:1, radius md, image cover, black left-to-right gradient driven by --pm-bfeed-overlay from
+   the section style block), then a 2-column grid of bundle cards (shared pm-card contract), 12px gap.
+   750: card gap 20px.
+   990: one row: banner on the left half (height = the cards' row, radius md, 32px padding, heading 30/38),
+   cards in a 2-column grid on the right half (3-4 blocks wrap into a second row). No JS. */
+
+/* 1. Layout: stacked under 990 */
+.premium .pm-bfeed__layout {
+  display: block;
+}
+
+/* 2. Banner tile: one link, image cover, gradient, text bottom-left */
+.premium .pm-bfeed__banner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 2.15 / 1;
+  overflow: hidden;
+  border-radius: var(--pm-radius-md);
+  background: var(--pm-ink);
+  color: var(--pm-white);
+  text-decoration: none;
+}
+
+.premium .pm-bfeed__banner:hover,
+.premium .pm-bfeed__banner:focus-visible {
+  color: var(--pm-white);
+  text-decoration: none;
+}
+
+.premium .pm-bfeed__banner:focus-visible {
+  outline: 2px solid var(--pm-ink);
+  outline-offset: 2px;
+}
+
+.premium .pm-bfeed__picture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+}
+
+.premium .pm-bfeed__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 50%;
+}
+
+.premium .pm-bfeed__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(0, 0, 0, var(--pm-bfeed-overlay, 0.35)) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+.premium .pm-bfeed__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 20px;
+}
+
+.premium .pm-bfeed__heading {
+  margin: 0;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--pm-white);
+}
+
+.premium .pm-bfeed__link.pm-btn {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pm-white);
+}
+
+.premium .pm-bfeed__content > .pm-bfeed__link.pm-btn:first-child {
+  margin-top: 0;
+}
+
+.premium .pm-bfeed__banner:hover .pm-bfeed__link::after {
+  animation: pm-link-wipe 0.6s var(--pm-ease) both;
+}
+
+/* 3. Bundle cards: 2-column grid of pm-card */
+.premium .pm-bfeed__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.premium .pm-bfeed__item {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.premium .pm-bfeed__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pm-muted);
+}
+
+/* 4. From 750: 20px card gap */
+@media (min-width: 750px) {
+  .premium .pm-bfeed__cards {
+    gap: 20px;
+  }
+}
+
+/* 5. From 990: banner on the left half, cards on the right half, banner height follows the cards' row */
+@media (min-width: 990px) {
+  .premium .pm-bfeed__layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .premium .pm-bfeed__banner {
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .premium .pm-bfeed__layout--solo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .premium .pm-bfeed__layout--solo .pm-bfeed__banner {
+    aspect-ratio: 3.2 / 1;
+  }
+
+  .premium .pm-bfeed__cards {
+    align-content: start;
+    margin-top: 0;
+  }
+
+  .premium .pm-bfeed__content {
+    padding: 32px;
+  }
+
+  .premium .pm-bfeed__heading {
+    font-size: 30px;
+    line-height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium .pm-bfeed__banner:hover .pm-bfeed__link::after {
+    animation: none;
+  }
+}

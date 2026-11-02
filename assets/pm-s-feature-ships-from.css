@@ -1,0 +1,14 @@
+/* pm-s-feature-ships-from.css (WP-C2): section wrapper for the USP icon row.
+   The row component (.pm-usp__grid / __item / __icon / __title / __text, 2x2 -> 4 columns, top hairline) lives in pm-sections.css. */
+.premium .pm-usp {
+  box-sizing: border-box;
+}
+
+.premium .pm-usp .page-width {
+  padding-left: var(--pm-gutter);
+  padding-right: var(--pm-gutter);
+}
+
+.premium .pm-usp__copy {
+  min-width: 0;
+}

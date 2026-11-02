@@ -1,0 +1,7 @@
+{%- comment -%}
+  Destination for the delivery line ("Levereras till {{ location }} inom 5 arbetsdagar"): the visitor's
+  country name. tryscent.co ships from one EU warehouse, so the FM version that named a local city per
+  country (Copenhagen, Helsinki ...) is not used here; the wording follows the store's existing delivery
+  line in the buy box (snippets/reactive-variant-selector.liquid).
+{%- endcomment -%}
+{{- localization.country.name -}}

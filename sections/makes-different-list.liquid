@@ -1,7 +1,8 @@
+{{ 'pm-s-makes-different-list.css' | asset_url | stylesheet_tag }}
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -12,44 +13,42 @@
   }
 {%- endstyle -%}
 
-<div
-  id="{{ section.id }}"
-  class="section-{{ section.id }}-padding"
-  style="background-color: {{ section.settings.background_color }}">
-  <div class="page-width">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-3xl mt-0 md:text-3xl font-black tracking-tight leading-snug text-center">{{ section.settings.makes_diferent_title }}</h2>
-        <img
-          class="lg:hidden w-full h-auto rounded-xl"
-          src="{{ section.settings.makes-different-image | image_url: width: 400 }}"
-          alt="makes different"
-          width="450"
-          height="450">
-        <ul class="list-none p-0 max-w-[450px] mx-auto">
-          {% for block in section.blocks %}
-            <li class="mb-6 flex items-center gap-4">
-              <img
-                src="{{ 'check.svg' | asset_url }}"
-                alt="check"
-                width="45"
-                height="45">
-              <div>
-                <h3 class="m-0 text-lg font-semibold tracking-normal">{{ block.settings.title }}</h3>
-                <p class="m-0 text-gray-500 tracking-normal">{{ block.settings.description }}</p>
-              </div>
+{%- liquid
+  assign why_image = section.settings['makes-different-image']
+  assign why_btn_text = section.settings['makes-different-btn-text']
+  assign why_btn_link = section.settings['makes-different-btn-link']
+-%}
 
+<div id="{{ section.id }}" class="pm-why color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="pm-why__grid">
+      <div class="pm-why__text">
+        {%- if section.settings.makes_diferent_title != blank -%}
+          <h2 class="pm-why__title pm-title">{{ section.settings.makes_diferent_title | escape }}</h2>
+        {%- endif -%}
+        <ul class="pm-why__list" role="list">
+          {%- for block in section.blocks -%}
+            <li class="pm-why__row" {{ block.shopify_attributes }}>
+              {%- render 'pm-icon', icon: 'check-circle', size: 24, stroke: 1.5, class: 'pm-why__icon' -%}
+              <div class="pm-why__body">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="pm-why__row-title">{{ block.settings.title | escape }}</h3>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                  <p class="pm-why__row-desc pm-muted">{{ block.settings.description | escape }}</p>
+                {%- endif -%}
+              </div>
             </li>
-          {% endfor %}
+          {%- endfor -%}
         </ul>
+        {%- if why_btn_text != blank and why_btn_link != blank -%}
+          <a href="{{ why_btn_link }}" class="pm-btn pm-btn--primary pm-why__cta">{{ why_btn_text | escape }}</a>
+        {%- endif -%}
       </div>
-      <div class="[display:none] lg:[display:block]">
-        <img
-          class="w-full h-auto rounded-xl"
-          src="{{ section.settings.makes-different-image | image_url: width: 700 }}"
-          alt="special offer image"
-          width="500"
-          height="500">
+      <div class="pm-why__media">
+        {%- if why_image != blank -%}
+          {{ why_image | image_url: width: 1200 | image_tag: widths: '375, 600, 750, 900, 1200', sizes: '(min-width: 990px) 600px, calc(100vw - 2 * 20px)', class: 'pm-why__img', loading: 'lazy', alt: section.settings.makes_diferent_title }}
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -58,19 +57,26 @@
 {% schema %}
   {
     "name": "Makes Different List",
-    "class": "makes-different-list",
+    "class": "makes-different-list pm-scope",
     "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
       {
         "type": "color",
         "id": "background_color",
         "label": "Background Color",
+        "info": "Unused since the premium redesign; the colour scheme sets the background.",
         "default": "#FFFFFF"
       },
       {
         "type": "text",
         "id": "makes_diferent_title",
         "label": "Title",
-        "default": "What Makes Aaroma Different? Everything That Matters."
+        "default": "What makes Magic Perfume different?"
       },
       {
         "type": "image_picker",
@@ -85,8 +91,10 @@
       }, {
         "type": "url",
         "id": "makes-different-btn-link",
-        "label": "Button Link"
-      }, {
+        "label": "Button Link",
+        "info": "The button only renders when both text and link are set."
+      },
+      {
         "type": "header",
         "content": "t:sections.all.padding.section_padding_heading"
       }, {
@@ -97,6 +105,7 @@
         "step": 4,
         "unit": "px",
         "label": "t:sections.all.padding.padding_top",
+        "info": "Mobile uses half of this value.",
         "default": 72
       }, {
         "type": "range",
@@ -106,6 +115,7 @@
         "step": 4,
         "unit": "px",
         "label": "t:sections.all.padding.padding_bottom",
+        "info": "Mobile uses half of this value.",
         "default": 72
       }
     ],

@@ -2726,5 +2726,27 @@
         "done_button": "Continue shopping"
       }
     }
+  },
+  "premium": {
+    "card": {
+      "shop_now": "View"
+    },
+    "general": {
+      "next": "Next",
+      "previous": "Previous",
+      "shop_now": "Shop now"
+    },
+    "pdp": {
+      "save_percent": "Save {{ percent }}%"
+    },
+    "tabs": {
+      "empty": "No products match this tab yet.",
+      "pick_collection": "Pick a collection for this tab."
+    },
+    "usp": {
+      "icon_alt": "Feature icon",
+      "ships_from": "Delivery to {{ location }}",
+      "ships_from_text": "Carefully packed and delivered to your door."
+    }
   }
 }

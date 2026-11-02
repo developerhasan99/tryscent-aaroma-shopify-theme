@@ -356,6 +356,40 @@ body {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script defer="" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+    {%- comment -%}
+      Premium layout layer from the tryscent.co redesign (pm-* files, via the magicperfume.co port). pm-base.css element
+      rules only apply inside the redesign sections (.pm-scope), so the existing aaroma sections keep their look.
+      aaroma keeps its own colours (no MAGYX recolour): ink #121212, accent / sale red #c8202f. The FUEL_06 finder reads
+      --mgx-* tokens; they are set on the finder only, so other mgx-* components keep their fallbacks.
+    {%- endcomment -%}
+    <style>
+      :root {
+        --pm-ink: #121212;
+        --pm-charcoal: #232323;
+        --pm-black: #121212;
+        --pm-sale: #c8202f;
+        --pm-radius-sm: {{ settings.buttons_radius }}px;
+        --pm-radius-md: {{ settings.card_corner_radius }}px;
+      }
+      [class^="fuel06"], [class*=" fuel06"] {
+        --mgx-black: #121212;
+        --mgx-black-rgb: 18, 18, 18;
+        --mgx-amber: #c8202f;
+        --mgx-amber-rgb: 200, 32, 47;
+      }
+    </style>
+    <script>
+      window.pmMoneyFormat = {{ shop.money_format | json }};
+      window.pmMoneyWithCurrencyFormat = {{ shop.money_with_currency_format | json }};
+    </script>
+    {{ 'pm-base.css' | asset_url | stylesheet_tag }}
+    {{ 'pm-sections.css' | asset_url | stylesheet_tag }}
+    {{ 'pm-card.css' | asset_url | stylesheet_tag }}
+    {%- if template.name == 'index' %}
+      {{ 'pm-home.css' | asset_url | stylesheet_tag }}
+    {%- endif %}
+    <script src="{{ 'pm-base.js' | asset_url }}" defer="defer"></script>
+
     <script>
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');
@@ -373,7 +407,7 @@ body {
 
   </head>
 
-  <body class="{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="premium{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
 
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}

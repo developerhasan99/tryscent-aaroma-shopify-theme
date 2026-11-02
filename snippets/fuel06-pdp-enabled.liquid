@@ -1,0 +1,28 @@
+{%- comment -%}
+  FUEL_06 product page gate. Prints "true" when the finder belongs on this
+  product page, nothing otherwise. One rule for the dialog (layout/theme.liquid)
+  and the link under the buy button (snippets/fuel06-pdp-link.liquid), so the
+  two can never disagree.
+
+  On when: the "Show on product pages" setting is on and the product's template
+  suffix is in the "Product templates" setting (comma separated, e.g.
+  "qunatity-breaks,expressive-notes"). Bundle templates are left out of that
+  list, so bundle pages load no finder CSS, JS or markup.
+
+  Usage:
+  {%- capture f06_pdp -%}{%- render 'fuel06-pdp-enabled' -%}{%- endcapture -%}
+  {%- if f06_pdp == 'true' -%} ... {%- endif -%}
+{%- endcomment -%}
+{%- liquid
+  if request.page_type == 'product' and settings.fuel06_pdp_enabled
+    assign f06_suffix = template.suffix | default: '' | strip
+    assign f06_templates = settings.fuel06_pdp_templates | split: ','
+    for f06_t in f06_templates
+      assign f06_clean = f06_t | strip
+      if f06_clean != blank and f06_clean == f06_suffix
+        echo 'true'
+        break
+      endif
+    endfor
+  endif
+-%}

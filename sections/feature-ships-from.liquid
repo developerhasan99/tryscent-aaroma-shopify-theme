@@ -1,0 +1,223 @@
+{{ 'pm-s-feature-ships-from.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign has_ships_from_block = false
+  for block in section.blocks
+    if block.type == 'ships_from'
+      assign has_ships_from_block = true
+    endif
+  endfor
+  capture ships_from_location
+    render 'ships-from-location'
+  endcapture
+  assign ships_from_location = ships_from_location | strip
+-%}
+{%- style -%}
+  .premium .pm-usp--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .premium .pm-usp--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="{{ section.id }}" class="pm-usp pm-usp--{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <ul class="pm-usp__grid" role="list">
+      {%- if section.settings.show_legacy_ships_from and has_ships_from_block == false -%}
+        <li class="pm-usp__item">
+          <span class="pm-usp__icon">{% render 'pm-icon', icon: section.settings.ships_from_icon, size: 24, stroke: 1.25 %}</span>
+          <div class="pm-usp__copy">
+            <h3 class="pm-usp__title">{{ 'premium.usp.ships_from' | t: location: ships_from_location }}</h3>
+            <p class="pm-usp__text">{{ 'premium.usp.ships_from_text' | t }}</p>
+          </div>
+        </li>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'ships_from' -%}
+            <li class="pm-usp__item" {{ block.shopify_attributes }}>
+              <span class="pm-usp__icon">{% render 'pm-icon', icon: block.settings.icon, size: 24, stroke: 1.25 %}</span>
+              <div class="pm-usp__copy">
+                <h3 class="pm-usp__title">{{ 'premium.usp.ships_from' | t: location: ships_from_location }}</h3>
+                <p class="pm-usp__text">{% if block.settings.text != blank %}{{ block.settings.text }}{% else %}{{ 'premium.usp.ships_from_text' | t }}{% endif %}</p>
+              </div>
+            </li>
+          {%- when 'perks' -%}
+            <li class="pm-usp__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != blank and block.settings.icon != 'none' -%}
+                <span class="pm-usp__icon">{% render 'pm-icon', icon: block.settings.icon, size: 24, stroke: 1.25 %}</span>
+              {%- elsif block.settings.perk_image != blank -%}
+                <span class="pm-usp__icon">
+                  <img
+                    src="{{ block.settings.perk_image | image_url: width: 96 }}"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    alt="{% if block.settings.perk_image.alt != blank %}{{ block.settings.perk_image.alt | escape }}{% else %}{{ 'premium.usp.icon_alt' | t }}{% endif %}">
+                </span>
+              {%- endif -%}
+              <div class="pm-usp__copy">
+                <h3 class="pm-usp__title">{{ block.settings.perk_title }}</h3>
+                <p class="pm-usp__text">{{ block.settings.perk_content }}</p>
+              </div>
+            </li>
+        {%- endcase -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Features Ships from",
+  "class": "pm-scope",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "Color scheme",
+        "default": "scheme-1"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color (legacy, no longer used)",
+        "default": "#fcfbf9"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_legacy_ships_from",
+        "label": "Show built-in Ships from tile",
+        "info": "Shown first unless a Ships from block is added below.",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "ships_from_icon",
+        "label": "Built-in tile icon",
+        "options": [
+          { "value": "truck", "label": "Truck" },
+          { "value": "shield", "label": "Shield" },
+          { "value": "clock", "label": "Clock" },
+          { "value": "leaf", "label": "Leaf" },
+          { "value": "sparkle", "label": "Sparkle" },
+          { "value": "return", "label": "Return" },
+          { "value": "drop", "label": "Drop" },
+          { "value": "globe", "label": "Globe" }
+        ],
+        "default": "truck"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ],
+    "blocks": [
+      {
+        "type": "ships_from",
+        "name": "Ships from",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "select",
+            "id": "icon",
+            "label": "Icon",
+            "options": [
+              { "value": "truck", "label": "Truck" },
+              { "value": "shield", "label": "Shield" },
+              { "value": "clock", "label": "Clock" },
+              { "value": "leaf", "label": "Leaf" },
+              { "value": "sparkle", "label": "Sparkle" },
+              { "value": "return", "label": "Return" },
+              { "value": "drop", "label": "Drop" },
+              { "value": "globe", "label": "Globe" }
+            ],
+            "default": "truck"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+            "info": "Leave blank to use the default delivery line. The title always reads Ships from + the visitor's warehouse city."
+          }
+        ]
+      },
+      {
+        "type": "perks",
+        "name": "Perks",
+        "settings": [
+          {
+            "type": "select",
+            "id": "icon",
+            "label": "Icon",
+            "info": "Pick an outline icon; with None the Perk Image below is shown in grayscale at 24px.",
+            "options": [
+              { "value": "none", "label": "None (use image)" },
+              { "value": "truck", "label": "Truck" },
+              { "value": "shield", "label": "Shield" },
+              { "value": "clock", "label": "Clock" },
+              { "value": "leaf", "label": "Leaf" },
+              { "value": "sparkle", "label": "Sparkle" },
+              { "value": "return", "label": "Return" },
+              { "value": "drop", "label": "Drop" },
+              { "value": "globe", "label": "Globe" }
+            ],
+            "default": "none"
+          },
+          {
+            "type": "image_picker",
+            "id": "perk_image",
+            "label": "Perk Image"
+          }, {
+            "type": "text",
+            "id": "perk_title",
+            "label": "Perk Title",
+            "default": "Perk Title"
+          }, {
+            "type": "text",
+            "id": "perk_content",
+            "label": "Perk Content",
+            "default": "Perk Content"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Features Ships from",
+        "settings": {
+          "show_legacy_ships_from": false
+        },
+        "blocks": [
+          { "type": "ships_from", "settings": { "icon": "truck" } },
+          { "type": "perks", "settings": { "icon": "shield", "perk_title": "60-day money-back guarantee", "perk_content": "Not convinced? Send your order back within 60 days and get your money back." } },
+          { "type": "perks", "settings": { "icon": "clock", "perk_title": "Long-lasting scent", "perk_content": "Lasts over 12 hours on the skin." } },
+          { "type": "perks", "settings": { "icon": "sparkle", "perk_title": "French fragrance quality", "perk_content": "Made with the same care as leading luxury brands." } }
+        ]
+      }
+    ]
+  }
+{% endschema %}

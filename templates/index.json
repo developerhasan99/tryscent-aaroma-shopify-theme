@@ -9,24 +9,6 @@
  */
 {
   "sections": {
-    "magic_hero_GLbzbL": {
-      "type": "magic-hero",
-      "disabled": true,
-      "name": "Magic Hero",
-      "settings": {
-        "background_color": "#fcfbf9",
-        "background_image": "shopify://shop_images/newheader.webp",
-        "mobile_background_image": "shopify://shop_images/newheader_mobile.webp",
-        "title": "Smell more expensive. Pay less.",
-        "subtitle": "The same fragrance pyramid as the perfumes you admire — without the inflated price tag of a designer brand.",
-        "button_text": "Discover your scent",
-        "button_link": "shopify://collections/bestsellers",
-        "second_button_text": "",
-        "second_button_link": "shopify://collections/women",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "homepage_hero_XnJ8mD": {
       "type": "homepage-hero",
       "name": "Homepage Hero",
@@ -50,403 +32,315 @@
         "mobile_buttons_offset": 24
       }
     },
-    "home_hero_banner_qmaB3G": {
-      "type": "home-hero-banner",
-      "disabled": true,
-      "name": "Home Hero Banner",
-      "settings": {
-        "image": "shopify://shop_images/herobanner.webp",
-        "mobile_image": "shopify://shop_images/heromobile.webp",
-        "link": "shopify://products/4-x-100ml-perfume-bottles"
-      }
-    },
-    "marquee_labels_RLdqpN": {
+    "marquee_labels_pm": {
       "type": "marquee-labels",
+      "settings": {
+        "style": "premium",
+        "color_scheme": "scheme-3",
+        "speed": 48,
+        "separator": "•"
+      },
       "blocks": {
-        "label_idFnra": {
+        "label_1": {
           "type": "label",
-          "disabled": true,
           "settings": {
-            "label": "FREE SHIPPING ON ORDERS ABOVE $50"
+            "label": "20% fragrance oils",
+            "link": ""
           }
         },
-        "label_MXGigr": {
+        "label_2": {
           "type": "label",
           "settings": {
-            "label": "SAVE UPTO 50% OFF WITH OUR BUNDLES & GIFT SETS"
+            "label": "Lasts up to 12 hours",
+            "link": ""
           }
         },
-        "label_iFULPM": {
+        "label_3": {
           "type": "label",
           "settings": {
-            "label": "100% Authentic TryScent formulation"
+            "label": "Made in Europe",
+            "link": ""
           }
         },
-        "label_8KQqAa": {
+        "label_4": {
           "type": "label",
           "settings": {
-            "label": "EXPERT-CURATED COLLECTIONS"
+            "label": "Free from parabens and phthalates",
+            "link": ""
           }
         },
-        "label_LMktzF": {
+        "label_5": {
           "type": "label",
           "settings": {
-            "label": "RISK-FREE 60 DAYS MONEY BACK GUARANTEE"
+            "label": "Vegan and cruelty-free",
+            "link": ""
           }
         },
-        "label_VYpx4b": {
+        "label_6": {
           "type": "label",
           "settings": {
-            "label": "Free Shipping"
+            "label": "60-day guarantee",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "label_idFnra",
-        "label_MXGigr",
-        "label_iFULPM",
-        "label_8KQqAa",
-        "label_LMktzF",
-        "label_VYpx4b"
-      ],
-      "disabled": true,
-      "name": "Marquee Labels",
+        "label_1",
+        "label_2",
+        "label_3",
+        "label_4",
+        "label_5",
+        "label_6"
+      ]
+    },
+    "fuel06_finder": {
+      "type": "fuel06-finder",
       "settings": {}
     },
-    "trust_icons_aW8kQ2": {
-      "type": "trust-icons",
-      "blocks": {
-        "item_mEuR1a": {
-          "type": "item",
-          "settings": {
-            "icon": "box",
-            "title": "Made in Europe",
-            "text": "Produced to strict European perfumery standards."
-          }
-        },
-        "item_dRoP2b": {
-          "type": "item",
-          "settings": {
-            "icon": "drop",
-            "title": "20% fragrance oils",
-            "text": "A scent made to stay with you all day."
-          }
-        },
-        "item_gUar3c": {
-          "type": "item",
-          "settings": {
-            "icon": "shield",
-            "title": "60-day guarantee",
-            "text": "Try the perfume at home. Not for you? You have 60 days to return it."
-          }
-        },
-        "item_lAst4d": {
-          "type": "item",
-          "settings": {
-            "icon": "clock",
-            "title": "Long-lasting scent",
-            "text": "Lasts up to 12 hours."
-          }
-        }
-      },
-      "block_order": [
-        "item_mEuR1a",
-        "item_dRoP2b",
-        "item_gUar3c",
-        "item_lAst4d"
-      ],
-      "name": "Trust icons",
+    "tabs_best": {
+      "type": "home-product-tabs",
       "settings": {
-        "icon_color": "#c8202f",
-        "background_color": "#ffffff",
-        "border_bottom": true,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "feature_highlights_wfUacV": {
-      "type": "feature-highlights",
-      "blocks": {
-        "perks_CBpKqp": {
-          "type": "perks",
-          "settings": {
-            "perk_image": "shopify://shop_images/shipping.png",
-            "perk_title": "Free Shipping",
-            "perk_content": "On orders €50+. Shipped within 48 hours, with tracking."
-          }
-        },
-        "perks_Ynh4gw": {
-          "type": "perks",
-          "settings": {
-            "perk_image": "shopify://shop_images/icons_quality.png",
-            "perk_title": "Made in Europe",
-            "perk_content": "Produced in certified European facilities."
-          }
-        },
-        "perks_Cj3EAR": {
-          "type": "perks",
-          "settings": {
-            "perk_image": "shopify://shop_images/icons_guarantee.png",
-            "perk_title": "60-Day Money-Back Guarantee",
-            "perk_content": "Not happy? Get your money back. No hassle."
-          }
-        },
-        "perks_iX4iTY": {
-          "type": "perks",
-          "settings": {
-            "perk_image": "shopify://shop_images/icons_time.png",
-            "perk_title": "12+ Hours of Wear",
-            "perk_content": "Enjoy your scent all day long."
-          }
-        }
+        "color_scheme": "scheme-1",
+        "heading": "Bestsellers",
+        "subheading": "",
+        "products_per_tab": 12,
+        "button_text": "View all",
+        "button_link": "",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "cards_desktop": "6",
+        "cards_mobile": "2.2"
       },
-      "block_order": [
-        "perks_CBpKqp",
-        "perks_Ynh4gw",
-        "perks_Cj3EAR",
-        "perks_iX4iTY"
-      ],
-      "disabled": true,
-      "name": "Feature Highlights",
-      "settings": {
-        "background_color": "#ffffff",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
-    "featured_on_H7jhJ4": {
-      "type": "featured-on",
       "blocks": {
-        "featured_on_jax6rH": {
-          "type": "featured_on",
-          "settings": {}
-        },
-        "featured_on_kcEXCA": {
-          "type": "featured_on",
-          "settings": {}
-        },
-        "featured_on_ViMby9": {
-          "type": "featured_on",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "featured_on_jax6rH",
-        "featured_on_kcEXCA",
-        "featured_on_ViMby9"
-      ],
-      "disabled": true,
-      "name": "Featured On",
-      "settings": {
-        "background_color": "#ffffff",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "home_tabs_Rt5NxP": {
-      "type": "home-tabs",
-      "blocks": {
-        "tab_bEst5e": {
+        "tab_1": {
           "type": "tab",
           "settings": {
-            "title": "🔥 Bestsellers",
+            "title": "Bestsellers",
             "collection": "top-sellers",
-            "button_text": "View all"
+            "filter": ""
           }
         },
-        "tab_nEw6f": {
+        "tab_2": {
           "type": "tab",
           "settings": {
-            "title": "Newest scents",
+            "title": "New scents",
             "collection": "heetste-zomergeuren-2026",
-            "button_text": "View all"
+            "filter": ""
           }
         }
       },
       "block_order": [
-        "tab_bEst5e",
-        "tab_nEw6f"
-      ],
-      "name": "Product tabs",
-      "settings": {
-        "heading": "A scent for every side of your personality",
-        "subheading": "Discover perfumes that move with your style and bring out your character.",
-        "background_color": "#ffffff",
-        "products_per_tab": 8,
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
+        "tab_1",
+        "tab_2"
+      ]
     },
-    "popular_products_pNDeh4": {
-      "type": "popular-products",
-      "disabled": true,
-      "name": "Popular Products",
+    "ugc_home_row": {
+      "type": "ugc-home-row",
       "settings": {
-        "background_color": "#fcfbf9",
-        "title": "Newest Drops",
-        "description": "<p>See what's fresh in our collection</p>",
-        "collection": "heetste-zomergeuren-2026",
-        "products_to_show": 8,
-        "button_text": "Shop All",
-        "button_link": "shopify://collections/heetste-zomergeuren-2026",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "popular_products_jYtPeh": {
-      "type": "popular-products",
-      "disabled": true,
-      "name": "Popular Products",
-      "settings": {
-        "background_color": "#fcfbf9",
-        "title": "Most Popular",
-        "description": "<p>The scents our customers keep coming back for.</p>",
-        "collection": "top-sellers",
-        "products_to_show": 8,
-        "button_text": "Shop All",
-        "button_link": "shopify://collections/all",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "popular_products_nC8A3n": {
-      "type": "popular-products",
-      "disabled": true,
-      "name": "Popular Products",
-      "settings": {
-        "background_color": "#fcfbf9",
-        "title": "Men’s Fragrances",
-        "description": "",
-        "collection": "men",
-        "products_to_show": 8,
-        "button_text": "View All",
-        "button_link": "shopify://collections/men",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "popular_products_nimyqA": {
-      "type": "popular-products",
-      "disabled": true,
-      "name": "Popular Products",
-      "settings": {
-        "background_color": "#fcfbf9",
-        "title": "Women’s Fragrances",
-        "description": "",
-        "collection": "women",
-        "products_to_show": 8,
-        "button_text": "View All",
-        "button_link": "shopify://collections/women",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "home_category_wNQCfP": {
-      "type": "home-category",
+        "color_scheme": "scheme-1",
+        "rating_text": "",
+        "heading": "Loved by thousands",
+        "subheading": "",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
       "blocks": {
-        "category_yXjfNN": {
-          "type": "category",
+        "video_1": {
+          "type": "video",
           "settings": {
-            "image": "shopify://shop_images/MAGYX_Site_Bundle_Save.webp",
-            "text": "Bundle & Save",
-            "link": "shopify://collections/bundle-save"
+            "video": "shopify://files/videos/aaroma_co_JoeM_SmelLikeArma_ddb6a55c.mov",
+            "product": "nacht-van-passie-3x-50ml-parfumflesjes"
           }
         },
-        "category_JatE79": {
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/aaroma_co_DalmaJ_SmelLikeAnge_a186e21c.mov",
+            "product": "3-x-50ml-geurgarderobe-44"
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/aaroma_co_EsmeeB_SmelLikeArma_dda7fc6e.mp4",
+            "product": "3x-100ml-perfume-bottles"
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/aaroma_co_KristelW_SmelLikePist_ad4377e6.mov",
+            "product": "6-x-50ml-geurgarderobe-64"
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4"
+      ]
+    },
+    "home_category_pm": {
+      "type": "home-category",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "background_color": "#ffffff",
+        "title": "Choose your category",
+        "padding_top": 72,
+        "padding_bottom": 72
+      },
+      "blocks": {
+        "category_1": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/MAGYX_Site_For_Him.webp",
-            "text": "Men’s Fragrances",
+            "image": "shopify://shop_images/Magyx_Website_01.jpg",
+            "image_position": "center",
+            "text": "For him",
+            "descriptor": "Scents for him",
             "link": "shopify://collections/men"
           }
         },
-        "category_kcgbew": {
+        "category_2": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/MAGYX_Site_For_Her.webp",
-            "text": "Women’s Fragrances",
+            "image": "shopify://shop_images/Magyx_Website_02.webp",
+            "image_position": "center",
+            "text": "For her",
+            "descriptor": "Scents for her",
             "link": "shopify://collections/women"
           }
         },
-        "category_PLwfRa": {
+        "category_3": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/MAGYX_Site_Unisex.webp",
-            "text": "Unisex Fragrances",
+            "image": "shopify://shop_images/Magyx_Website_03.webp",
+            "image_position": "center",
+            "text": "Unisex",
+            "descriptor": "Scents for everyone",
             "link": "shopify://collections/unisex"
           }
         }
       },
       "block_order": [
-        "category_yXjfNN",
-        "category_JatE79",
-        "category_kcgbew",
-        "category_PLwfRa"
-      ],
-      "disabled": true,
-      "name": "Home Categories",
-      "settings": {
-        "background_color": "#fcfbf9",
-        "padding_top": 72,
-        "padding_bottom": 72
-      }
+        "category_1",
+        "category_2",
+        "category_3"
+      ]
     },
-    "review_grid_H3xfHP": {
-      "type": "review-grid",
+    "tabs_family": {
+      "type": "home-product-tabs",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Choose your scent family",
+        "subheading": "Pick a scent family and discover the perfumes that suit you.",
+        "products_per_tab": 12,
+        "button_text": "View all",
+        "button_link": "",
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "cards_desktop": "6",
+        "cards_mobile": "2.2"
+      },
       "blocks": {
-        "review_MKcdVw": {
-          "type": "review",
+        "family_1": {
+          "type": "tab",
           "settings": {
-            "heading": "Highly recommended.",
-            "content": "<p>“I wore No. 079 out to dinner, and three people asked what perfume I was wearing. One of them thought it was Chanel.”</p>",
-            "author": "Sanne V., Rotterdam",
-            "date": "2 days ago",
-            "rating": 5,
-            "show_verified_badge": true,
-            "product": ""
+            "title": "Amber",
+            "collection": "all",
+            "filter": "Amber"
           }
         },
-        "review_kCUEm4": {
-          "type": "review",
+        "family_2": {
+          "type": "tab",
           "settings": {
-            "heading": "Arrived in perfect condition.",
-            "content": "<p>“After a twelve-hour workday, I can still smell it. Even my €120 perfume doesn’t last that long. This one lasts. That one doesn’t.”</p>",
-            "author": "Daan M., Utrecht",
-            "date": "2 days ago",
-            "rating": 5,
-            "show_verified_badge": true,
-            "product": ""
+            "title": "Woody",
+            "collection": "all",
+            "filter": "Woody"
           }
         },
-        "review_EbFNac": {
-          "type": "review",
+        "family_3": {
+          "type": "tab",
           "settings": {
-            "heading": "Great quality, great price.",
-            "content": "<p><br/>“I was really impressed with the quality. The scent lasts a long time and is comparable to much more expensive brands.”</p>",
-            "author": "Santosh K.",
-            "date": "2 days ago",
-            "rating": 5,
-            "show_verified_badge": true,
-            "product": ""
+            "title": "Floral",
+            "collection": "all",
+            "filter": "Floral"
+          }
+        },
+        "family_4": {
+          "type": "tab",
+          "settings": {
+            "title": "Spicy",
+            "collection": "all",
+            "filter": "Spicy"
+          }
+        },
+        "family_5": {
+          "type": "tab",
+          "settings": {
+            "title": "Citrus",
+            "collection": "all",
+            "filter": "Citrus"
+          }
+        },
+        "family_6": {
+          "type": "tab",
+          "settings": {
+            "title": "Fruity",
+            "collection": "all",
+            "filter": "Fruity"
           }
         }
       },
       "block_order": [
-        "review_MKcdVw",
-        "review_kCUEm4",
-        "review_EbFNac"
-      ],
-      "disabled": true,
-      "name": "Review Grid",
+        "family_1",
+        "family_2",
+        "family_3",
+        "family_4",
+        "family_5",
+        "family_6"
+      ]
+    },
+    "bundle_feed": {
+      "type": "home-bundle-feed",
       "settings": {
-        "background_color": "#ffffff",
-        "heading": "What Our Customers Say",
-        "review_text": "Verified buyers. Real experiences.",
-        "button_text": "Read all reviews",
-        "button_link": "shopify://collections/all",
-        "padding_top": 72,
-        "padding_bottom": 36
-      }
+        "color_scheme": "scheme-1",
+        "banner_image": "shopify://shop_images/Magyx_Website_04.webp",
+        "banner_heading": "Discover our sets",
+        "banner_link_text": "Shop now",
+        "banner_link": "shopify://collections/bundle-save",
+        "overlay_opacity": 55,
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "bundle_1": {
+          "type": "bundle",
+          "settings": {
+            "product": "3-x-50ml-geurgarderobe-44",
+            "image": "",
+            "badge": "",
+            "title": "",
+            "subtitle": "Choose 3 scents",
+            "link": ""
+          }
+        },
+        "bundle_2": {
+          "type": "bundle",
+          "settings": {
+            "product": "6-x-50ml-geurgarderobe-64",
+            "image": "",
+            "badge": "",
+            "title": "",
+            "subtitle": "Choose 6 scents",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "bundle_1",
+        "bundle_2"
+      ]
     },
     "image_and_text": {
       "type": "image-and-text",
@@ -521,45 +415,62 @@
         "mobile_padding_bottom": 40
       }
     },
-    "special_offer_bogo_NqVrAK": {
-      "type": "special-offer-bogo",
+    "makes_different_pm": {
+      "type": "makes-different-list",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "background_color": "#ffffff",
+        "makes_diferent_title": "What makes MagyX different?",
+        "makes-different-image": "shopify://shop_images/Magyx_Website_05.webp",
+        "makes-different-btn-text": "Shop our sets",
+        "makes-different-btn-link": "shopify://collections/bundle-save",
+        "padding_top": 72,
+        "padding_bottom": 72
+      },
       "blocks": {
-        "perk_HrfwXR": {
-          "type": "perk",
+        "item_1": {
+          "type": "list_item",
           "settings": {
-            "text": "Lasts 12+ hours"
+            "title": "Inspired by luxury icons",
+            "description": "without the inflated price tags."
           }
         },
-        "perk_d4dqHJ": {
-          "type": "perk",
+        "item_2": {
+          "type": "list_item",
           "settings": {
-            "text": "Loved by 10,000+"
+            "title": "Free from parabens and phthalates",
+            "description": "vegan and cruelty-free."
           }
         },
-        "perk_9CajQF": {
-          "type": "perk",
+        "item_3": {
+          "type": "list_item",
           "settings": {
-            "text": "60-day money-back guarantee"
+            "title": "Lasts up to 12 hours",
+            "description": "even on your busiest days."
+          }
+        },
+        "item_4": {
+          "type": "list_item",
+          "settings": {
+            "title": "Try a smaller size first",
+            "description": "get to know the scent on your skin before you go for a bigger bottle."
+          }
+        },
+        "item_5": {
+          "type": "list_item",
+          "settings": {
+            "title": "60-day guarantee",
+            "description": "in case it isn't love at first spray."
           }
         }
       },
       "block_order": [
-        "perk_HrfwXR",
-        "perk_d4dqHJ",
-        "perk_9CajQF"
-      ],
-      "disabled": true,
-      "name": "Special Offer",
-      "settings": {
-        "offer_text": "Special Offer",
-        "offer_title": "Your Next Signature Scent, Trial-Sized.",
-        "offer_description": "Not ready to commit? Our travel-size perfumes let you explore luxe fragrances one spritz at a time.Perfect for pockets, purses, and perfume commitment issues.",
-        "offer_sub_description": "",
-        "offer_button_text": "BUY 4 for $44.00 Only",
-        "offer_button_link": "https://tryscent.co/products/4-x-100ml-perfume-bottles",
-        "padding_top": 72,
-        "padding_bottom": 72
-      }
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5"
+      ]
     },
     "massive_review_section": {
       "type": "massive-review",
@@ -1030,105 +941,172 @@
         "padding_bottom": 52
       }
     },
-    "our_bestsellers_niPBnL": {
-      "type": "our-bestsellers",
-      "disabled": true,
-      "name": "Our Bestsellers",
-      "settings": {
-        "background_color": "#3f2120",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "175501299681a2aa62": {
       "type": "apps",
       "settings": {
         "include_margins": true
       }
     },
-    "17551175978bd893d1": {
-      "type": "apps",
-      "disabled": true,
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "marquee_labels_pxhCDL": {
-      "type": "marquee-labels",
-      "blocks": {
-        "label_q4pXPr": {
-          "type": "label",
-          "disabled": true,
-          "settings": {
-            "label": "FREE SHIPPING ON ORDERS ABOVE $50"
-          }
-        },
-        "label_3jXRHH": {
-          "type": "label",
-          "settings": {
-            "label": "SAVE UPTO 50% OFF WITH OUR BUNDLES & GIFT SETS"
-          }
-        },
-        "label_eBrDcC": {
-          "type": "label",
-          "settings": {
-            "label": "100% AUTHENTIC"
-          }
-        },
-        "label_pNxYCF": {
-          "type": "label",
-          "settings": {
-            "label": "EXPERT-CURATED COLLECTIONS"
-          }
-        },
-        "label_jRHLQB": {
-          "type": "label",
-          "settings": {
-            "label": "RISK-FREE 60 DAYS MONEY BACK GUARANTEE"
-          }
-        }
-      },
-      "block_order": [
-        "label_q4pXPr",
-        "label_3jXRHH",
-        "label_eBrDcC",
-        "label_pNxYCF",
-        "label_jRHLQB"
-      ],
-      "disabled": true,
-      "name": "Marquee Labels",
-      "settings": {}
-    },
     "175501299598bc050d": {
       "type": "apps",
       "settings": {
         "include_margins": true
       }
+    },
+    "feature_ships_pm": {
+      "type": "feature-ships-from",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "background_color": "#ffffff",
+        "show_legacy_ships_from": false,
+        "ships_from_icon": "truck",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "perk_1": {
+          "type": "ships_from",
+          "settings": {
+            "icon": "truck",
+            "text": ""
+          }
+        },
+        "perk_2": {
+          "type": "perks",
+          "settings": {
+            "icon": "shield",
+            "perk_title": "60-day guarantee",
+            "perk_content": "Try the perfume at home. Not for you? You have 60 days to return it."
+          }
+        },
+        "perk_3": {
+          "type": "perks",
+          "settings": {
+            "icon": "clock",
+            "perk_title": "Lasts up to 12 hours",
+            "perk_content": "Thanks to 20% fragrance oils."
+          }
+        },
+        "perk_4": {
+          "type": "perks",
+          "settings": {
+            "icon": "sparkle",
+            "perk_title": "Made in Europe",
+            "perk_content": "Free from parabens and phthalates, with IFRA-certified fragrance oils."
+          }
+        }
+      },
+      "block_order": [
+        "perk_1",
+        "perk_2",
+        "perk_3",
+        "perk_4"
+      ]
+    },
+    "magic_hero_GLbzbL": {
+      "type": "magic-hero",
+      "disabled": true,
+      "name": "Magic Hero",
+      "settings": {
+        "background_color": "#fcfbf9",
+        "background_image": "shopify://shop_images/newheader.webp",
+        "mobile_background_image": "shopify://shop_images/newheader_mobile.webp",
+        "title": "Smell more expensive. Pay less.",
+        "subtitle": "The same fragrance pyramid as the perfumes you admire — without the inflated price tag of a designer brand.",
+        "button_text": "Discover your scent",
+        "button_link": "shopify://collections/bestsellers",
+        "second_button_text": "",
+        "second_button_link": "shopify://collections/women",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "home_hero_banner_qmaB3G": {
+      "type": "home-hero-banner",
+      "disabled": true,
+      "name": "Home Hero Banner",
+      "settings": {
+        "image": "shopify://shop_images/herobanner.webp",
+        "mobile_image": "shopify://shop_images/heromobile.webp",
+        "link": "shopify://products/4-x-100ml-perfume-bottles"
+      }
+    },
+    "review_grid_H3xfHP": {
+      "type": "review-grid",
+      "blocks": {
+        "review_MKcdVw": {
+          "type": "review",
+          "settings": {
+            "heading": "Highly recommended.",
+            "content": "<p>“I wore No. 079 out to dinner, and three people asked what perfume I was wearing. One of them thought it was Chanel.”</p>",
+            "author": "Sanne V., Rotterdam",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        },
+        "review_kCUEm4": {
+          "type": "review",
+          "settings": {
+            "heading": "Arrived in perfect condition.",
+            "content": "<p>“After a twelve-hour workday, I can still smell it. Even my €120 perfume doesn’t last that long. This one lasts. That one doesn’t.”</p>",
+            "author": "Daan M., Utrecht",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        },
+        "review_EbFNac": {
+          "type": "review",
+          "settings": {
+            "heading": "Great quality, great price.",
+            "content": "<p><br/>“I was really impressed with the quality. The scent lasts a long time and is comparable to much more expensive brands.”</p>",
+            "author": "Santosh K.",
+            "date": "2 days ago",
+            "rating": 5,
+            "show_verified_badge": true,
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_MKcdVw",
+        "review_kCUEm4",
+        "review_EbFNac"
+      ],
+      "disabled": true,
+      "name": "Review Grid",
+      "settings": {
+        "background_color": "#ffffff",
+        "heading": "What Our Customers Say",
+        "review_text": "Verified buyers. Real experiences.",
+        "button_text": "Read all reviews",
+        "button_link": "shopify://collections/all",
+        "padding_top": 72,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "magic_hero_GLbzbL",
     "homepage_hero_XnJ8mD",
-    "home_hero_banner_qmaB3G",
-    "marquee_labels_RLdqpN",
-    "trust_icons_aW8kQ2",
-    "feature_highlights_wfUacV",
-    "featured_on_H7jhJ4",
-    "home_tabs_Rt5NxP",
-    "popular_products_pNDeh4",
-    "popular_products_jYtPeh",
-    "popular_products_nC8A3n",
-    "popular_products_nimyqA",
-    "home_category_wNQCfP",
-    "review_grid_H3xfHP",
+    "marquee_labels_pm",
+    "fuel06_finder",
+    "tabs_best",
+    "ugc_home_row",
+    "home_category_pm",
+    "tabs_family",
+    "bundle_feed",
     "image_and_text",
-    "special_offer_bogo_NqVrAK",
+    "makes_different_pm",
     "massive_review_section",
     "custom_liquid_6qnTBf",
-    "our_bestsellers_niPBnL",
     "175501299681a2aa62",
-    "17551175978bd893d1",
-    "marquee_labels_pxhCDL",
-    "175501299598bc050d"
+    "175501299598bc050d",
+    "feature_ships_pm",
+    "magic_hero_GLbzbL",
+    "home_hero_banner_qmaB3G",
+    "review_grid_H3xfHP"
   ]
 }

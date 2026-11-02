@@ -1,0 +1,327 @@
+{%- comment -%}
+  Bundle feed (premium home): one wide banner tile ("Upptäck våra paket") plus editable bundle cards.
+  Cards are blocks; each block points at a bundle product (3x / 6x / 10x 50 ml ...).
+  Price, compare-at price and the default badge ("Spara N%") are read from the product, never typed.
+  Image / title / link / badge settings override the product values when filled.
+  Cards reuse the shared pm-card contract (assets/pm-card.css). No .ab-current-price here (the price-test app
+  is not wired to these cards). Layout and sizes: assets/pm-s-home-bundle-feed.css.
+{%- endcomment -%}
+{{ 'pm-s-home-bundle-feed.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign pm_overlay = section.settings.overlay_opacity | divided_by: 100.0
+  assign pm_banner_href = section.settings.banner_link | default: '/collections/all'
+  assign pm_banner_image = section.settings.banner_image
+  assign pm_banner_mobile = section.settings.banner_mobile_image
+  assign pm_heading = section.settings.banner_heading
+  assign pm_link_text = section.settings.banner_link_text
+
+  # Banner sizes from 990: half the page with 1-2 cards; 3-4 cards (two rows) or no cards make the tile
+  # taller or full width, so cover needs about the full page width.
+  assign pm_banner_sizes = '(min-width: 1500px) 690px, (min-width: 990px) 50vw, 100vw'
+  if section.blocks.size == 0 or section.blocks.size > 2
+    assign pm_banner_sizes = '(min-width: 1500px) 1380px, 100vw'
+  endif
+-%}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    --pm-bfeed-overlay: {{ pm_overlay }};
+    padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="{{ section.id }}" class="pm-bfeed color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="pm-bfeed__layout{% if section.blocks.size == 0 %} pm-bfeed__layout--solo{% endif %}">
+      <a
+        href="{{ pm_banner_href }}"
+        class="pm-bfeed__banner"
+        {% if pm_heading == blank and pm_link_text == blank %}
+          aria-label="{{ 'premium.card.shop_now' | t | escape }}"
+        {% endif %}
+      >
+        {%- if pm_banner_image != blank -%}
+          <picture class="pm-bfeed__picture">
+            {%- if pm_banner_mobile != blank -%}
+              <source
+                media="(max-width: 749px)"
+                srcset="{{ pm_banner_mobile | image_url: width: 375 }} 375w, {{ pm_banner_mobile | image_url: width: 750 }} 750w, {{ pm_banner_mobile | image_url: width: 1100 }} 1100w"
+                sizes="100vw"
+                width="{{ pm_banner_mobile.width }}"
+                height="{{ pm_banner_mobile.height }}"
+              >
+            {%- endif -%}
+            <img
+              class="pm-bfeed__img"
+              src="{{ pm_banner_image | image_url: width: 1100 }}"
+              srcset="{{ pm_banner_image | image_url: width: 375 }} 375w, {{ pm_banner_image | image_url: width: 750 }} 750w, {{ pm_banner_image | image_url: width: 1100 }} 1100w, {{ pm_banner_image | image_url: width: 1500 }} 1500w, {{ pm_banner_image | image_url: width: 2000 }} 2000w"
+              sizes="{{ pm_banner_sizes }}"
+              alt=""
+              width="{{ pm_banner_image.width }}"
+              height="{{ pm_banner_image.height }}"
+              loading="lazy"
+            >
+          </picture>
+        {%- endif -%}
+        <span class="pm-bfeed__overlay" aria-hidden="true"></span>
+        <div class="pm-bfeed__content">
+          {%- if pm_heading != blank -%}
+            <h2 class="pm-bfeed__heading">{{ pm_heading | escape }}</h2>
+          {%- endif -%}
+          {%- if pm_link_text != blank -%}
+            <span class="pm-btn pm-btn--link pm-bfeed__link">{{ pm_link_text | escape }}</span>
+          {%- endif -%}
+        </div>
+      </a>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="pm-bfeed__cards" role="list">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign b_product = block.settings.product
+              assign b_image = block.settings.image
+              assign b_cover = true
+              if b_image == blank and b_product != blank
+                assign b_image = b_product.featured_image
+                assign b_cover = false
+              endif
+              assign b_title = block.settings.title
+              if b_title == blank and b_product != blank
+                assign b_title = b_product.title
+              endif
+              assign b_badge = block.settings.badge | strip
+              assign b_price = ''
+              assign b_compare = ''
+              if b_product != blank
+                assign b_variant = b_product.selected_or_first_available_variant
+                assign b_price_money = b_variant.price | money
+                if b_product.price_varies
+                  assign b_price = 'products.product.price.from_price_html' | t: price: b_price_money
+                else
+                  assign b_price = b_price_money
+                endif
+                if b_variant.compare_at_price > b_variant.price
+                  assign b_compare = b_variant.compare_at_price | money
+                  if b_badge == blank
+                    assign b_saved = b_variant.compare_at_price | minus: b_variant.price | times: 100 | divided_by: b_variant.compare_at_price
+                    if b_saved > 0
+                      assign b_badge = 'premium.pdp.save_percent' | t: percent: b_saved
+                    endif
+                  endif
+                endif
+              endif
+              assign b_link = block.settings.link
+              if b_link == blank
+                if b_product != blank
+                  assign b_link = b_product.url
+                else
+                  assign b_link = pm_banner_href
+                endif
+              endif
+            -%}
+            <li class="pm-bfeed__item" {{ block.shopify_attributes }}>
+              <a href="{{ b_link }}" class="pm-card pm-card--bundle">
+                <div class="pm-card__media{% if b_cover %} pm-card__media--cover{% endif %}">
+                  {%- if b_image != blank -%}
+                    <img
+                      src="{{ b_image | image_url: width: 540 }}"
+                      srcset="{{ b_image | image_url: width: 360 }} 360w, {{ b_image | image_url: width: 540 }} 540w, {{ b_image | image_url: width: 720 }} 720w"
+                      sizes="(min-width: 1500px) 330px, (min-width: 990px) 25vw, 50vw"
+                      alt=""
+                      width="{{ b_image.width }}"
+                      height="{{ b_image.height }}"
+                      loading="lazy"
+                    >
+                  {%- else -%}
+                    <span class="pm-bfeed__placeholder" aria-hidden="true">
+                      {%- render 'pm-icon', icon: 'bag', size: 32, stroke: 1.25 -%}
+                    </span>
+                  {%- endif -%}
+
+                  {%- if b_badge != blank -%}
+                    <div class="pm-card__badges">
+                      <span class="pm-badge">{{ b_badge | escape }}</span>
+                    </div>
+                  {%- endif -%}
+
+                  <span class="pm-card__quick" aria-hidden="true">
+                    <span class="pm-card__quick-label">{{ 'premium.card.shop_now' | t }}</span>
+                    {%- render 'pm-icon', icon: 'arrow-right', size: 16 -%}
+                  </span>
+                </div>
+
+                <div class="pm-card__body">
+                  {%- if b_title != blank -%}
+                    <h3 class="pm-card__title">{{ b_title | escape }}</h3>
+                  {%- endif -%}
+                  <span class="pm-card__rule" aria-hidden="true"></span>
+                  {%- if block.settings.subtitle != blank -%}
+                    <p class="pm-card__meta">{{ block.settings.subtitle | escape }}</p>
+                  {%- endif -%}
+                  {%- if b_price != blank -%}
+                    <div class="pm-card__price">
+                      <span>{{ b_price }}</span>
+                      {%- if b_compare != blank -%}
+                        <s class="pm-card__compare">{{ b_compare }}</s>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Bundle feed",
+    "class": "home-bundle-feed pm-scope",
+    "max_blocks": 4,
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-1"
+      },
+      {
+        "type": "header",
+        "content": "Banner tile"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner image",
+        "info": "1360 x 840 px. Keep the left 55% calm (text sits bottom-left), subject in the right 45%. Below 990px it crops to 2.15:1. Empty = solid black tile."
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_mobile_image",
+        "label": "Banner image (mobile)",
+        "info": "Optional, used below 750px"
+      },
+      {
+        "type": "text",
+        "id": "banner_heading",
+        "label": "Heading",
+        "default": "Discover our sets"
+      },
+      {
+        "type": "text",
+        "id": "banner_link_text",
+        "label": "Link text",
+        "default": "Se alla"
+      },
+      {
+        "type": "url",
+        "id": "banner_link",
+        "label": "Link",
+        "info": "The whole tile is one link. Empty = /collections/all"
+      },
+      {
+        "type": "range",
+        "id": "overlay_opacity",
+        "min": 0,
+        "max": 80,
+        "step": 5,
+        "unit": "%",
+        "label": "Overlay opacity",
+        "info": "Black gradient from the left edge, fading to 0 on the right.",
+        "default": 35
+      },
+      {
+        "type": "header",
+        "content": "Section padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "info": "Mobile uses half of this value.",
+        "default": 80
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "info": "Mobile uses half of this value.",
+        "default": 80
+      }
+    ],
+    "blocks": [
+      {
+        "type": "bundle",
+        "name": "Bundle",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product",
+            "info": "The bundle product. Its image, title, price, compare-at price and link fill the card."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Optional. Square, 1080 x 1080 px; replaces the product image (shown as cover)."
+          },
+          {
+            "type": "text",
+            "id": "badge",
+            "label": "Badge",
+            "info": "Optional. Empty = the saving from the product's compare-at price, e.g. Spara 30%."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "info": "Optional. Empty = product title."
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Empty = product link, else the banner link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Bundle feed",
+        "blocks": [
+          {
+            "type": "bundle"
+          },
+          {
+            "type": "bundle"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

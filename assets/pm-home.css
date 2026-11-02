@@ -1,0 +1,4 @@
+/* pm-home.css: owned by WP-E, loaded from layout/theme.liquid on the index template only.
+   Template-level layout only. Section styling lives in the section files:
+   pm-s-homepage-hero.css, pm-s-popular-products.css, pm-s-home-category.css, pm-s-makes-different-list.css
+   (each loaded by its section). Nothing needed here yet; kept so the theme.liquid link resolves. */
