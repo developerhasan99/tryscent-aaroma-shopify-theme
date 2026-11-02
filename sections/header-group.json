@@ -56,8 +56,6 @@
         "enable_badges": false,
         "primary_color": "#C8202F",
         "secondary_color": "#FFFFFF",
-        "timer_box_color": "#0B0B0B",
-        "timer_label_color": "#FFFFFF",
         "top_banner_text": "LIMITED TIME ONLY",
         "prepend_text": "Halloween Sale!",
         "countdown_date": "2026/11/04 23:59:59",
